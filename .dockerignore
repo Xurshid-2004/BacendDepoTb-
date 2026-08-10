@@ -1,0 +1,35 @@
+# =====================================================================
+# Docker image'ga TUSHMASLIGI kerak boʻlgan fayllar.
+#
+# Dockerfile'da `COPY . .` bor — bu fayl boʻlmasa maxfiy kalitlar
+# (.env) va lokal virtual muhit image ichiga tushib qoladi. Image esa
+# registry'ga yuklanadi va uni ochgan har kim kalitlarni koʻra oladi.
+# =====================================================================
+
+# --- Maxfiy ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Lokal muhit ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# --- Lokal baza va yuklamalar ---
+*.sqlite3
+db.sqlite3
+dev.sqlite3
+media/
+staticfiles/
+
+# --- Testlar / keshlar ---
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage

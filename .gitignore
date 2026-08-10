@@ -1,0 +1,28 @@
+# --- Muhit fayllari (maxfiy kalitlar) ---
+# .env ichida DJANGO_SECRET_KEY, JWT_SECRET, FACE_SERVICE_TOKEN bor.
+# Hech qachon git'ga tushmasin — repo ochiq.
+.env
+.env.*
+!.env.example
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# --- Django ---
+staticfiles/
+media/
+*.sqlite3
+*.log
+
+# --- Kalitlar ---
+*.pem
+
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,23 @@
+# =====================================================================
+# TB tizimi — Django backend bogʻliqliklari
+# Oʻrnatish:  pip install -r requirements.txt
+# =====================================================================
+
+Django==6.0.6
+
+# REST qatlami
+djangorestframework==3.16.1
+django-cors-headers==4.9.0
+
+# PostgreSQL drayveri (binary — kompilyatsiya talab qilmaydi)
+psycopg[binary]==3.2.12
+
+# JWT (HS256) — access/refresh tokenlar
+PyJWT==2.11.0
+
+# Muhit oʻzgaruvchilari (.env fayldan)
+python-dotenv==1.2.1
+
+# Production server + statik fayllar
+gunicorn==23.0.0
+whitenoise==6.11.0
