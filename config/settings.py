@@ -75,6 +75,14 @@ _platform_host = env("RENDER_EXTERNAL_HOSTNAME") or env("RAILWAY_PUBLIC_DOMAIN")
 if _platform_host and _platform_host not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(_platform_host)
 
+# Railway'da domen konteyner koʻtarilgandan KEYIN yaratilishi mumkin — u holda
+# RAILWAY_PUBLIC_DOMAIN boʻsh qoladi va Django oʻz domenini tanimay 400 qaytaradi.
+# Railway muhitida turgan boʻlsak, uning bergan poddomenlariga ishonamiz: bu
+# domenlarni faqat Railway'ning oʻzi shu konteynerga yoʻnaltira oladi.
+_railway = bool(env("RAILWAY_ENVIRONMENT_NAME") or env("RAILWAY_PROJECT_ID"))
+if _railway and ".railway.app" not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(".railway.app")  # boshdagi nuqta — barcha poddomenlar
+
 # Depo kodi — bitta oʻrnatma bitta depoga xizmat qiladi
 DEPO_KOD = env("NEXT_PUBLIC_DEPO_KOD", "TCH-6")
 
@@ -255,6 +263,10 @@ if _platform_host:
     _platform_origin = f"https://{_platform_host}"
     if _platform_origin not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(_platform_origin)
+
+# ALLOWED_HOSTS dagi kabi — Railway domeni oldindan maʼlum boʻlmasligi mumkin
+if _railway and "https://*.railway.app" not in CSRF_TRUSTED_ORIGINS:
+    CSRF_TRUSTED_ORIGINS.append("https://*.railway.app")
 
 
 # ---------------------------------------------------------------------
