@@ -207,6 +207,9 @@ class WorkerManager(BaseUserManager):
         extra.setdefault("faol", True)
         extra.setdefault("familiya", "Administrator")
         extra.setdefault("ism", tabel)
+        # depo majburiy (null=False), createsuperuser esa uni soʻramaydi —
+        # sozlamadagi DEPO_KOD boʻyicha oʻzi topadi, boʻlmasa yaratadi.
+        extra.setdefault("depo", Depo.joriy())
         worker = self.model(tabel=tabel.strip(), **extra)
         worker.set_password(password)          # admin panel uchun oddiy parol
         if not worker.roles:
