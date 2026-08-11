@@ -49,4 +49,20 @@ if [ "${TB_SEED:-1}" = "1" ]; then
 fi
 
 echo "[tb] Ishga tushmoqda..."
+
+# Railway/Fly panelidagi "Custom Start Command" konteynerga exec shaklida
+# uzatiladi — oradа shell boʻlmaydi va $PORT kabi oʻzgaruvchilar kengaymaydi.
+# Natijada gunicorn portni "$PORT" degan matn deb qabul qiladi va
+# "'$PORT' is not a valid port number" xatosi bilan toʻxtaydi; hech qanday
+# port band boʻlmagani uchun platformaning healthcheck'i yiqiladi.
+#
+# Buyruqda kengaymagan oʻzgaruvchi qolgan boʻlsa, uni shell orqali qayta
+# oʻtkazamiz — shunda $PORT oʻz qiymatini oladi.
+case "$*" in
+  *'$'*)
+    echo "[tb] Buyruqda kengaymagan oʻzgaruvchi bor — shell orqali qayta ishga tushiriladi"
+    exec /bin/sh -c "exec $*"
+    ;;
+esac
+
 exec "$@"

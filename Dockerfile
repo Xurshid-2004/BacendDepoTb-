@@ -39,12 +39,8 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
   CMD curl -fsS "http://127.0.0.1:${PORT:-8000}/api/v1/health" || exit 1
 
 ENTRYPOINT ["tb-entrypoint"]
-# Shell shakli — Railway/Fly kabi platformalar portni $PORT orqali beradi.
-# Oʻzgaruvchi boʻlmasa 8000 ishlatiladi (docker-compose, lokal).
-CMD gunicorn config.wsgi:application \
-      --bind "0.0.0.0:${PORT:-8000}" \
-      --workers "${WEB_CONCURRENCY:-3}" \
-      --threads 4 \
-      --timeout 90 \
-      --access-logfile - \
-      --error-logfile -
+# Port, workerlar soni va timeout — gunicorn.conf.py da belgilanadi
+# (u PORT oʻzgaruvchisini Python tomonida oʻqiydi). Buyruqda oʻzgaruvchi
+# qolmagani uchun exec shakli xavfsiz: platformalar buyruqni shellsiz
+# uzatganda ham "$PORT" matn holida qolib ketmaydi.
+CMD ["gunicorn", "config.wsgi:application"]
