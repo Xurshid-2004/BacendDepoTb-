@@ -251,6 +251,16 @@ CORS_ALLOWED_ORIGINS = env_list(
     "CORS_ALLOWED_ORIGINS",
     "http://localhost:3000,http://127.0.0.1:3000" if DEBUG else "",
 )
+
+# Frontend Vercel'da turadi. Asosiy domendan tashqari har bir preview
+# deploy oʻz poddomenini oladi (masalan fronted-depo-tb-git-main-*.vercel.app)
+# — ularni qoʻlda sanab boʻlmaydi, shuning uchun namuna orqali ruxsat
+# beriladi. Bu xavfsiz: token Authorization sarlavhasida ketadi, cookie
+# ishlatilmaydi (CORS_ALLOW_CREDENTIALS = False), yaʼni begona sayt
+# foydalanuvchi nomidan soʻrov yubora olmaydi.
+CORS_ALLOWED_ORIGIN_REGEXES = env_list("CORS_ALLOWED_ORIGIN_REGEXES") or [
+    r"^https://[a-z0-9-]+\.vercel\.app$",
+]
 CORS_ALLOW_CREDENTIALS = False  # token Authorization sarlavhasida ketadi, cookie emas
 CORS_ALLOW_HEADERS = [
     "accept", "accept-encoding", "authorization", "content-type",
