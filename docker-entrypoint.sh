@@ -42,26 +42,35 @@ python manage.py migrate --noinput
 echo "[tb] Statik fayllar..."
 python manage.py collectstatic --noinput --clear >/dev/null
 
-# Normativ maʼlumot faqat bazа boʻsh boʻlganda yoziladi
-if [ "${TB_SEED:-1}" = "1" ]; then
-  echo "[tb] Boshlangʻich maʼlumot tekshirilmoqda..."
-  python manage.py seed
-fi
+# --- Maʼlumot yozish — FONDA -----------------------------------------
+#
+# Bu qadamlar (normativ maʼlumot, 296 xodim va ularning suratlari)
+# uzoq bazaga yuzlab soʻrov yuboradi va bir necha daqiqa olishi mumkin.
+# Ilgari ular gunicorn'dan OLDIN bajarilardi — natijada platformaning
+# healthcheck'i (5 daqiqa) server koʻtarilishini kutolmay deploy'ni
+# muvaffaqiyatsiz deb belgilardi.
+#
+# Endi server darrov koʻtariladi, maʼlumot esa orqa fonda yoziladi.
+# Buyruqlar takror ishga tushishga chidamli, shuning uchun yarim
+# yoʻlda uzilib qolsa keyingi deploy davom ettiradi.
+(
+  if [ "${TB_SEED:-1}" = "1" ]; then
+    echo "[tb] Boshlangʻich maʼlumot tekshirilmoqda..."
+    python manage.py seed || echo "[tb] OGOHLANTIRISH: seed bajarilmadi"
+  fi
 
-# Kadrlar roʻyxati (296 xodim: tabel, F.I.Sh., lavozim, surat).
-# Buyruq takror ishga tushishga chidamli: mavjud tabel yangilanadi,
-# PIN va rollarga tegilmaydi. TB_XODIMLAR=0 boʻlsa oʻtkazib yuboriladi.
-if [ "${TB_XODIMLAR:-1}" = "1" ]; then
-  echo "[tb] Kadrlar roʻyxati yuklanmoqda..."
-  python manage.py import_xodimlar
-fi
+  if [ "${TB_XODIMLAR:-1}" = "1" ]; then
+    echo "[tb] Kadrlar roʻyxati yuklanmoqda..."
+    python manage.py import_xodimlar || echo "[tb] OGOHLANTIRISH: kadrlar yuklanmadi"
+  fi
 
-# Administrator hisobi — TB_ADMIN_TABEL berilgan boʻlsa.
-# Buyruq bir marta ishlaydi: hisob bor boʻlsa PIN'ga tegmaydi.
-if [ -n "${TB_ADMIN_TABEL:-}" ]; then
-  echo "[tb] Administrator hisobi tekshirilmoqda..."
-  python manage.py admin_yarat
-fi
+  if [ -n "${TB_ADMIN_TABEL:-}" ]; then
+    echo "[tb] Administrator hisobi tekshirilmoqda..."
+    python manage.py admin_yarat || echo "[tb] OGOHLANTIRISH: admin yaratilmadi"
+  fi
+
+  echo "[tb] Fon vazifalari tugadi."
+) &
 
 echo "[tb] Ishga tushmoqda..."
 

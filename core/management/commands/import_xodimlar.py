@@ -90,6 +90,18 @@ class Command(BaseCommand):
             if p:
                 pos_map[nomi] = p
 
+        # Mavjud xodimlar bitta soʻrovda olinadi (tabel boʻyicha)
+        tabellar = [str(r["tabel"]).strip() for r in rows if str(r.get("tabel", "")).strip()]
+        mavjud = {
+            w.tabel: w
+            for w in Worker.objects.filter(tabel__in=tabellar).prefetch_related("positions")
+        }
+
+        yangilar: list[Worker] = []            # bulk_create uchun
+        yangilanadi: list[Worker] = []         # bulk_update uchun
+        yangi_lavozim: list[tuple] = []        # (worker, position)
+        lavozim_ozgardi: list[tuple] = []      # mavjud xodimning lavozimi oʻzgargan
+
         qoshildi = yangilandi = rasmli = 0
         for r in rows:
             tabel = str(r["tabel"]).strip()
@@ -105,7 +117,7 @@ class Command(BaseCommand):
                     rasmli += 1
 
             position = pos_map.get(r["lavozim"])
-            w = Worker.objects.filter(tabel=tabel).first()
+            w = mavjud.get(tabel)
 
             if o["quruq"]:
                 self.stdout.write(
@@ -131,13 +143,13 @@ class Command(BaseCommand):
                     w.rasm = rasm
                 if not w.roles:
                     w.roles = [rol_top(r["lavozim"])]
-                w.save()
-                if position:
-                    w.positions.set([position])
+                yangilanadi.append(w)
+                if position and [position.id] != [p.id for p in w.positions.all()]:
+                    lavozim_ozgardi.append((w, position))
                 yangilandi += 1
                 continue
 
-            w = Worker.objects.create(
+            w = Worker(
                 depo=depo,
                 tabel=tabel,
                 familiya=r["familiya"],
@@ -153,18 +165,48 @@ class Command(BaseCommand):
                 rasm=rasm,
             )
             w.set_unusable_password()          # kirish faqat PIN orqali
-            w.save(update_fields=["password"])
+            yangilar.append(w)
             if position:
-                w.positions.set([position])
-
-            Card.objects.get_or_create(worker=w, defaults={"ochilgan": today()})
-            for n in (1, 2, 3):
-                Talon.objects.get_or_create(worker=w, raqam=n, defaults={"olingan": False})
+                yangi_lavozim.append((w, position))
             qoshildi += 1
 
         if o["quruq"]:
             self.stdout.write(self.style.WARNING("Quruq rejim — bazaga hech narsa yozilmadi"))
             return
+
+        # --- bazaga yozish: bittalab emas, toʻda-toʻda ------------------
+        # 296 xodimni bittalab yozish uzoq bazaga ~1800 ta soʻrov edi va
+        # bir necha daqiqa olardi. Bu yerda soʻrovlar soni oʻnga tushadi.
+        if yangilar:
+            Worker.objects.bulk_create(yangilar, batch_size=100)
+        if yangilanadi:
+            Worker.objects.bulk_update(
+                yangilanadi,
+                ["familiya", "ism", "otasi", "sex", "ish_joyi", "jinsi",
+                 "position", "rasm", "roles"],
+                batch_size=100,
+            )
+
+        # Lavozim bogʻlanishi (many-to-many)
+        Aloqa = Worker.positions.through
+        if yangi_lavozim:
+            Aloqa.objects.bulk_create(
+                [Aloqa(worker_id=w.id, position_id=p.id) for w, p in yangi_lavozim],
+                batch_size=200, ignore_conflicts=True,
+            )
+        for w, p in lavozim_ozgardi:          # kam uchraydi — faqat oʻzgarganlar
+            w.positions.set([p])
+
+        # Kartochka va talonlar — faqat yangi xodimlar uchun
+        if yangilar:
+            Card.objects.bulk_create(
+                [Card(worker=w, ochilgan=today()) for w in yangilar],
+                batch_size=200, ignore_conflicts=True,
+            )
+            Talon.objects.bulk_create(
+                [Talon(worker=w, raqam=n, olingan=False) for w in yangilar for n in (1, 2, 3)],
+                batch_size=300, ignore_conflicts=True,
+            )
 
         self.stdout.write(self.style.SUCCESS(
             f"Tayyor: {qoshildi} ta yangi, {yangilandi} ta yangilandi · "

@@ -32,6 +32,11 @@ fi
 
 # Kadrlar roʻyxati (296 xodim, surati bilan). Takrorlanmaydi: mavjud
 # tabel yangilanadi, PIN va rollarga tegilmaydi. TB_XODIMLAR=0 — oʻchiradi.
+#
+# DIQQAT: Render'da build bosqichi serverdan alohida bajariladi, shuning
+# uchun bu yerda kutish xavfsiz. Docker (Railway/Fly) yoʻlida esa bu
+# qadamlar `docker-entrypoint.sh` da FONDA ishlaydi — healthcheck
+# server koʻtarilishini kutib qolmasligi uchun.
 if [ "${TB_XODIMLAR:-1}" = "1" ]; then
   echo "[tb] Kadrlar roʻyxati yuklanmoqda..."
   python manage.py import_xodimlar
