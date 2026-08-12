@@ -1,0 +1,22 @@
+# =====================================================================
+# Qator oxiri (line ending) qoidalari.
+#
+# Windows'da git odatda `core.autocrlf=true` bilan ishlaydi va fayllarga
+# CRLF qoʻshadi. Shell skriptlar Linux konteynerda ishga tushadi — ular
+# ichida `\r` boʻlsa yadro interpretatorni topa olmaydi va konteyner
+# "bad interpreter" xatosi bilan yiqiladi. Shuning uchun skriptlar va
+# konfiguratsiya fayllari har doim LF bilan saqlanadi.
+# =====================================================================
+
+* text=auto eol=lf
+
+*.sh text eol=lf
+Dockerfile text eol=lf
+*.py text eol=lf
+
+# Ikkilik fayllar — tegilmaydi
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.sqlite3 binary

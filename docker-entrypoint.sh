@@ -12,6 +12,38 @@
 # =====================================================================
 set -e
 
+# ---------------------------------------------------------------------
+# Serverni ishga tushirish — buyruq ichida kengaymagan oʻzgaruvchi
+# qolgan boʻlsa (masalan panel bergan "$PORT"), shell orqali qayta
+# oʻtkazamiz. Ikki joydan chaqirilgani uchun funksiyaga chiqarildi.
+# ---------------------------------------------------------------------
+ishga_tushir() {
+  case "$*" in
+    *'$'*)
+      echo "[tb] Buyruqda kengaymagan oʻzgaruvchi bor — shell orqali qayta ishga tushiriladi"
+      exec /bin/sh -c "exec $*"
+      ;;
+  esac
+  exec "$@"
+}
+
+# ---------------------------------------------------------------------
+# Takroriy chaqiruvdan himoya.
+#
+# railway.json dagi startCommand `tb-entrypoint gunicorn ...` deb
+# yozilgan — shu bilan panelning "Custom Start Command" sozlamasi
+# bekor qilinadi va entrypoint chetlab oʻtilmaydi. Platforma
+# Dockerfile ENTRYPOINT'ini ham saqlab qolsa, skript ikki marta
+# chaqiriladi. Migratsiya va collectstatic'ni takrorlash shart emas:
+# birinchi chaqiruv hammasini bajaradi, ikkinchisi toʻgʻridan-toʻgʻri
+# gunicorn'ga oʻtadi.
+# ---------------------------------------------------------------------
+if [ "${TB_ENTRYPOINT_BAJARILDI:-}" = "1" ]; then
+  echo "[tb] Tayyorlash allaqachon bajarilgan — server ishga tushiriladi"
+  ishga_tushir "$@"
+fi
+export TB_ENTRYPOINT_BAJARILDI=1
+
 echo "[tb] Baza ulanishini kutmoqda..."
 python - <<'PY'
 import os, sys, time
@@ -79,14 +111,4 @@ echo "[tb] Ishga tushmoqda..."
 # Natijada gunicorn portni "$PORT" degan matn deb qabul qiladi va
 # "'$PORT' is not a valid port number" xatosi bilan toʻxtaydi; hech qanday
 # port band boʻlmagani uchun platformaning healthcheck'i yiqiladi.
-#
-# Buyruqda kengaymagan oʻzgaruvchi qolgan boʻlsa, uni shell orqali qayta
-# oʻtkazamiz — shunda $PORT oʻz qiymatini oladi.
-case "$*" in
-  *'$'*)
-    echo "[tb] Buyruqda kengaymagan oʻzgaruvchi bor — shell orqali qayta ishga tushiriladi"
-    exec /bin/sh -c "exec $*"
-    ;;
-esac
-
-exec "$@"
+ishga_tushir "$@"
