@@ -96,8 +96,18 @@ python manage.py collectstatic --noinput --clear >/dev/null
     python manage.py import_xodimlar || echo "[tb] OGOHLANTIRISH: kadrlar yuklanmadi"
   fi
 
+  # Administrator tabel raqami. Panelda TB_ADMIN_TABEL berilmagan boʻlsa
+  # shu depo uchun kelishilgan qiymat ishlatiladi.
+  #
+  # PIN bu yerda ATAYLAB berilmaydi: hisob PIN'siz yaratiladi va
+  # administrator birinchi kirishda oʻziga PIN oʻrnatadi. Shunda parol
+  # na kodda, na muhit oʻzgaruvchisida saqlanmaydi — repo ochiq boʻlgani
+  # uchun bu muhim. admin_yarat mavjud hisobning PIN'iga tegmaydi.
+  TB_ADMIN_TABEL="${TB_ADMIN_TABEL:-0212}"
+  export TB_ADMIN_TABEL
+
   if [ -n "${TB_ADMIN_TABEL:-}" ]; then
-    echo "[tb] Administrator hisobi tekshirilmoqda..."
+    echo "[tb] Administrator hisobi tekshirilmoqda ($TB_ADMIN_TABEL)..."
     python manage.py admin_yarat || echo "[tb] OGOHLANTIRISH: admin yaratilmadi"
   fi
 
