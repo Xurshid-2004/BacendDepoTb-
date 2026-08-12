@@ -48,6 +48,14 @@ if [ "${TB_SEED:-1}" = "1" ]; then
   python manage.py seed
 fi
 
+# Kadrlar roʻyxati (296 xodim: tabel, F.I.Sh., lavozim, surat).
+# Buyruq takror ishga tushishga chidamli: mavjud tabel yangilanadi,
+# PIN va rollarga tegilmaydi. TB_XODIMLAR=0 boʻlsa oʻtkazib yuboriladi.
+if [ "${TB_XODIMLAR:-1}" = "1" ]; then
+  echo "[tb] Kadrlar roʻyxati yuklanmoqda..."
+  python manage.py import_xodimlar
+fi
+
 echo "[tb] Ishga tushmoqda..."
 
 # Railway/Fly panelidagi "Custom Start Command" konteynerga exec shaklida

@@ -18,6 +18,9 @@ PyJWT==2.11.0
 # Muhit oʻzgaruvchilari (.env fayldan)
 python-dotenv==1.2.1
 
+# Xodim suratlarini kichraytirish (import_xodimlar buyrugʻi)
+Pillow==12.3.0
+
 # Production server + statik fayllar
 gunicorn==23.0.0
 whitenoise==6.11.0

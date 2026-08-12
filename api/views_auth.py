@@ -494,13 +494,18 @@ def worker_face(request, worker_id):
     Surat butun holat bilan birga yuborilmaydi (800 ta base64 = juda
     katta javob). Kerak boʻlganda shu endpointdan bittalab olinadi.
     """
-    worker = Worker.objects.filter(id=worker_id, deleted=False).only("face_image").first()
-    if not worker or not worker.face_image:
+    worker = (
+        Worker.objects.filter(id=worker_id, deleted=False)
+        .only("rasm", "face_image")
+        .first()
+    )
+    # Avval kadrlar boʻlimining rasmiy surati, boʻlmasa Face ID kadri
+    raw = (worker.rasm or worker.face_image) if worker else ""
+    if not raw:
         return xato("Surat topilmadi", status.HTTP_404_NOT_FOUND)
 
     from django.http import HttpResponse
 
-    raw = worker.face_image
     # "data:image/jpeg;base64,...." koʻrinishida saqlanadi
     if raw.startswith("data:"):
         import base64

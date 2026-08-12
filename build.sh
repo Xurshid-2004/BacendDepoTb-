@@ -30,4 +30,11 @@ if [ "${TB_SEED:-1}" = "1" ]; then
   python manage.py seed
 fi
 
+# Kadrlar roʻyxati (296 xodim, surati bilan). Takrorlanmaydi: mavjud
+# tabel yangilanadi, PIN va rollarga tegilmaydi. TB_XODIMLAR=0 — oʻchiradi.
+if [ "${TB_XODIMLAR:-1}" = "1" ]; then
+  echo "[tb] Kadrlar roʻyxati yuklanmoqda..."
+  python manage.py import_xodimlar
+fi
+
 echo "[tb] Build tayyor."

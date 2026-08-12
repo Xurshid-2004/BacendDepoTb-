@@ -139,7 +139,7 @@ def worker_json(w: Worker, position_ids: list[str] | None = None) -> dict:
         # Xavfsiz almashtirishlar
         "pinSet": bool(w.pin_hash),
         "pinReset": w.pin_reset,
-        "faceUrl": f"/api/v1/workers/{w.id}/face" if w.face_image else None,
+        "faceUrl": f"/api/v1/workers/{w.id}/face" if (w.rasm or w.face_image) else None,
         # Face ID sozlanganmi (vektor bor) — suratning oʻzi emas
         "faceBor": bool(w.face_vector),
         "royxatdanOtgan": dt(w.royxatdan_otgan),
@@ -147,6 +147,15 @@ def worker_json(w: Worker, position_ids: list[str] | None = None) -> dict:
 
 
 def signature_json(s: Signature) -> dict:
+    # Imzo — hujjatdagi qatʼiy iz: kim, qaysi lavozimda va qachon
+    # tasdiqlagani imzo qoʻyilgan PAYTDAGI holicha saqlanadi. Shuning
+    # uchun F.I.Sh. ishchi jadvalidan emas, payload'dan olinadi —
+    # keyinchalik lavozim oʻzgarsa ham hujjat oʻzgarmaydi.
+    payload = s.payload or {}
+    fio = payload.get("fio") or (s.user.fio if s.user else "")
+    lavozim = payload.get("lavozim") or (
+        s.user.position.nomi if (s.user and s.user.position) else ""
+    )
     return {
         "id": sid(s.id),
         "docType": s.doc_type,
@@ -155,6 +164,8 @@ def signature_json(s: Signature) -> dict:
         "userId": sid(s.user_id),
         "sana": dt(s.sana),
         "hash": s.hash,
+        "fio": fio,
+        "lavozim": lavozim,
     }
 
 
@@ -365,7 +376,11 @@ def build_state(me: Worker | None = None) -> dict:
     req_ids = [str(r.id) for r in requests_qs]
     imzolar: dict[str, list] = {}
     if req_ids:
-        for s in Signature.objects.filter(doc_type="requisition", doc_id__in=req_ids, bekor=False):
+        # user/position ham birga olinadi — signature_json ularga murojaat
+        # qiladi, aks holda har imzo uchun alohida soʻrov ketardi (N+1).
+        for s in Signature.objects.filter(
+            doc_type="requisition", doc_id__in=req_ids, bekor=False
+        ).select_related("user__position"):
             imzolar.setdefault(s.doc_id, []).append(s)
 
     # --- kartochkalar ---
@@ -384,7 +399,10 @@ def build_state(me: Worker | None = None) -> dict:
         "workers": workers,
         "cards": [card_json(c) for c in cards_qs],
         "requests": [request_json(r, imzolar) for r in requests_qs],
-        "journal": [journal_json(j) for j in JournalEntry.objects.select_related("imzo")],
+        "journal": [
+            journal_json(j)
+            for j in JournalEntry.objects.select_related("imzo__user__position")
+        ],
         "stock": [stock_json(s) for s in Stock.objects.all()],
         "moves": [move_json(m) for m in StockMove.objects.all()[:500]],
         "talons": [talon_json(t) for t in talons_qs],

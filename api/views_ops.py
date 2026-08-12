@@ -347,16 +347,37 @@ def journal_add(request):
     me = request.user
     d = request.data
 
+    # --- bosqich: faqat 1 yoki 2. Notoʻgʻri qiymat jimgina 1-ga
+    #     aylantirilmaydi — yozuv notoʻgʻri kitobga tushib ketmasligi kerak.
+    try:
+        bosqich = int(d.get("bosqich"))
+    except (TypeError, ValueError):
+        return xato("Bosqich koʻrsatilmadi (1 yoki 2 boʻlishi kerak)")
+    if bosqich not in (1, 2):
+        return xato("Bosqich faqat 1 yoki 2 boʻlishi mumkin")
+
     nomuvofiqlik = str(d.get("nomuvofiqlik", "")).strip()
     if not nomuvofiqlik:
         return xato("Nomuvofiqlik matni kiritilmadi")
-    if not d.get("sana") or not d.get("muddat"):
-        return xato("Sana va muddat koʻrsatilishi shart")
+    if not d.get("muddat"):
+        return xato("Bajarish muddati koʻrsatilishi shart")
+
+    # Sana kelmasa — serverning bugungi sanasi. 1-ustun hech qachon boʻsh
+    # qolmaydi, mijoz soatiga ham bogʻliq boʻlmaydi.
+    sana = d.get("sana") or timezone.localdate().isoformat()
+
+    # Komissiya boʻsh kelsa — 2-ustunga yozuvni kiritayotgan xodim yoziladi.
+    komissiya = d.get("komissiya") or []
+    if not isinstance(komissiya, list) or not komissiya:
+        komissiya = [{
+            "fio": f"{me.familiya} {me.ism} {me.otasi}".strip(),
+            "lavozim": (me.position.nomi if me.position else "TB muhandisi"),
+        }]
 
     j = JournalEntry.objects.create(
-        bosqich=int(d.get("bosqich") or 1),
-        sana=d["sana"],
-        komissiya=d.get("komissiya") or [],
+        bosqich=bosqich,
+        sana=sana,
+        komissiya=komissiya,
         nomuvofiqlik=nomuvofiqlik,
         chora=str(d.get("chora", "")),
         masul=str(d.get("masul", "")),
@@ -365,28 +386,39 @@ def journal_add(request):
         bajarildi=bool(d.get("bajarildi")),
         bajarilgan_izoh=str(d.get("bajarilganIzoh", "") or ""),
     )
-    audit(me, f"jurnal {j.bosqich}-bosqich", "yozuv qoʻshildi")
+    audit(me, f"jurnal {j.bosqich}-bosqich", "yozuv qoʻshildi", nomuvofiqlik[:80])
     return holat(me)
 
 
 @api_view(["POST"])
 @transaction.atomic
 def journal_sign(request, entry_id):
-    """7-ustunni imzolash — chora bajarildi deb belgilanadi."""
+    """
+    7-ustun — chora-tadbir bajarilganini TASDIQLASH.
+
+    Tasdiqlangach yozuv «bajarildi» deb belgilanadi va QR imzo qoʻyiladi.
+    Imzo hujjatdagi qatʼiy iz: kim, qaysi lavozimda va qachon tasdiqlagani
+    imzo payload'ida oʻsha paytdagi holicha saqlanadi.
+    """
     if (e := tekshir(request, "journal.sign")):
         return xato(e, status.HTTP_403_FORBIDDEN)
 
     me = request.user
-    j = JournalEntry.objects.filter(id=entry_id).first()
+    # select_for_update — bir vaqtda ikki kishi tasdiqlab yuborsa,
+    # ikkinchisi birinchisini kutadi va «allaqachon tasdiqlangan» javobini oladi.
+    j = JournalEntry.objects.select_for_update().filter(id=entry_id).first()
     if not j:
         return xato("Jurnal yozuvi topilmadi", status.HTTP_404_NOT_FOUND)
 
+    if j.bajarildi and j.imzo_id:
+        return xato("Bu yozuv allaqachon tasdiqlangan", status.HTTP_409_CONFLICT)
+
     j.bajarildi = True
-    j.bajarilgan_izoh = str(request.data.get("izoh", "") or "")
+    j.bajarilgan_izoh = str(request.data.get("izoh", "") or "").strip() or "Bajarildi"
     j.imzo = imzo_yarat(me, "journal", j.id, "07")
     j.save(update_fields=["bajarildi", "bajarilgan_izoh", "imzo"])
 
-    audit(me, f"jurnal yozuvi {j.id}", "bajarildi va imzolandi")
+    audit(me, f"jurnal yozuvi {j.id}", "bajarildi deb tasdiqlandi", j.nomuvofiqlik[:80])
     return holat(me)
 
 

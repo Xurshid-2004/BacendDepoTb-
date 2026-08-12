@@ -261,6 +261,11 @@ class Worker(Base, AbstractBaseUser, PermissionsMixin):
     faol = models.BooleanField(default=True)
     imzo_id = models.CharField(max_length=64, blank=True)
 
+    # Kadrlar boʻlimi surati (rasmiy foto) — base64 data URL.
+    # face_image dan ALOHIDA saqlanadi: ishchi Face ID qoʻyganda kameradan
+    # olingan kadr face_image ni almashtiradi, rasmiy surat esa qoladi.
+    rasm = models.TextField(blank=True)
+
     # FaceID — koʻrsatish uchun base64 data URL (admin panelida avatar)
     face_image = models.TextField(blank=True)
 
