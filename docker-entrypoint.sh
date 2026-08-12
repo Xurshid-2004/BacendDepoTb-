@@ -56,6 +56,13 @@ if [ "${TB_XODIMLAR:-1}" = "1" ]; then
   python manage.py import_xodimlar
 fi
 
+# Administrator hisobi — TB_ADMIN_TABEL berilgan boʻlsa.
+# Buyruq bir marta ishlaydi: hisob bor boʻlsa PIN'ga tegmaydi.
+if [ -n "${TB_ADMIN_TABEL:-}" ]; then
+  echo "[tb] Administrator hisobi tekshirilmoqda..."
+  python manage.py admin_yarat
+fi
+
 echo "[tb] Ishga tushmoqda..."
 
 # Railway/Fly panelidagi "Custom Start Command" konteynerga exec shaklida

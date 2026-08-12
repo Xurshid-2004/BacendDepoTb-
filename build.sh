@@ -37,4 +37,11 @@ if [ "${TB_XODIMLAR:-1}" = "1" ]; then
   python manage.py import_xodimlar
 fi
 
+# Administrator hisobi — TB_ADMIN_TABEL berilgan boʻlsa.
+# Hisob bor boʻlsa PIN'ga tegilmaydi (deploy PIN'ni qaytarib qoʻymaydi).
+if [ -n "${TB_ADMIN_TABEL:-}" ]; then
+  echo "[tb] Administrator hisobi tekshirilmoqda..."
+  python manage.py admin_yarat
+fi
+
 echo "[tb] Build tayyor."
