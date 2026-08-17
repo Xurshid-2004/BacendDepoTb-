@@ -1,5 +1,16 @@
 [
  {
+  "tabel": "0001",
+  "familiya": "Asrorov",
+  "ism": "Dilshod",
+  "otasi": "Istamovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0001.jpg"
+ },
+ {
   "tabel": "0002",
   "familiya": "Umedov",
   "ism": "Solijon",
@@ -55,6 +66,17 @@
   "rasm": "0006.jpg"
  },
  {
+  "tabel": "0007",
+  "familiya": "Turobov",
+  "ism": "Shoxboz",
+  "otasi": "Ismoil o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0007.jpg"
+ },
+ {
   "tabel": "0011",
   "familiya": "Turayev",
   "ism": "Alisher",
@@ -77,6 +99,17 @@
   "rasm": "0012.jpg"
  },
  {
+  "tabel": "0016",
+  "familiya": "Shomirzayev",
+  "ism": "Nasim",
+  "otasi": "Nomozovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0016.jpg"
+ },
+ {
   "tabel": "0018",
   "familiya": "Toshmurotov",
   "ism": "Eldor",
@@ -88,6 +121,116 @@
   "rasm": "0018.jpg"
  },
  {
+  "tabel": "0020",
+  "familiya": "Abduvoxidov",
+  "ism": "G‘iyos",
+  "otasi": "Berdiyorovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0020.jpg"
+ },
+ {
+  "tabel": "0023",
+  "familiya": "Botirov",
+  "ism": "Jo‘rabek",
+  "otasi": "Kamolovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0023.jpg"
+ },
+ {
+  "tabel": "0024",
+  "familiya": "Baratov",
+  "ism": "Aziz",
+  "otasi": "Muxiddinovich",
+  "lavozim": "Boshliq o'rinbosari",
+  "lavozimToliq": "Boshliq o'rinbosari, 3 guruh /AUR/Marakand",
+  "sex": "AUR",
+  "jinsi": "erkak",
+  "rasm": "0024.jpg"
+ },
+ {
+  "tabel": "0026",
+  "familiya": "Sharipov",
+  "ism": "Bekzod",
+  "otasi": "Rashid o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz yordamchi mashinist 6-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0026.jpg"
+ },
+ {
+  "tabel": "0028",
+  "familiya": "Rashidov",
+  "ism": "Bahodir",
+  "otasi": "Bahron o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0028.jpg"
+ },
+ {
+  "tabel": "0032",
+  "familiya": "Baxronov",
+  "ism": "Feruz",
+  "otasi": "Mamatkulovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0032.jpg"
+ },
+ {
+  "tabel": "0035",
+  "familiya": "Abdusamatov",
+  "ism": "Axrorjon",
+  "otasi": "Baxodirovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0035.jpg"
+ },
+ {
+  "tabel": "0036",
+  "familiya": "Babajanov",
+  "ism": "Dadaxon",
+  "otasi": "Iskandarovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0036.jpg"
+ },
+ {
+  "tabel": "0038",
+  "familiya": "Boymurodov",
+  "ism": "Jamshid",
+  "otasi": "Tuychiyevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": ""
+ },
+ {
+  "tabel": "0039",
+  "familiya": "Bozorov",
+  "ism": "Xayrillo",
+  "otasi": "Nurboyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /19-Ekipirovka/ Ekipirovka mashinist 6-3",
+  "sex": "19-Ekipirovka",
+  "jinsi": "erkak",
+  "rasm": "0039.jpg"
+ },
+ {
   "tabel": "0040",
   "familiya": "G‘afurov",
   "ism": "Behruz",
@@ -97,6 +240,72 @@
   "sex": "10-PTO",
   "jinsi": "erkak",
   "rasm": "0040.jpg"
+ },
+ {
+  "tabel": "0042",
+  "familiya": "Sultonov",
+  "ism": "Shamsiddin",
+  "otasi": "Jalilovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0042.jpg"
+ },
+ {
+  "tabel": "0048",
+  "familiya": "Muzafarov",
+  "ism": "Shamshod",
+  "otasi": "Sharof o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0048.jpg"
+ },
+ {
+  "tabel": "0051",
+  "familiya": "Oblakulov",
+  "ism": "Saddam",
+  "otasi": "Nabijonovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0051.jpg"
+ },
+ {
+  "tabel": "0053",
+  "familiya": "Xujayev",
+  "ism": "Xamza",
+  "otasi": "Xakimovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0053.jpg"
+ },
+ {
+  "tabel": "0057",
+  "familiya": "Tojiyev",
+  "ism": "Uyg‘un",
+  "otasi": "Tuyg‘un o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0057.jpg"
+ },
+ {
+  "tabel": "0059",
+  "familiya": "Xolov",
+  "ism": "Mirzo",
+  "otasi": "Ixtiyorovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /19-Ekipirovka/ Ekipirovka yordamchi mashinist 5-3",
+  "sex": "19-Ekipirovka",
+  "jinsi": "erkak",
+  "rasm": "0059.jpg"
  },
  {
   "tabel": "0061",
@@ -143,6 +352,17 @@
   "rasm": "0065.jpg"
  },
  {
+  "tabel": "0072",
+  "familiya": "Ibadillayev",
+  "ism": "Islom",
+  "otasi": "Shuxrat o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0072.jpg"
+ },
+ {
   "tabel": "0078",
   "familiya": "Ahadov",
   "ism": "Oybek",
@@ -187,6 +407,39 @@
   "rasm": "0083.jpg"
  },
  {
+  "tabel": "0086",
+  "familiya": "Jo‘rayev",
+  "ism": "Sunnatillo",
+  "otasi": "Yunusovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0086.jpg"
+ },
+ {
+  "tabel": "0087",
+  "familiya": "Juroboyev",
+  "ism": "Dilshod",
+  "otasi": "Nemat o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0087.jpg"
+ },
+ {
+  "tabel": "0088",
+  "familiya": "Qurbonov",
+  "ism": "Dilshod",
+  "otasi": "Do‘stmurodovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0088.jpg"
+ },
+ {
   "tabel": "0090",
   "familiya": "Norsayidov",
   "ism": "Umid",
@@ -209,6 +462,72 @@
   "rasm": "0092.jpg"
  },
  {
+  "tabel": "0097",
+  "familiya": "Djaynarov",
+  "ism": "Akbar",
+  "otasi": "Erkaboyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0097.jpg"
+ },
+ {
+  "tabel": "0099",
+  "familiya": "Jalilov",
+  "ism": "Rauf",
+  "otasi": "Rajabovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0099.jpg"
+ },
+ {
+  "tabel": "0100",
+  "familiya": "Djurayev",
+  "ism": "Nodir",
+  "otasi": "Turayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0100.jpg"
+ },
+ {
+  "tabel": "0102",
+  "familiya": "Toshmamatov",
+  "ism": "Tolibjon",
+  "otasi": "Akramjon o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0102.jpg"
+ },
+ {
+  "tabel": "0107",
+  "familiya": "Djumayev",
+  "ism": "Jamshid",
+  "otasi": "Jamolovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": ""
+ },
+ {
+  "tabel": "0109",
+  "familiya": "Djurayev",
+  "ism": "Husen",
+  "otasi": "Baxodirovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0109.jpg"
+ },
+ {
   "tabel": "0111",
   "familiya": "Abdulloyev",
   "ism": "Normurod",
@@ -218,6 +537,28 @@
   "sex": "16-ITR",
   "jinsi": "erkak",
   "rasm": "0111.jpg"
+ },
+ {
+  "tabel": "0114",
+  "familiya": "Sayfidinov",
+  "ism": "Suxrobbek",
+  "otasi": "Sohibovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0114.jpg"
+ },
+ {
+  "tabel": "0118",
+  "familiya": "Abdisamatov",
+  "ism": "Xabibjon",
+  "otasi": "Xasanovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0118.jpg"
  },
  {
   "tabel": "0120",
@@ -231,6 +572,83 @@
   "rasm": "0120.jpg"
  },
  {
+  "tabel": "0121",
+  "familiya": "Eshankulov",
+  "ism": "Jaxongir",
+  "otasi": "Abduvaxidovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ekipirovka mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0121.jpg"
+ },
+ {
+  "tabel": "0122",
+  "familiya": "Ikromov",
+  "ism": "Shahzod",
+  "otasi": "Ro‘ziyevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0122.jpg"
+ },
+ {
+  "tabel": "0124",
+  "familiya": "Abduraxmanov",
+  "ism": "Akmal",
+  "otasi": "Azamat o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0124.jpg"
+ },
+ {
+  "tabel": "0126",
+  "familiya": "Axmatov",
+  "ism": "Fazliddin",
+  "otasi": "Isoboy o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0126.jpg"
+ },
+ {
+  "tabel": "0127",
+  "familiya": "Axmadov",
+  "ism": "O‘tkirbek",
+  "otasi": "O‘ktamovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0127.jpg"
+ },
+ {
+  "tabel": "0129",
+  "familiya": "Tursunov",
+  "ism": "Xurshid",
+  "otasi": "G‘ayrat o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0129.jpg"
+ },
+ {
+  "tabel": "0130",
+  "familiya": "Sulaymonov",
+  "ism": "Umid",
+  "otasi": "Nasirovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0130.jpg"
+ },
+ {
   "tabel": "0131",
   "familiya": "Yangiyev",
   "ism": "Izzatillo",
@@ -240,6 +658,83 @@
   "sex": "04 Tayyorlov sexi",
   "jinsi": "erkak",
   "rasm": "0131.jpg"
+ },
+ {
+  "tabel": "0132",
+  "familiya": "Ergashov",
+  "ism": "Sardor",
+  "otasi": "Salimovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz mashinisti 8-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0132.jpg"
+ },
+ {
+  "tabel": "0133",
+  "familiya": "Mardanov",
+  "ism": "Xasan",
+  "otasi": "Meyliyevich",
+  "lavozim": "Mashinist yo'riqchisi",
+  "lavozimToliq": "Mashinist yo'riqchisi, 3 guruh /16-ITR/Marakand mash-yuriqchi/7-3",
+  "sex": "16-ITR",
+  "jinsi": "erkak",
+  "rasm": "0133.jpg"
+ },
+ {
+  "tabel": "0134",
+  "familiya": "Raximov",
+  "ism": "Aminjon",
+  "otasi": "Azam o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0134.jpg"
+ },
+ {
+  "tabel": "0135",
+  "familiya": "Raxmatov",
+  "ism": "Mirzohid",
+  "otasi": "Najmiddin o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0135.jpg"
+ },
+ {
+  "tabel": "0136",
+  "familiya": "Karimov",
+  "ism": "Jo‘rabek",
+  "otasi": "Kamolovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0136.jpg"
+ },
+ {
+  "tabel": "0137",
+  "familiya": "Raxmonov",
+  "ism": "Rajab",
+  "otasi": "Raufovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0137.jpg"
+ },
+ {
+  "tabel": "0138",
+  "familiya": "Jabborov",
+  "ism": "Azizjon",
+  "otasi": "Komilovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0138.jpg"
  },
  {
   "tabel": "0139",
@@ -253,6 +748,72 @@
   "rasm": "0139.jpg"
  },
  {
+  "tabel": "0140",
+  "familiya": "Sharopov",
+  "ism": "Oxunjon",
+  "otasi": "Oybek o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /19-Ekipirovka/ Ekipirovka yordamchi mashinist 5-3",
+  "sex": "19-Ekipirovka",
+  "jinsi": "erkak",
+  "rasm": "0140.jpg"
+ },
+ {
+  "tabel": "0141",
+  "familiya": "Umerov",
+  "ism": "Muhriddin",
+  "otasi": "Bahriddinovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0141.jpg"
+ },
+ {
+  "tabel": "0142",
+  "familiya": "Rahmatov",
+  "ism": "G‘iyos",
+  "otasi": "G‘ayrat o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0142.jpg"
+ },
+ {
+  "tabel": "0144",
+  "familiya": "Safarov",
+  "ism": "Farrux",
+  "otasi": "Nurali o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0144.jpg"
+ },
+ {
+  "tabel": "0145",
+  "familiya": "Ruziyev",
+  "ism": "Rustam",
+  "otasi": "Raupovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz yordamchi mashinist 6-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0145.jpg"
+ },
+ {
+  "tabel": "0146",
+  "familiya": "Shodmonov",
+  "ism": "Ulug‘bek",
+  "otasi": "Baxtiyorovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ekipirovka mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0146.jpg"
+ },
+ {
   "tabel": "0147",
   "familiya": "Bozorov",
   "ism": "Abbos",
@@ -262,6 +823,61 @@
   "sex": "10-PTO",
   "jinsi": "erkak",
   "rasm": "0147.jpg"
+ },
+ {
+  "tabel": "0148",
+  "familiya": "Sodikov",
+  "ism": "Usmon",
+  "otasi": "Ayub o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz mashinisti 8-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0148.jpg"
+ },
+ {
+  "tabel": "0149",
+  "familiya": "Mirzayev",
+  "ism": "Sardor",
+  "otasi": "Nurillayevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0149.jpg"
+ },
+ {
+  "tabel": "0156",
+  "familiya": "Ashurov",
+  "ism": "Sardorbek",
+  "otasi": "Mo‘minovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0156.jpg"
+ },
+ {
+  "tabel": "0159",
+  "familiya": "Tolibov",
+  "ism": "Ulug‘bek",
+  "otasi": "Ismatulla o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0159.jpg"
+ },
+ {
+  "tabel": "0161",
+  "familiya": "Xamrayev",
+  "ism": "Muhammad",
+  "otasi": "Abdurasul o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ekipirovka mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0161.jpg"
  },
  {
   "tabel": "0165",
@@ -297,6 +913,28 @@
   "rasm": "0168.jpg"
  },
  {
+  "tabel": "0169",
+  "familiya": "Mardonov",
+  "ism": "Ulmasjon",
+  "otasi": "Boymirzayevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0169.jpg"
+ },
+ {
+  "tabel": "0172",
+  "familiya": "Ibodov",
+  "ism": "Baxodir",
+  "otasi": "Barotovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0172.jpg"
+ },
+ {
   "tabel": "0173",
   "familiya": "Kadirov",
   "ism": "Baxtiyorjon",
@@ -308,6 +946,61 @@
   "rasm": "0173.jpg"
  },
  {
+  "tabel": "0174",
+  "familiya": "Qosimov",
+  "ism": "Mirjalol",
+  "otasi": "Qobil o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz yordamchi mashinist 6-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0174.jpg"
+ },
+ {
+  "tabel": "0176",
+  "familiya": "Istamov",
+  "ism": "Abdulla",
+  "otasi": "Shodmonovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /19-Ekipirovka/ Ekipirovka mashinist 6-3",
+  "sex": "19-Ekipirovka",
+  "jinsi": "erkak",
+  "rasm": "0176.jpg"
+ },
+ {
+  "tabel": "0177",
+  "familiya": "Ochilov",
+  "ism": "Farxodjon",
+  "otasi": "Jamol o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0177.jpg"
+ },
+ {
+  "tabel": "0180",
+  "familiya": "Xalilov",
+  "ism": "Oybek",
+  "otasi": "Tirkashovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0180.jpg"
+ },
+ {
+  "tabel": "0182",
+  "familiya": "Karimov",
+  "ism": "Farrux",
+  "otasi": "Xamroqulovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0182.jpg"
+ },
+ {
   "tabel": "0183",
   "familiya": "Asrorov",
   "ism": "Azizbek",
@@ -317,6 +1010,39 @@
   "sex": "10-PTO",
   "jinsi": "erkak",
   "rasm": "0183.jpg"
+ },
+ {
+  "tabel": "0185",
+  "familiya": "Sanoyev",
+  "ism": "Sanjar",
+  "otasi": "Samijonovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0185.jpg"
+ },
+ {
+  "tabel": "0186",
+  "familiya": "Eshimov",
+  "ism": "Oybek",
+  "otasi": "Akramjon o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0186.jpg"
+ },
+ {
+  "tabel": "0188",
+  "familiya": "Qutliyev",
+  "ism": "Sherzod",
+  "otasi": "Qahramonovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0188.jpg"
  },
  {
   "tabel": "0189",
@@ -339,6 +1065,17 @@
   "sex": "16-ITR",
   "jinsi": "erkak",
   "rasm": "0195.jpg"
+ },
+ {
+  "tabel": "0196",
+  "familiya": "Haydarov",
+  "ism": "G‘ayrat",
+  "otasi": "Gaybullayevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0196.jpg"
  },
  {
   "tabel": "0197",
@@ -396,6 +1133,39 @@
   "rasm": "0203.jpg"
  },
  {
+  "tabel": "0205",
+  "familiya": "Kamolov",
+  "ism": "Erkin",
+  "otasi": "Ziyodullayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0205.jpg"
+ },
+ {
+  "tabel": "0208",
+  "familiya": "Urokov",
+  "ism": "Nodirbek",
+  "otasi": "Ashirovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0208.jpg"
+ },
+ {
+  "tabel": "0212",
+  "familiya": "Abduvaliyev",
+  "ism": "Ohun",
+  "otasi": "Olimjon o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0212.jpg"
+ },
+ {
   "tabel": "0214",
   "familiya": "Ismatov",
   "ism": "Ilhom",
@@ -418,6 +1188,61 @@
   "rasm": "0215.jpg"
  },
  {
+  "tabel": "0216",
+  "familiya": "Tilavov",
+  "ism": "Ashurbek",
+  "otasi": "Ortiq o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0216.jpg"
+ },
+ {
+  "tabel": "0219",
+  "familiya": "G‘aniyev",
+  "ism": "Javlonbek",
+  "otasi": "Jamolxon o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0219.jpg"
+ },
+ {
+  "tabel": "0221",
+  "familiya": "Jumayev",
+  "ism": "Nozimjon",
+  "otasi": "Qodirovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0221.jpg"
+ },
+ {
+  "tabel": "0222",
+  "familiya": "Ergashev",
+  "ism": "Shavkat",
+  "otasi": "Shuxratovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0222.jpg"
+ },
+ {
+  "tabel": "0224",
+  "familiya": "Aslonov",
+  "ism": "Umidjon",
+  "otasi": "Shomurodovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0224.jpg"
+ },
+ {
   "tabel": "0225",
   "familiya": "Abdulloyev",
   "ism": "Ulug‘bek",
@@ -427,6 +1252,50 @@
   "sex": "16-ITR",
   "jinsi": "erkak",
   "rasm": "0225.jpg"
+ },
+ {
+  "tabel": "0231",
+  "familiya": "Tursunov",
+  "ism": "Sanjar",
+  "otasi": "Zafar o‘g‘li",
+  "lavozim": "Mashinist",
+  "lavozimToliq": "Mashinist, 3 guruh /17-Manyovr kolonnasi/",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0231.jpg"
+ },
+ {
+  "tabel": "0232",
+  "familiya": "Rasulberdiyev",
+  "ism": "Aziz",
+  "otasi": "Egamberdi o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0232.jpg"
+ },
+ {
+  "tabel": "0235",
+  "familiya": "Boymamatov",
+  "ism": "Farhod",
+  "otasi": "Furqat o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0235.jpg"
+ },
+ {
+  "tabel": "0236",
+  "familiya": "Muxitdinov",
+  "ism": "Maksud",
+  "otasi": "Maxmudovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz yordamchi mashinist 6-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0236.jpg"
  },
  {
   "tabel": "0238",
@@ -495,6 +1364,160 @@
   "rasm": "0244.jpg"
  },
  {
+  "tabel": "0246",
+  "familiya": "Muzafarov",
+  "ism": "Otabek",
+  "otasi": "Asatovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0246.jpg"
+ },
+ {
+  "tabel": "0248",
+  "familiya": "Muratov",
+  "ism": "Alisher",
+  "otasi": "Taxirovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0248.jpg"
+ },
+ {
+  "tabel": "0249",
+  "familiya": "Ubaydilloyev",
+  "ism": "Rustam",
+  "otasi": "Hasan o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0249.jpg"
+ },
+ {
+  "tabel": "0250",
+  "familiya": "Yarov",
+  "ism": "Aliakbar",
+  "otasi": "Zokirovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0250.jpg"
+ },
+ {
+  "tabel": "0253",
+  "familiya": "Muxammedov",
+  "ism": "Otabek",
+  "otasi": "Teshayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0253.jpg"
+ },
+ {
+  "tabel": "0254",
+  "familiya": "Narziyev",
+  "ism": "Shoxruh",
+  "otasi": "Noriddin o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0254.jpg"
+ },
+ {
+  "tabel": "0255",
+  "familiya": "Mirzayev",
+  "ism": "Ulug‘bek",
+  "otasi": "Temurovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz mashinisti 8-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0255.jpg"
+ },
+ {
+  "tabel": "0256",
+  "familiya": "Maxmudov",
+  "ism": "Shavkat",
+  "otasi": "Shuxratovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": ""
+ },
+ {
+  "tabel": "0257",
+  "familiya": "Mametseidov",
+  "ism": "Doniyor",
+  "otasi": "Baxtiyorovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0257.jpg"
+ },
+ {
+  "tabel": "0259",
+  "familiya": "Muhsinov",
+  "ism": "Nurali",
+  "otasi": "Miskin o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0259.jpg"
+ },
+ {
+  "tabel": "0260",
+  "familiya": "Rustamov",
+  "ism": "A’zam",
+  "otasi": "Nizomovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0260.jpg"
+ },
+ {
+  "tabel": "0261",
+  "familiya": "Mamirov",
+  "ism": "Azim",
+  "otasi": "Murotovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0261.jpg"
+ },
+ {
+  "tabel": "0264",
+  "familiya": "Kazakov",
+  "ism": "Umid",
+  "otasi": "Karshiboyevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0264.jpg"
+ },
+ {
+  "tabel": "0266",
+  "familiya": "Tuxtayev",
+  "ism": "Alisher",
+  "otasi": "Shavkatovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0266.jpg"
+ },
+ {
   "tabel": "0268",
   "familiya": "Shodmonov",
   "ism": "Doniyor",
@@ -517,6 +1540,83 @@
   "rasm": "0269.jpg"
  },
  {
+  "tabel": "0271",
+  "familiya": "Narziyev",
+  "ism": "Ruslan",
+  "otasi": "Uktamovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0271.jpg"
+ },
+ {
+  "tabel": "0273",
+  "familiya": "Namozov",
+  "ism": "Bekzod",
+  "otasi": "Ulug'bekovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0273.jpg"
+ },
+ {
+  "tabel": "0277",
+  "familiya": "Xudoyorov",
+  "ism": "Xisravsho",
+  "otasi": "Xusenaliyevich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0277.jpg"
+ },
+ {
+  "tabel": "0278",
+  "familiya": "Sobirov",
+  "ism": "Javohir",
+  "otasi": "Shuxrat o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0278.jpg"
+ },
+ {
+  "tabel": "0279",
+  "familiya": "Nazarov",
+  "ism": "Fazliddin",
+  "otasi": "Faxridinovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0279.jpg"
+ },
+ {
+  "tabel": "0281",
+  "familiya": "Nabiyev",
+  "ism": "Farrux",
+  "otasi": "Ismatovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0281.jpg"
+ },
+ {
+  "tabel": "0282",
+  "familiya": "Nasrulloyev",
+  "ism": "Aziz",
+  "otasi": "Ne’matovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0282.jpg"
+ },
+ {
   "tabel": "0284",
   "familiya": "O‘runov",
   "ism": "Umidjon",
@@ -526,6 +1626,39 @@
   "sex": "16-ITR",
   "jinsi": "erkak",
   "rasm": "0284.jpg"
+ },
+ {
+  "tabel": "0285",
+  "familiya": "Jumayev",
+  "ism": "Siroch",
+  "otasi": "Bozorovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0285.jpg"
+ },
+ {
+  "tabel": "0286",
+  "familiya": "Salimov",
+  "ism": "Maqsud",
+  "otasi": "Nabi o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0286.jpg"
+ },
+ {
+  "tabel": "0288",
+  "familiya": "Namazov",
+  "ism": "Baxtiyor",
+  "otasi": "Muminovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0288.jpg"
  },
  {
   "tabel": "0289",
@@ -561,6 +1694,83 @@
   "rasm": "0291.jpg"
  },
  {
+  "tabel": "0292",
+  "familiya": "Boltayev",
+  "ism": "Sardor",
+  "otasi": "Sayfulloyevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0292.jpg"
+ },
+ {
+  "tabel": "0296",
+  "familiya": "Jumayev",
+  "ism": "Fazliddin",
+  "otasi": "Faxridinovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0296.jpg"
+ },
+ {
+  "tabel": "0297",
+  "familiya": "Qudratov",
+  "ism": "Shahzod",
+  "otasi": "Vali o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /19-Ekipirovka/ Ekipirovka yordamchi mashinist 5-3",
+  "sex": "19-Ekipirovka",
+  "jinsi": "erkak",
+  "rasm": "0297.jpg"
+ },
+ {
+  "tabel": "0299",
+  "familiya": "Hamrayev",
+  "ism": "Bo‘ron",
+  "otasi": "Istamovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 3-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "0299.jpg"
+ },
+ {
+  "tabel": "0300",
+  "familiya": "Oltinov",
+  "ism": "Azamat",
+  "otasi": "Nasrulloyevich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0300.jpg"
+ },
+ {
+  "tabel": "0301",
+  "familiya": "Jumayev",
+  "ism": "Furqat",
+  "otasi": "Nasrulloyevich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0301.jpg"
+ },
+ {
+  "tabel": "0305",
+  "familiya": "Farmonov",
+  "ism": "Shaxzod",
+  "otasi": "Do‘stmurod o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0305.jpg"
+ },
+ {
   "tabel": "0306",
   "familiya": "Bakayev",
   "ism": "Xamro",
@@ -570,6 +1780,28 @@
   "sex": "04 Tayyorlov sexi",
   "jinsi": "erkak",
   "rasm": "0306.jpg"
+ },
+ {
+  "tabel": "0309",
+  "familiya": "Gaffarov",
+  "ism": "Abdurashid",
+  "otasi": "Abduraupovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /20-Yo‘lovchi tashish kolonnasi/ yo'lovchi teplovoz yordamchi mashi 6-3",
+  "sex": "20-Yo‘lovchi tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0309.jpg"
+ },
+ {
+  "tabel": "0311",
+  "familiya": "Pulotov",
+  "ism": "Zavkiddin",
+  "otasi": "Kaxomiddinovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0311.jpg"
  },
  {
   "tabel": "0312",
@@ -594,6 +1826,50 @@
   "rasm": "0313.jpg"
  },
  {
+  "tabel": "0318",
+  "familiya": "Salimov",
+  "ism": "Jasurbek",
+  "otasi": "Jamshid o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz yordamchi mashinist 6-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0318.jpg"
+ },
+ {
+  "tabel": "0319",
+  "familiya": "Muxammadov",
+  "ism": "Feruz",
+  "otasi": "Nematovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0319.jpg"
+ },
+ {
+  "tabel": "0321",
+  "familiya": "Sadinov",
+  "ism": "Begzod",
+  "otasi": "Jumaboy o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0321.jpg"
+ },
+ {
+  "tabel": "0324",
+  "familiya": "Rozikov",
+  "ism": "Oybek",
+  "otasi": "Olimovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0324.jpg"
+ },
+ {
   "tabel": "0325",
   "familiya": "Ruziyev",
   "ism": "Ulugbek",
@@ -603,6 +1879,17 @@
   "sex": "16-ITR",
   "jinsi": "erkak",
   "rasm": "0325.jpg"
+ },
+ {
+  "tabel": "0327",
+  "familiya": "Panoyev",
+  "ism": "Og‘abek",
+  "otasi": "Bafo o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0327.jpg"
  },
  {
   "tabel": "0331",
@@ -616,6 +1903,17 @@
   "rasm": "0331.jpg"
  },
  {
+  "tabel": "0334",
+  "familiya": "Raximov",
+  "ism": "Umid",
+  "otasi": "Rashidovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0334.jpg"
+ },
+ {
   "tabel": "0335",
   "familiya": "Norov",
   "ism": "Jaloliddin",
@@ -625,6 +1923,17 @@
   "sex": "09- Ta’mirlash sexi",
   "jinsi": "erkak",
   "rasm": "0335.jpg"
+ },
+ {
+  "tabel": "0336",
+  "familiya": "Radjabov",
+  "ism": "Sherali",
+  "otasi": "Shuxratovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0336.jpg"
  },
  {
   "tabel": "0337",
@@ -638,6 +1947,83 @@
   "rasm": "0337.jpg"
  },
  {
+  "tabel": "0338",
+  "familiya": "Rasulov",
+  "ism": "Shoxrux",
+  "otasi": "Navruz o‘g‘li",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 2-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "0338.jpg"
+ },
+ {
+  "tabel": "0341",
+  "familiya": "Kamolov",
+  "ism": "Mirshod",
+  "otasi": "Xurshid o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0341.jpg"
+ },
+ {
+  "tabel": "0346",
+  "familiya": "Toirov",
+  "ism": "Karim",
+  "otasi": "Ruziyevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0346.jpg"
+ },
+ {
+  "tabel": "0347",
+  "familiya": "Ruziyev",
+  "ism": "Quvondiq",
+  "otasi": "Qosim o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0347.jpg"
+ },
+ {
+  "tabel": "0348",
+  "familiya": "Rahmatov",
+  "ism": "Asliddin",
+  "otasi": "Nuriddinovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0348.jpg"
+ },
+ {
+  "tabel": "0349",
+  "familiya": "Sunnatillayev",
+  "ism": "Olimjon",
+  "otasi": "Normuminovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0349.jpg"
+ },
+ {
+  "tabel": "0353",
+  "familiya": "Salimov",
+  "ism": "Dostonbek",
+  "otasi": "Rustamovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0353.jpg"
+ },
+ {
   "tabel": "0357",
   "familiya": "Ergashov",
   "ism": "Behruz",
@@ -647,6 +2033,28 @@
   "sex": "08- Ta’mirlash sexi",
   "jinsi": "erkak",
   "rasm": "0357.jpg"
+ },
+ {
+  "tabel": "0358",
+  "familiya": "Sayliyev",
+  "ism": "Dilshod",
+  "otasi": "Xamitovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0358.jpg"
+ },
+ {
+  "tabel": "0360",
+  "familiya": "Sadulloyev",
+  "ism": "Suxrob",
+  "otasi": "Sunnatovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0360.jpg"
  },
  {
   "tabel": "0361",
@@ -682,6 +2090,28 @@
   "rasm": "0363.jpg"
  },
  {
+  "tabel": "0365",
+  "familiya": "Safarov",
+  "ism": "Ilhom",
+  "otasi": "Zayniddinovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0365.jpg"
+ },
+ {
+  "tabel": "0366",
+  "familiya": "Husenov",
+  "ism": "Ravshanjon",
+  "otasi": "Nazirjon o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0366.jpg"
+ },
+ {
   "tabel": "0367",
   "familiya": "Hojiyev",
   "ism": "Orifjon",
@@ -704,6 +2134,83 @@
   "rasm": "0380.jpg"
  },
  {
+  "tabel": "0381",
+  "familiya": "Axrarov",
+  "ism": "Shoxrux",
+  "otasi": "O‘rol o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0381.jpg"
+ },
+ {
+  "tabel": "0387",
+  "familiya": "Abdinazarov",
+  "ism": "Bexruz",
+  "otasi": "Shodmonqul o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0387.jpg"
+ },
+ {
+  "tabel": "0388",
+  "familiya": "Toshbotirov",
+  "ism": "Dilshod",
+  "otasi": "Elomonovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0388.jpg"
+ },
+ {
+  "tabel": "0389",
+  "familiya": "Temirov",
+  "ism": "Feruz",
+  "otasi": "Odilovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0389.jpg"
+ },
+ {
+  "tabel": "0390",
+  "familiya": "Teshayev",
+  "ism": "Miryunus",
+  "otasi": "Sunnatovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0390.jpg"
+ },
+ {
+  "tabel": "0392",
+  "familiya": "Qodirov",
+  "ism": "Quvonchbek",
+  "otasi": "Amirqul o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0392.jpg"
+ },
+ {
+  "tabel": "0393",
+  "familiya": "Toxirov",
+  "ism": "Bekzod",
+  "otasi": "Baxodirovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0393.jpg"
+ },
+ {
   "tabel": "0394",
   "familiya": "Aslonov",
   "ism": "Aslbek",
@@ -713,6 +2220,72 @@
   "sex": "09- Ta’mirlash sexi",
   "jinsi": "erkak",
   "rasm": "0394.jpg"
+ },
+ {
+  "tabel": "0395",
+  "familiya": "Tillayev",
+  "ism": "Umidjon",
+  "otasi": "Xayrilloyevich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0395.jpg"
+ },
+ {
+  "tabel": "0396",
+  "familiya": "Fayzulloyev",
+  "ism": "Sayfullo",
+  "otasi": "Baxtiyor o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0396.jpg"
+ },
+ {
+  "tabel": "0397",
+  "familiya": "Turobov",
+  "ism": "Xayrullo",
+  "otasi": "Xasanovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0397.jpg"
+ },
+ {
+  "tabel": "0398",
+  "familiya": "Tuxtayev",
+  "ism": "Mansur",
+  "otasi": "Xalimovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0398.jpg"
+ },
+ {
+  "tabel": "0399",
+  "familiya": "Sayfiyev",
+  "ism": "Shaxobidin",
+  "otasi": "Xusniddinovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0399.jpg"
+ },
+ {
+  "tabel": "0400",
+  "familiya": "Mamanazarov",
+  "ism": "Ulug‘bek",
+  "otasi": "Umid o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz mashinisti 8-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0400.jpg"
  },
  {
   "tabel": "0401",
@@ -726,6 +2299,28 @@
   "rasm": "0401.jpg"
  },
  {
+  "tabel": "0402",
+  "familiya": "Urunov",
+  "ism": "Jamshid",
+  "otasi": "Kazimovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0402.jpg"
+ },
+ {
+  "tabel": "0403",
+  "familiya": "Abdullayev",
+  "ism": "Behruzbek",
+  "otasi": "Zarif o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0403.jpg"
+ },
+ {
   "tabel": "0405",
   "familiya": "Quliyev",
   "ism": "Bahodir",
@@ -735,6 +2330,39 @@
   "sex": "16-ITR",
   "jinsi": "erkak",
   "rasm": "0405.jpg"
+ },
+ {
+  "tabel": "0410",
+  "familiya": "Fozilov",
+  "ism": "Islom",
+  "otasi": "Saidovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0410.jpg"
+ },
+ {
+  "tabel": "0411",
+  "familiya": "Fayzulloyev",
+  "ism": "Dilshodjon",
+  "otasi": "Yashin o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0411.jpg"
+ },
+ {
+  "tabel": "0412",
+  "familiya": "Rizoyev",
+  "ism": "Ferdavs",
+  "otasi": "Qaxromon o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0412.jpg"
  },
  {
   "tabel": "0413",
@@ -748,6 +2376,17 @@
   "rasm": "0413.jpg"
  },
  {
+  "tabel": "0416",
+  "familiya": "Fazilov",
+  "ism": "Sherzod",
+  "otasi": "Sharipovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz mashinisti 8-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0416.jpg"
+ },
+ {
   "tabel": "0417",
   "familiya": "Karimova",
   "ism": "Go‘zal",
@@ -759,6 +2398,17 @@
   "rasm": "0417.jpg"
  },
  {
+  "tabel": "0418",
+  "familiya": "Sayfullayev",
+  "ism": "Bekmurod",
+  "otasi": "Temir o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0418.jpg"
+ },
+ {
   "tabel": "0419",
   "familiya": "Shokirov",
   "ism": "Shahzodbek",
@@ -768,6 +2418,17 @@
   "sex": "11-Garaj",
   "jinsi": "erkak",
   "rasm": "0419.jpg"
+ },
+ {
+  "tabel": "0420",
+  "familiya": "Tagmatov",
+  "ism": "Nurali",
+  "otasi": "Kuzibayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0420.jpg"
  },
  {
   "tabel": "0421",
@@ -803,6 +2464,160 @@
   "rasm": "0425.jpg"
  },
  {
+  "tabel": "0427",
+  "familiya": "Xayrullayev",
+  "ism": "Hamdam",
+  "otasi": "Hakimovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0427.jpg"
+ },
+ {
+  "tabel": "0429",
+  "familiya": "Xamdamov",
+  "ism": "Zarfulla",
+  "otasi": "Xabibullayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0429.jpg"
+ },
+ {
+  "tabel": "0430",
+  "familiya": "Hasanov",
+  "ism": "Jamshid",
+  "otasi": "Ramazonovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0430.jpg"
+ },
+ {
+  "tabel": "0431",
+  "familiya": "Xadjiyev",
+  "ism": "Miranshoh",
+  "otasi": "Kudratilloyevich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0431.jpg"
+ },
+ {
+  "tabel": "0433",
+  "familiya": "Raximov",
+  "ism": "Nozimjon",
+  "otasi": "Nodir o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": ""
+ },
+ {
+  "tabel": "0434",
+  "familiya": "Xudoynazarov",
+  "ism": "Baxrom",
+  "otasi": "Bobokulovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0434.jpg"
+ },
+ {
+  "tabel": "0435",
+  "familiya": "Axmedov",
+  "ism": "Akmal",
+  "otasi": "Farxatovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /20-Yo‘lovchi tashish kolonnasi/ yo'lovchi teplovoz yordamchi mashi 6-3",
+  "sex": "20-Yo‘lovchi tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0435.jpg"
+ },
+ {
+  "tabel": "0436",
+  "familiya": "Oltinov",
+  "ism": "Utkir",
+  "otasi": "Nasrulloyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0436.jpg"
+ },
+ {
+  "tabel": "0437",
+  "familiya": "Xudoyorov",
+  "ism": "Boboyor",
+  "otasi": "Botirovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0437.jpg"
+ },
+ {
+  "tabel": "0438",
+  "familiya": "Husenov",
+  "ism": "Furqat",
+  "otasi": "Hamroyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0438.jpg"
+ },
+ {
+  "tabel": "0439",
+  "familiya": "Gulamov",
+  "ism": "Saxib",
+  "otasi": "Xabibovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 4-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "0439.jpg"
+ },
+ {
+  "tabel": "0441",
+  "familiya": "To‘raqulov",
+  "ism": "Azizbek",
+  "otasi": "Dilshod o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0441.jpg"
+ },
+ {
+  "tabel": "0442",
+  "familiya": "Xolov",
+  "ism": "Farrux",
+  "otasi": "Oltinovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0442.jpg"
+ },
+ {
+  "tabel": "0443",
+  "familiya": "Xamrayev",
+  "ism": "Farrux",
+  "otasi": "Djuraxanovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz yordamchi mashinist 6-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0443.jpg"
+ },
+ {
   "tabel": "0444",
   "familiya": "Axmatova",
   "ism": "Umida",
@@ -823,6 +2638,50 @@
   "sex": "11-Garaj",
   "jinsi": "erkak",
   "rasm": "0446.jpg"
+ },
+ {
+  "tabel": "0447",
+  "familiya": "Soibov",
+  "ism": "Mirshodbek",
+  "otasi": "Maxsum o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0447.jpg"
+ },
+ {
+  "tabel": "0448",
+  "familiya": "Abdikadirov",
+  "ism": "Arsen",
+  "otasi": "Amrayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0448.jpg"
+ },
+ {
+  "tabel": "0449",
+  "familiya": "Xadjiyev",
+  "ism": "Samad",
+  "otasi": "Asatovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 4-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "0449.jpg"
+ },
+ {
+  "tabel": "0450",
+  "familiya": "Haydarov",
+  "ism": "Rashid",
+  "otasi": "Muxamadiyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /20-Yo‘lovchi tashish kolonnasi/ yo'lovchi teplovoz mashinisti 8-3",
+  "sex": "20-Yo‘lovchi tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0450.jpg"
  },
  {
   "tabel": "0454",
@@ -847,6 +2706,17 @@
   "rasm": "0455.jpg"
  },
  {
+  "tabel": "0458",
+  "familiya": "Karimova",
+  "ism": "Madina",
+  "otasi": "Muhiddin qizi",
+  "lavozim": "15- Ta’mirlash sexi",
+  "lavozimToliq": "15- Ta’mirlash sexi / Uborshik proizvodstvennix pomesheniy i territorii /",
+  "sex": "Uborshik proizvodstvennix pomesheniy i territorii",
+  "jinsi": "ayol",
+  "rasm": ""
+ },
+ {
   "tabel": "0459",
   "familiya": "Tohirov",
   "ism": "Hamdam",
@@ -856,6 +2726,94 @@
   "sex": "38-Ta’mirlash sexi",
   "jinsi": "erkak",
   "rasm": "0459.jpg"
+ },
+ {
+  "tabel": "0461",
+  "familiya": "Isroilov",
+  "ism": "Doston",
+  "otasi": "Rustamovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ekipirovka mash.yordamchi 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0461.jpg"
+ },
+ {
+  "tabel": "0462",
+  "familiya": "Jumayev",
+  "ism": "Ashur",
+  "otasi": "Ne’matovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0462.jpg"
+ },
+ {
+  "tabel": "0463",
+  "familiya": "Rayimov",
+  "ism": "Jamshid",
+  "otasi": "Asliddin o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0463.jpg"
+ },
+ {
+  "tabel": "0464",
+  "familiya": "Murtozayev",
+  "ism": "Azizbek",
+  "otasi": "Husen o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0464.jpg"
+ },
+ {
+  "tabel": "0466",
+  "familiya": "Hamidov",
+  "ism": "Husen",
+  "otasi": "Vahob o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0466.jpg"
+ },
+ {
+  "tabel": "0467",
+  "familiya": "Jo‘raboyev",
+  "ism": "Jo‘rabek",
+  "otasi": "Asror o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0467.jpg"
+ },
+ {
+  "tabel": "0471",
+  "familiya": "Xoliqulov",
+  "ism": "Elyorjon",
+  "otasi": "Muxammat o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0471.jpg"
+ },
+ {
+  "tabel": "0472",
+  "familiya": "Yarov",
+  "ism": "Murodjon",
+  "otasi": "Taxirovich",
+  "lavozim": "Lokomotivlar deposi (asosiy) navbatchisi",
+  "lavozimToliq": "Lokomotivlar deposi (asosiy) navbatchisi /16-ITR/ 7-3",
+  "sex": "16-ITR",
+  "jinsi": "erkak",
+  "rasm": "0472.jpg"
  },
  {
   "tabel": "0475",
@@ -869,6 +2827,61 @@
   "rasm": "0475.jpg"
  },
  {
+  "tabel": "0476",
+  "familiya": "Oltiyev",
+  "ism": "Ilhom",
+  "otasi": "Komilovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0476.jpg"
+ },
+ {
+  "tabel": "0477",
+  "familiya": "Shadmanov",
+  "ism": "Doniyor",
+  "otasi": "Sayfutdinovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0477.jpg"
+ },
+ {
+  "tabel": "0479",
+  "familiya": "Eraliyev",
+  "ism": "Xojimurat",
+  "otasi": "Boymurotovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0479.jpg"
+ },
+ {
+  "tabel": "0480",
+  "familiya": "Sharopov",
+  "ism": "Bekzod",
+  "otasi": "Umarkulovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0480.jpg"
+ },
+ {
+  "tabel": "0483",
+  "familiya": "Sharipov",
+  "ism": "Sharofiddin",
+  "otasi": "Sharifovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0483.jpg"
+ },
+ {
   "tabel": "0484",
   "familiya": "Sharipov",
   "ism": "Shaxriyor",
@@ -880,6 +2893,50 @@
   "rasm": "0484.jpg"
  },
  {
+  "tabel": "0485",
+  "familiya": "Shodiyev",
+  "ism": "Xurshid",
+  "otasi": "Panjiyevich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0485.jpg"
+ },
+ {
+  "tabel": "0486",
+  "familiya": "Sherov",
+  "ism": "Bobir",
+  "otasi": "Muxammadovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0486.jpg"
+ },
+ {
+  "tabel": "0490",
+  "familiya": "Sharipov",
+  "ism": "Azamat",
+  "otasi": "Kilichovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0490.jpg"
+ },
+ {
+  "tabel": "0493",
+  "familiya": "Juramurotov",
+  "ism": "Abrorjon",
+  "otasi": "Zavqiddin o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0493.jpg"
+ },
+ {
   "tabel": "0497",
   "familiya": "G‘aniyev",
   "ism": "G‘iyosjon",
@@ -889,6 +2946,61 @@
   "sex": "16-ITR",
   "jinsi": "erkak",
   "rasm": "0497.jpg"
+ },
+ {
+  "tabel": "0498",
+  "familiya": "Jo‘raxo‘jayev",
+  "ism": "Fazliddinxo‘ja",
+  "otasi": "Ubaydullo o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0498.jpg"
+ },
+ {
+  "tabel": "0503",
+  "familiya": "Ergashov",
+  "ism": "Umidjon",
+  "otasi": "Bo‘rikulovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0503.jpg"
+ },
+ {
+  "tabel": "0505",
+  "familiya": "Ergashev",
+  "ism": "Shavkat",
+  "otasi": "Sharafutdinovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0505.jpg"
+ },
+ {
+  "tabel": "0507",
+  "familiya": "Erboyev",
+  "ism": "Sharofidin",
+  "otasi": "Xikmatullayevich",
+  "lavozim": "Usta",
+  "lavozimToliq": "Usta, 3 guruh /16-ITR/ Ta'mirlash sexi ustasi Depo va maroqand 7-3",
+  "sex": "16-ITR",
+  "jinsi": "erkak",
+  "rasm": "0507.jpg"
+ },
+ {
+  "tabel": "0508",
+  "familiya": "Ergashov",
+  "ism": "Alisher",
+  "otasi": "Zarifovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0508.jpg"
  },
  {
   "tabel": "0512",
@@ -924,6 +3036,17 @@
   "rasm": "0523.jpg"
  },
  {
+  "tabel": "0528",
+  "familiya": "Abdullayev",
+  "ism": "Avaz",
+  "otasi": "Sayfullayevich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": ""
+ },
+ {
   "tabel": "0530",
   "familiya": "Xayitova",
   "ism": "Shaxlo",
@@ -933,6 +3056,39 @@
   "sex": "16-ITR",
   "jinsi": "ayol",
   "rasm": "0530.jpg"
+ },
+ {
+  "tabel": "0532",
+  "familiya": "Fatullayev",
+  "ism": "Feruz",
+  "otasi": "Farxod o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0532.jpg"
+ },
+ {
+  "tabel": "0533",
+  "familiya": "Abdiyev",
+  "ism": "Jahongir",
+  "otasi": "Davlat o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0533.jpg"
+ },
+ {
+  "tabel": "0536",
+  "familiya": "Turdiyev",
+  "ism": "Zafar",
+  "otasi": "Muzaffarovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0536.jpg"
  },
  {
   "tabel": "0539",
@@ -990,6 +3146,39 @@
   "rasm": "0557.jpg"
  },
  {
+  "tabel": "0560",
+  "familiya": "Ostonov",
+  "ism": "Jasur",
+  "otasi": "Xoliqovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0560.jpg"
+ },
+ {
+  "tabel": "0564",
+  "familiya": "Sayliyev",
+  "ism": "Jahongir",
+  "otasi": "G'ofur O'g`li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0564.jpg"
+ },
+ {
+  "tabel": "0578",
+  "familiya": "Ilxomjonov",
+  "ism": "Abdulaziz",
+  "otasi": "Ilxomjon o‘g‘li",
+  "lavozim": "harakatlanuvchi tarkibni tamirlash chilangari",
+  "lavozimToliq": "harakatlanuvchi tarkibni tamirlash chilangari, 1 guruh /13- Ta’mirlash sexi MARAKAND/ 1-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "0578.jpg"
+ },
+ {
   "tabel": "0583",
   "familiya": "Kalandarova",
   "ism": "Nargisa",
@@ -999,6 +3188,28 @@
   "sex": "16-ITR",
   "jinsi": "ayol",
   "rasm": "0583.jpg"
+ },
+ {
+  "tabel": "0584",
+  "familiya": "Baqoyev",
+  "ism": "Murod",
+  "otasi": "Erkin o‘g‘li",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 3-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "0584.jpg"
+ },
+ {
+  "tabel": "0586",
+  "familiya": "Halimov",
+  "ism": "Dilshodbek",
+  "otasi": "Olim o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0586.jpg"
  },
  {
   "tabel": "0590",
@@ -1034,6 +3245,17 @@
   "rasm": "0593.jpg"
  },
  {
+  "tabel": "0594",
+  "familiya": "Djurayev",
+  "ism": "Farxod",
+  "otasi": "Ashurovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0594.jpg"
+ },
+ {
   "tabel": "0597",
   "familiya": "Hayitov",
   "ism": "Anvar",
@@ -1054,6 +3276,655 @@
   "sex": "10-PTO",
   "jinsi": "erkak",
   "rasm": "0598.jpg"
+ },
+ {
+  "tabel": "0600",
+  "familiya": "Allashev",
+  "ism": "Sanjar",
+  "otasi": "Raxmatullayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0600.jpg"
+ },
+ {
+  "tabel": "0602",
+  "familiya": "Safarov",
+  "ism": "Djamshed",
+  "otasi": "Ruziyevich",
+  "lavozim": "Mashinist instruktor po obucheniye",
+  "lavozimToliq": "Mashinist instruktor po obucheniye, 3 guruh /16-ITR/Marakand instruktor po obucheniya",
+  "sex": "16-ITR",
+  "jinsi": "erkak",
+  "rasm": "0602.jpg"
+ },
+ {
+  "tabel": "0615",
+  "familiya": "Uljayev",
+  "ism": "Jamshid",
+  "otasi": "Djumanazarovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0615.jpg"
+ },
+ {
+  "tabel": "0616",
+  "familiya": "Shukurov",
+  "ism": "Zafar",
+  "otasi": "Begbutayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0616.jpg"
+ },
+ {
+  "tabel": "0618",
+  "familiya": "Temirov",
+  "ism": "Akbar",
+  "otasi": "Orifjon o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0618.jpg"
+ },
+ {
+  "tabel": "0623",
+  "familiya": "Xamrayev",
+  "ism": "Boytemir",
+  "otasi": "Eshtemirovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0623.jpg"
+ },
+ {
+  "tabel": "0630",
+  "familiya": "Karimov",
+  "ism": "Sherzod",
+  "otasi": "Bahriddinovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0630.jpg"
+ },
+ {
+  "tabel": "0632",
+  "familiya": "Aliyev",
+  "ism": "Salim",
+  "otasi": "Yusupovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0632.jpg"
+ },
+ {
+  "tabel": "0635",
+  "familiya": "Berdimurodov",
+  "ism": "Mansurjon",
+  "otasi": "Iskandarovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0635.jpg"
+ },
+ {
+  "tabel": "0638",
+  "familiya": "Isayev",
+  "ism": "Sobir",
+  "otasi": "Mamasoliyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0638.jpg"
+ },
+ {
+  "tabel": "0640",
+  "familiya": "Otakulov",
+  "ism": "G‘afur",
+  "otasi": "Asrorovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0640.jpg"
+ },
+ {
+  "tabel": "0641",
+  "familiya": "Raxmatullayev",
+  "ism": "Mirzohid",
+  "otasi": "Nazarovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": ""
+ },
+ {
+  "tabel": "0642",
+  "familiya": "Sobirov",
+  "ism": "Nodir",
+  "otasi": "Aslamovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0642.jpg"
+ },
+ {
+  "tabel": "0643",
+  "familiya": "Turayev",
+  "ism": "Qodir",
+  "otasi": "Erdonovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0643.jpg"
+ },
+ {
+  "tabel": "0645",
+  "familiya": "Astonov",
+  "ism": "Elbek",
+  "otasi": "Xolbekovich",
+  "lavozim": "Mashinist yo'riqchisi",
+  "lavozimToliq": "Mashinist yo'riqchisi, 3 guruh /16-ITR/Marakand mash-yuriqchi/7-3",
+  "sex": "16-ITR",
+  "jinsi": "erkak",
+  "rasm": "0645.jpg"
+ },
+ {
+  "tabel": "0647",
+  "familiya": "Ernazarov",
+  "ism": "Olim",
+  "otasi": "Rajabovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0647.jpg"
+ },
+ {
+  "tabel": "0648",
+  "familiya": "Pulatov",
+  "ism": "Aktamjon",
+  "otasi": "Rustamjon o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0648.jpg"
+ },
+ {
+  "tabel": "0651",
+  "familiya": "Abduraxmonov",
+  "ism": "Mirjalol",
+  "otasi": "Fayzullayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0651.jpg"
+ },
+ {
+  "tabel": "0654",
+  "familiya": "Polvanov",
+  "ism": "Umidali",
+  "otasi": "Umarovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0654.jpg"
+ },
+ {
+  "tabel": "0658",
+  "familiya": "Adizov",
+  "ism": "Sanjar",
+  "otasi": "Eshnazarovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0658.jpg"
+ },
+ {
+  "tabel": "0661",
+  "familiya": "Orziqulov",
+  "ism": "G‘ulomjon",
+  "otasi": "Nuriddin o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0661.jpg"
+ },
+ {
+  "tabel": "0662",
+  "familiya": "Tarmashev",
+  "ism": "Zokirjon",
+  "otasi": "Zoyirovich",
+  "lavozim": "Qozonxona mashinisti",
+  "lavozimToliq": "Qozonxona mashinisti, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 4-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "0662.jpg"
+ },
+ {
+  "tabel": "0664",
+  "familiya": "Esanov",
+  "ism": "Farhod",
+  "otasi": "Samanovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0664.jpg"
+ },
+ {
+  "tabel": "0665",
+  "familiya": "Hakimov",
+  "ism": "Arslonbek",
+  "otasi": "Sobirovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0665.jpg"
+ },
+ {
+  "tabel": "0668",
+  "familiya": "Bektoshev",
+  "ism": "Javlonbek",
+  "otasi": "Baxtiyor o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0668.jpg"
+ },
+ {
+  "tabel": "0669",
+  "familiya": "Qo‘chqorov",
+  "ism": "Akram",
+  "otasi": "Axmad o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0669.jpg"
+ },
+ {
+  "tabel": "0670",
+  "familiya": "Boymamatov",
+  "ism": "Siroj",
+  "otasi": "Azamat o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0670.jpg"
+ },
+ {
+  "tabel": "0671",
+  "familiya": "Po‘latov",
+  "ism": "Diyor",
+  "otasi": "Ixtiyor o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0671.jpg"
+ },
+ {
+  "tabel": "0672",
+  "familiya": "Boymurodov",
+  "ism": "Behzod",
+  "otasi": "Berdimurotovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0672.jpg"
+ },
+ {
+  "tabel": "0673",
+  "familiya": "Nafasov",
+  "ism": "Firdavs",
+  "otasi": "To‘lqin o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0673.jpg"
+ },
+ {
+  "tabel": "0701",
+  "familiya": "Rajabov",
+  "ism": "Shuxrat",
+  "otasi": "Abdikarimovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0701.jpg"
+ },
+ {
+  "tabel": "0702",
+  "familiya": "Doliyev",
+  "ism": "Zoxid",
+  "otasi": "Togaymurodovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0702.jpg"
+ },
+ {
+  "tabel": "0704",
+  "familiya": "Normurodov",
+  "ism": "Mexroj",
+  "otasi": "Xudaynazarovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0704.jpg"
+ },
+ {
+  "tabel": "0705",
+  "familiya": "Ziyadullayev",
+  "ism": "Maratjon",
+  "otasi": "Rajabovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0705.jpg"
+ },
+ {
+  "tabel": "0710",
+  "familiya": "Shukurov",
+  "ism": "Xanif",
+  "otasi": "Sheraliyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0710.jpg"
+ },
+ {
+  "tabel": "0711",
+  "familiya": "Anorov",
+  "ism": "Nodir",
+  "otasi": "Turdimuratovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0711.jpg"
+ },
+ {
+  "tabel": "0714",
+  "familiya": "Voxidov",
+  "ism": "Farxod",
+  "otasi": "Vaxobovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0714.jpg"
+ },
+ {
+  "tabel": "0715",
+  "familiya": "Ulugmuratov",
+  "ism": "Furkat",
+  "otasi": "Bekmuratovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": ""
+ },
+ {
+  "tabel": "0721",
+  "familiya": "Suyunov",
+  "ism": "Oxunjon",
+  "otasi": "Erkinovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0721.jpg"
+ },
+ {
+  "tabel": "0722",
+  "familiya": "Xo‘jamkulov",
+  "ism": "Turabek",
+  "otasi": "Narimanovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0722.jpg"
+ },
+ {
+  "tabel": "0723",
+  "familiya": "Aliyev",
+  "ism": "Diyor",
+  "otasi": "Davlatovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0723.jpg"
+ },
+ {
+  "tabel": "0725",
+  "familiya": "Tugalov",
+  "ism": "Akram",
+  "otasi": "Alibekovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0725.jpg"
+ },
+ {
+  "tabel": "0730",
+  "familiya": "Uljayev",
+  "ism": "Olim",
+  "otasi": "Xudaynazarovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0730.jpg"
+ },
+ {
+  "tabel": "0731",
+  "familiya": "Bobobekov",
+  "ism": "Ulugbek",
+  "otasi": "Kuchkarovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0731.jpg"
+ },
+ {
+  "tabel": "0733",
+  "familiya": "Amonov",
+  "ism": "Samad",
+  "otasi": "Ziyadulloyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0733.jpg"
+ },
+ {
+  "tabel": "0736",
+  "familiya": "Kazakov",
+  "ism": "Zarifjon",
+  "otasi": "Karshiboyevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0736.jpg"
+ },
+ {
+  "tabel": "0739",
+  "familiya": "Olimov",
+  "ism": "Zafar",
+  "otasi": "Xamitovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 3-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "0739.jpg"
+ },
+ {
+  "tabel": "0740",
+  "familiya": "Djalolov",
+  "ism": "Shamil",
+  "otasi": "Asrorovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0740.jpg"
+ },
+ {
+  "tabel": "0743",
+  "familiya": "Xaitov",
+  "ism": "Shodiyor",
+  "otasi": "Safarovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0743.jpg"
+ },
+ {
+  "tabel": "0744",
+  "familiya": "Umerov",
+  "ism": "Alisher",
+  "otasi": "Ibadullayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0744.jpg"
+ },
+ {
+  "tabel": "0746",
+  "familiya": "Safarov",
+  "ism": "Akramjon",
+  "otasi": "Suyunbayevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0746.jpg"
+ },
+ {
+  "tabel": "0748",
+  "familiya": "Pardayev",
+  "ism": "Odil",
+  "otasi": "Nodirkulovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0748.jpg"
+ },
+ {
+  "tabel": "0750",
+  "familiya": "Boboturayev",
+  "ism": "Xasan",
+  "otasi": "Raimkulovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0750.jpg"
+ },
+ {
+  "tabel": "0751",
+  "familiya": "Badalov",
+  "ism": "Rashid",
+  "otasi": "Kamoliddinovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0751.jpg"
+ },
+ {
+  "tabel": "0752",
+  "familiya": "Kenjayev",
+  "ism": "G‘olibjon",
+  "otasi": "Turdikulovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0752.jpg"
+ },
+ {
+  "tabel": "0756",
+  "familiya": "Sattarov",
+  "ism": "Rashid",
+  "otasi": "Rasulovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0756.jpg"
+ },
+ {
+  "tabel": "0759",
+  "familiya": "Jamolov",
+  "ism": "G‘ulomjon",
+  "otasi": "Jaloliddinovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0759.jpg"
+ },
+ {
+  "tabel": "0763",
+  "familiya": "Baxtiyorov",
+  "ism": "Sardor",
+  "otasi": "Baxtiyor o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0763.jpg"
+ },
+ {
+  "tabel": "0764",
+  "familiya": "Shaymatov",
+  "ism": "Azizbek",
+  "otasi": "Kenjayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "0764.jpg"
  },
  {
   "tabel": "0801",
@@ -1100,6 +3971,17 @@
   "rasm": "0808.jpg"
  },
  {
+  "tabel": "0817",
+  "familiya": "Jabborov",
+  "ism": "Xasan",
+  "otasi": "Kamol o‘g‘li",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 3-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "0817.jpg"
+ },
+ {
   "tabel": "0824",
   "familiya": "Vaxidov",
   "ism": "Ulug‘bek",
@@ -1144,6 +4026,17 @@
   "rasm": "0837.jpg"
  },
  {
+  "tabel": "0841",
+  "familiya": "Ashuraliyev",
+  "ism": "Aminjon",
+  "otasi": "Alijon o‘g‘li",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 3-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "0841.jpg"
+ },
+ {
   "tabel": "0843",
   "familiya": "Jumayev",
   "ism": "Dostonjon",
@@ -1153,6 +4046,28 @@
   "sex": "08- Ta’mirlash sexi",
   "jinsi": "erkak",
   "rasm": "0843.jpg"
+ },
+ {
+  "tabel": "0847",
+  "familiya": "Xalilov",
+  "ism": "Alisher",
+  "otasi": "Farhod o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0847.jpg"
+ },
+ {
+  "tabel": "0855",
+  "familiya": "Hamidov",
+  "ism": "Hasan",
+  "otasi": "Vahob o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0855.jpg"
  },
  {
   "tabel": "0860",
@@ -1199,6 +4114,17 @@
   "rasm": "0863.jpg"
  },
  {
+  "tabel": "0866",
+  "familiya": "Ro‘ziyev",
+  "ism": "Bekzod",
+  "otasi": "Rashid o‘g‘li",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 3-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "0866.jpg"
+ },
+ {
   "tabel": "0869",
   "familiya": "Ro‘ziyev",
   "ism": "Hamidjon",
@@ -1219,6 +4145,17 @@
   "sex": "16-ITR",
   "jinsi": "erkak",
   "rasm": "0872.jpg"
+ },
+ {
+  "tabel": "0873",
+  "familiya": "Qalandarov",
+  "ism": "Doston",
+  "otasi": "Sano o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0873.jpg"
  },
  {
   "tabel": "0874",
@@ -1254,6 +4191,83 @@
   "rasm": "0876.jpg"
  },
  {
+  "tabel": "0877",
+  "familiya": "To‘xtamishev",
+  "ism": "Siroj",
+  "otasi": "Hasanovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0877.jpg"
+ },
+ {
+  "tabel": "0879",
+  "familiya": "Ismatilloyev",
+  "ism": "Orifjon",
+  "otasi": "G‘olib o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0879.jpg"
+ },
+ {
+  "tabel": "0880",
+  "familiya": "Tursunov",
+  "ism": "Niyatilloh",
+  "otasi": "G‘aybulla o‘g‘li",
+  "lavozim": "Dublyor",
+  "lavozimToliq": "Dublyor, 3 guruh /18 -Elektrovoz xizmati kolonnasi/",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0880.jpg"
+ },
+ {
+  "tabel": "0881",
+  "familiya": "Rasulov",
+  "ism": "Ravshan",
+  "otasi": "Raxmatullo o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0881.jpg"
+ },
+ {
+  "tabel": "0884",
+  "familiya": "Teshayev",
+  "ism": "Sevdiyor",
+  "otasi": "Iskandar o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0884.jpg"
+ },
+ {
+  "tabel": "0885",
+  "familiya": "Yormamatov",
+  "ism": "Bobur",
+  "otasi": "Rustam o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz mashinisti 8-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0885.jpg"
+ },
+ {
+  "tabel": "0886",
+  "familiya": "Qoryog‘diyev",
+  "ism": "Akbarjon",
+  "otasi": "Yashuzoqovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz yordamchi mashinist 6-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0886.jpg"
+ },
+ {
   "tabel": "0887",
   "familiya": "Polvonov",
   "ism": "Dilmurodjon",
@@ -1265,6 +4279,17 @@
   "rasm": "0887.jpg"
  },
  {
+  "tabel": "0889",
+  "familiya": "Boymamatov",
+  "ism": "Umarbek",
+  "otasi": "Muxiddinovich",
+  "lavozim": "harakatlanuvchi tarkibni tamirlash chilangari",
+  "lavozimToliq": "harakatlanuvchi tarkibni tamirlash chilangari, 1 guruh /13- Ta’mirlash sexi MARAKAND/ 3-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "0889.jpg"
+ },
+ {
   "tabel": "0890",
   "familiya": "Temirov",
   "ism": "Jasur",
@@ -1274,6 +4299,39 @@
   "sex": "04 Tayyorlov sexi",
   "jinsi": "erkak",
   "rasm": "0890.jpg"
+ },
+ {
+  "tabel": "0892",
+  "familiya": "Hayitov",
+  "ism": "Navro‘zbek",
+  "otasi": "Jobir o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0892.jpg"
+ },
+ {
+  "tabel": "0893",
+  "familiya": "Axadov",
+  "ism": "Jamol",
+  "otasi": "Hamza o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0893.jpg"
+ },
+ {
+  "tabel": "0894",
+  "familiya": "Tursunov",
+  "ism": "Anvar",
+  "otasi": "G‘ayrat o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0894.jpg"
  },
  {
   "tabel": "0896",
@@ -1307,6 +4365,28 @@
   "sex": "38-Ta’mirlash sexi",
   "jinsi": "erkak",
   "rasm": "0898.jpg"
+ },
+ {
+  "tabel": "0899",
+  "familiya": "Asrorov",
+  "ism": "Behruz",
+  "otasi": "Erkinovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "0899.jpg"
+ },
+ {
+  "tabel": "1009",
+  "familiya": "Avazov",
+  "ism": "Shavkat",
+  "otasi": "Kuldashovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1009.jpg"
  },
  {
   "tabel": "1010",
@@ -1408,6 +4488,17 @@
   "rasm": "1021.jpg"
  },
  {
+  "tabel": "1023",
+  "familiya": "Ashurov",
+  "ism": "Mumin",
+  "otasi": "Raxmatovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1023.jpg"
+ },
+ {
   "tabel": "1024",
   "familiya": "Arabov",
   "ism": "Akmal",
@@ -1496,6 +4587,50 @@
   "rasm": "1031.jpg"
  },
  {
+  "tabel": "1032",
+  "familiya": "Elmurodov",
+  "ism": "Elyor",
+  "otasi": "Eldor o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1032.jpg"
+ },
+ {
+  "tabel": "1033",
+  "familiya": "Yusupov",
+  "ism": "Sherbek",
+  "otasi": "Akbarjon o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "1033.jpg"
+ },
+ {
+  "tabel": "1034",
+  "familiya": "Baxtiyorov",
+  "ism": "Oybek",
+  "otasi": "Muxiddin o‘g‘li",
+  "lavozim": "harakatlanuvchi tarkibni tamirlash chilangari",
+  "lavozimToliq": "harakatlanuvchi tarkibni tamirlash chilangari, 1 guruh /13- Ta’mirlash sexi MARAKAND/ 3-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "1034.jpg"
+ },
+ {
+  "tabel": "1037",
+  "familiya": "Akramov",
+  "ism": "Gulom",
+  "otasi": "Gafurovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1037.jpg"
+ },
+ {
   "tabel": "1038",
   "familiya": "Sa’dulloyev",
   "ism": "Shohruh",
@@ -1507,6 +4642,17 @@
   "rasm": "1038.jpg"
  },
  {
+  "tabel": "1042",
+  "familiya": "Joniqulov",
+  "ism": "Hasan",
+  "otasi": "Umid o‘g‘li",
+  "lavozim": "harakatlanuvchi tarkibni tamirlash chilangari",
+  "lavozimToliq": "harakatlanuvchi tarkibni tamirlash chilangari, 1 guruh /13- Ta’mirlash sexi MARAKAND/ 3-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "1042.jpg"
+ },
+ {
   "tabel": "1043",
   "familiya": "Safarov",
   "ism": "Umidjon",
@@ -1516,6 +4662,72 @@
   "sex": "38-Ta’mirlash sexi",
   "jinsi": "erkak",
   "rasm": "1043.jpg"
+ },
+ {
+  "tabel": "1044",
+  "familiya": "Boykobilov",
+  "ism": "Fazliddin",
+  "otasi": "Ergashovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "1044.jpg"
+ },
+ {
+  "tabel": "1047",
+  "familiya": "Shaymanov",
+  "ism": "Elbek",
+  "otasi": "Normuminovich",
+  "lavozim": "Katta usta",
+  "lavozimToliq": "Katta usta, 3 guruh /16-ITR/ Reostat. PTOl. TR-3. Zagot.Tamir. Maroqand 8-3",
+  "sex": "16-ITR",
+  "jinsi": "erkak",
+  "rasm": "1047.jpg"
+ },
+ {
+  "tabel": "1048",
+  "familiya": "Tashbatirov",
+  "ism": "Abduaziz",
+  "otasi": "Kamalovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ekipirovka mash.yordamchi 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "1048.jpg"
+ },
+ {
+  "tabel": "1049",
+  "familiya": "Davidov",
+  "ism": "Erkin",
+  "otasi": "Musayevich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 4-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "1049.jpg"
+ },
+ {
+  "tabel": "1050",
+  "familiya": "Payzullayev",
+  "ism": "Diyorbek",
+  "otasi": "Ubaydulla o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "1050.jpg"
+ },
+ {
+  "tabel": "1051",
+  "familiya": "Saidov",
+  "ism": "Alisher",
+  "otasi": "Abdulloyevich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1051.jpg"
  },
  {
   "tabel": "1052",
@@ -1540,6 +4752,17 @@
   "rasm": "1053.jpg"
  },
  {
+  "tabel": "1054",
+  "familiya": "Boymurodov",
+  "ism": "Behruz",
+  "otasi": "Barotovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1054.jpg"
+ },
+ {
   "tabel": "1062",
   "familiya": "Buriyev",
   "ism": "Alisher",
@@ -1549,6 +4772,39 @@
   "sex": "16-ITR",
   "jinsi": "erkak",
   "rasm": "1062.jpg"
+ },
+ {
+  "tabel": "1063",
+  "familiya": "Bobojonov",
+  "ism": "Doston",
+  "otasi": "Dilshod o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1063.jpg"
+ },
+ {
+  "tabel": "1111",
+  "familiya": "Voxidov",
+  "ism": "Ulug‘bek",
+  "otasi": "Olimovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz mashinisti 8-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1111.jpg"
+ },
+ {
+  "tabel": "1157",
+  "familiya": "Gadayev",
+  "ism": "Jamshid",
+  "otasi": "Utkirovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1157.jpg"
  },
  {
   "tabel": "1180",
@@ -1562,6 +4818,83 @@
   "rasm": "1180.jpg"
  },
  {
+  "tabel": "1182",
+  "familiya": "Djumayev",
+  "ism": "Djamshid",
+  "otasi": "Turakulovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": ""
+ },
+ {
+  "tabel": "1203",
+  "familiya": "Yergashev",
+  "ism": "Baxtiyor",
+  "otasi": "Karimovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1203.jpg"
+ },
+ {
+  "tabel": "1210",
+  "familiya": "Yergashev",
+  "ism": "Baxodir",
+  "otasi": "Karimovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1210.jpg"
+ },
+ {
+  "tabel": "1224",
+  "familiya": "Jalilov",
+  "ism": "Qosim",
+  "otasi": "Qaxorovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1224.jpg"
+ },
+ {
+  "tabel": "1234",
+  "familiya": "Jabbarov",
+  "ism": "Nodir",
+  "otasi": "Nishanovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1234.jpg"
+ },
+ {
+  "tabel": "1250",
+  "familiya": "Zadayev",
+  "ism": "Dilmurod",
+  "otasi": "Ashurovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1250.jpg"
+ },
+ {
+  "tabel": "1278",
+  "familiya": "Istamov",
+  "ism": "Amin",
+  "otasi": "Shodmonovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1278.jpg"
+ },
+ {
   "tabel": "1298",
   "familiya": "Kinjayev",
   "ism": "Uktam",
@@ -1571,6 +4904,94 @@
   "sex": "16-ITR",
   "jinsi": "erkak",
   "rasm": "1298.jpg"
+ },
+ {
+  "tabel": "1360",
+  "familiya": "Muminov",
+  "ism": "Aleksandr",
+  "otasi": "Ikromovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /24-Хo‘jalik yuklarini tashish kolonnasi/ Xo'jalik ishi teplovoz mashinisti 7-3",
+  "sex": "24-Хo‘jalik yuklarini tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1360.jpg"
+ },
+ {
+  "tabel": "1361",
+  "familiya": "Muxsinov",
+  "ism": "Rustam",
+  "otasi": "Shavkatovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1361.jpg"
+ },
+ {
+  "tabel": "1384",
+  "familiya": "Muxamedov",
+  "ism": "Mirali",
+  "otasi": "Mustafayevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1384.jpg"
+ },
+ {
+  "tabel": "1400",
+  "familiya": "Nazarov",
+  "ism": "Shavkat",
+  "otasi": "",
+  "lavozim": "ALIKULOVICH 1 Elektrovoz mashinisti",
+  "lavozimToliq": "ALIKULOVICH 1 Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1400.jpg"
+ },
+ {
+  "tabel": "1430",
+  "familiya": "Narzullayev",
+  "ism": "Shuxrat",
+  "otasi": "Shukurovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 3-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "1430.jpg"
+ },
+ {
+  "tabel": "1465",
+  "familiya": "Pulatov",
+  "ism": "Umed",
+  "otasi": "Sodikovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1465.jpg"
+ },
+ {
+  "tabel": "1489",
+  "familiya": "Rasulov",
+  "ism": "Fatillo",
+  "otasi": "Fayzulloyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1489.jpg"
+ },
+ {
+  "tabel": "1491",
+  "familiya": "Ro‘ziyev",
+  "ism": "Ilhom",
+  "otasi": "Umedilloyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1491.jpg"
  },
  {
   "tabel": "1504",
@@ -1584,6 +5005,39 @@
   "rasm": "1504.jpg"
  },
  {
+  "tabel": "1561",
+  "familiya": "Teshayev",
+  "ism": "Mirsodiq",
+  "otasi": "Sunnatovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /19-Ekipirovka/ Ekipirovka mashinist 6-3",
+  "sex": "19-Ekipirovka",
+  "jinsi": "erkak",
+  "rasm": "1561.jpg"
+ },
+ {
+  "tabel": "1575",
+  "familiya": "Tursunov",
+  "ism": "G‘ayrat",
+  "otasi": "Ganiyevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1575.jpg"
+ },
+ {
+  "tabel": "1581",
+  "familiya": "Tashev",
+  "ism": "Elyor",
+  "otasi": "Eshmuratovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1581.jpg"
+ },
+ {
   "tabel": "1614",
   "familiya": "Fayziyev",
   "ism": "Sodik",
@@ -1593,6 +5047,28 @@
   "sex": "16-ITR",
   "jinsi": "erkak",
   "rasm": "1614.jpg"
+ },
+ {
+  "tabel": "1625",
+  "familiya": "Fozilov",
+  "ism": "Sherali",
+  "otasi": "Sharipovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /20-Yo‘lovchi tashish kolonnasi/ yo'lovchi teplovoz mashinisti 8-3",
+  "sex": "20-Yo‘lovchi tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1625.jpg"
+ },
+ {
+  "tabel": "1632",
+  "familiya": "Xudoyorov",
+  "ism": "Doniyor",
+  "otasi": "Malikovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1632.jpg"
  },
  {
   "tabel": "1692",
@@ -1628,6 +5104,28 @@
   "rasm": "1771.jpg"
  },
  {
+  "tabel": "1781",
+  "familiya": "Shakirov",
+  "ism": "Azamat",
+  "otasi": "Shodiyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1781.jpg"
+ },
+ {
+  "tabel": "1782",
+  "familiya": "Sharipov",
+  "ism": "Shukurula",
+  "otasi": "Xabibovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "1782.jpg"
+ },
+ {
   "tabel": "1893",
   "familiya": "Amonov",
   "ism": "Otabek",
@@ -1650,6 +5148,28 @@
   "rasm": "1894.jpg"
  },
  {
+  "tabel": "2005",
+  "familiya": "Qurbonov",
+  "ism": "Farrux",
+  "otasi": "Faxriddinovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2005.jpg"
+ },
+ {
+  "tabel": "2006",
+  "familiya": "Djumayev",
+  "ism": "Xasan",
+  "otasi": "Davronovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 4-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "2006.jpg"
+ },
+ {
   "tabel": "2010",
   "familiya": "Baxronov",
   "ism": "Xurshid",
@@ -1670,6 +5190,17 @@
   "sex": "10-PTO",
   "jinsi": "erkak",
   "rasm": "2013.jpg"
+ },
+ {
+  "tabel": "2015",
+  "familiya": "Xayriyev",
+  "ism": "Do‘stbek",
+  "otasi": "Nurullo o‘g‘li",
+  "lavozim": "harakatlanuvchi tarkibni tamirlash chilangari",
+  "lavozimToliq": "harakatlanuvchi tarkibni tamirlash chilangari, 3 guruh /10-PTO/ 3-3",
+  "sex": "10-PTO",
+  "jinsi": "erkak",
+  "rasm": "2015.jpg"
  },
  {
   "tabel": "2016",
@@ -1716,6 +5247,17 @@
   "rasm": "2021.jpg"
  },
  {
+  "tabel": "2025",
+  "familiya": "Fayzullayev",
+  "ism": "Aziz",
+  "otasi": "Azimjonovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2025.jpg"
+ },
+ {
   "tabel": "2028",
   "familiya": "Jumayev",
   "ism": "Shodi",
@@ -1725,6 +5267,17 @@
   "sex": "04 Tayyorlov sexi",
   "jinsi": "erkak",
   "rasm": "2028.jpg"
+ },
+ {
+  "tabel": "2032",
+  "familiya": "Sayliyev",
+  "ism": "Sirojiddin",
+  "otasi": "G‘ofur o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2032.jpg"
  },
  {
   "tabel": "2040",
@@ -1738,6 +5291,17 @@
   "rasm": "2040.jpg"
  },
  {
+  "tabel": "2041",
+  "familiya": "G‘afurov",
+  "ism": "Sur’at",
+  "otasi": "Soyibovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2041.jpg"
+ },
+ {
   "tabel": "2045",
   "familiya": "Turapov",
   "ism": "Alisher",
@@ -1747,6 +5311,17 @@
   "sex": "04 Tayyorlov sexi",
   "jinsi": "erkak",
   "rasm": "2045.jpg"
+ },
+ {
+  "tabel": "2048",
+  "familiya": "Qurbonov",
+  "ism": "Muxriddin",
+  "otasi": "Zarif o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2048.jpg"
  },
  {
   "tabel": "2051",
@@ -1782,6 +5357,28 @@
   "rasm": "2058.jpg"
  },
  {
+  "tabel": "2060",
+  "familiya": "Fayzullayev",
+  "ism": "Kodir",
+  "otasi": "Ganjiyevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2060.jpg"
+ },
+ {
+  "tabel": "2062",
+  "familiya": "Alloyev",
+  "ism": "Ravshan",
+  "otasi": "Akramovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2062.jpg"
+ },
+ {
   "tabel": "2065",
   "familiya": "Ibragimov",
   "ism": "Firuzjon",
@@ -1791,6 +5388,17 @@
   "sex": "07- Ta’mirlash sexi",
   "jinsi": "erkak",
   "rasm": "2065.jpg"
+ },
+ {
+  "tabel": "2073",
+  "familiya": "Odilov",
+  "ism": "Farrux",
+  "otasi": "Axadovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 3-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "2073.jpg"
  },
  {
   "tabel": "2074",
@@ -1815,6 +5423,28 @@
   "rasm": "2080.jpg"
  },
  {
+  "tabel": "2082",
+  "familiya": "Jo‘rayev",
+  "ism": "Ma’rufjon",
+  "otasi": "Quchqorovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "2082.jpg"
+ },
+ {
+  "tabel": "2083",
+  "familiya": "Qodirov",
+  "ism": "Bobomurod",
+  "otasi": "Tavakkal o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2083.jpg"
+ },
+ {
   "tabel": "2088",
   "familiya": "Homidov",
   "ism": "Sardor",
@@ -1824,6 +5454,39 @@
   "sex": "10-PTO",
   "jinsi": "erkak",
   "rasm": "2088.jpg"
+ },
+ {
+  "tabel": "2105",
+  "familiya": "Djumayev",
+  "ism": "Qosim",
+  "otasi": "Qurbonovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 4-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "2105.jpg"
+ },
+ {
+  "tabel": "2110",
+  "familiya": "Sadirov",
+  "ism": "Sobitjon",
+  "otasi": "Obidjon o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2110.jpg"
+ },
+ {
+  "tabel": "2115",
+  "familiya": "Atavulloyev",
+  "ism": "Behruz",
+  "otasi": "O‘ktam o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2115.jpg"
  },
  {
   "tabel": "2120",
@@ -1859,6 +5522,17 @@
   "rasm": "2133.jpg"
  },
  {
+  "tabel": "2135",
+  "familiya": "Madjidov",
+  "ism": "Jamshid",
+  "otasi": "Muzafar o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2135.jpg"
+ },
+ {
   "tabel": "2156",
   "familiya": "Bozorov",
   "ism": "Dilmurod",
@@ -1868,6 +5542,17 @@
   "sex": "10-PTO",
   "jinsi": "erkak",
   "rasm": "2156.jpg"
+ },
+ {
+  "tabel": "2160",
+  "familiya": "Uljayev",
+  "ism": "Bekzod",
+  "otasi": "Baxronovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2160.jpg"
  },
  {
   "tabel": "2163",
@@ -1958,6 +5643,50 @@
   "rasm": "2187.jpg"
  },
  {
+  "tabel": "2188",
+  "familiya": "Shokirov",
+  "ism": "Fasli",
+  "otasi": "Zaynidinovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /21-Yuk tashish kolonnasi/ yuk teplovoz mashinisti 8-3",
+  "sex": "21-Yuk tashish kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2188.jpg"
+ },
+ {
+  "tabel": "2195",
+  "familiya": "Raximov",
+  "ism": "Ziyodulla",
+  "otasi": "Fatullayevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2195.jpg"
+ },
+ {
+  "tabel": "2196",
+  "familiya": "Niyozov",
+  "ism": "Abbos",
+  "otasi": "Akmal o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2196.jpg"
+ },
+ {
+  "tabel": "2199",
+  "familiya": "Mavlonov",
+  "ism": "Mirsaid",
+  "otasi": "Safo o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2199.jpg"
+ },
+ {
   "tabel": "2201",
   "familiya": "Abdullayeva",
   "ism": "Kadira",
@@ -1980,6 +5709,17 @@
   "rasm": "2202.jpg"
  },
  {
+  "tabel": "2203",
+  "familiya": "Rayimov",
+  "ism": "Mo‘min",
+  "otasi": "Husen o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2203.jpg"
+ },
+ {
   "tabel": "2204",
   "familiya": "Kambarova",
   "ism": "Zebo",
@@ -2000,6 +5740,17 @@
   "sex": "16-ITR",
   "jinsi": "ayol",
   "rasm": "2205.jpg"
+ },
+ {
+  "tabel": "2208",
+  "familiya": "Umarov",
+  "ism": "Odiljon",
+  "otasi": "Murtazoyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2208.jpg"
  },
  {
   "tabel": "2210",
@@ -2046,6 +5797,17 @@
   "rasm": "2218.jpg"
  },
  {
+  "tabel": "2219",
+  "familiya": "Sharipov",
+  "ism": "Farrux",
+  "otasi": "Faxriddinovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2219.jpg"
+ },
+ {
   "tabel": "2222",
   "familiya": "Xaitova",
   "ism": "Zarina",
@@ -2088,6 +5850,17 @@
   "sex": "14-SBK",
   "jinsi": "ayol",
   "rasm": "2227.jpg"
+ },
+ {
+  "tabel": "2229",
+  "familiya": "Tashev",
+  "ism": "Sano",
+  "otasi": "Safarovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 4-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "2229.jpg"
  },
  {
   "tabel": "2235",
@@ -2145,6 +5918,28 @@
   "rasm": "2246.jpg"
  },
  {
+  "tabel": "2249",
+  "familiya": "Temirov",
+  "ism": "Elyor",
+  "otasi": "Nasullo o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2249.jpg"
+ },
+ {
+  "tabel": "2259",
+  "familiya": "Qurbonov",
+  "ism": "Bahodir",
+  "otasi": "Boboqulovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2259.jpg"
+ },
+ {
   "tabel": "2261",
   "familiya": "Jabbiyev",
   "ism": "Nusrat",
@@ -2167,6 +5962,17 @@
   "rasm": "2267.jpg"
  },
  {
+  "tabel": "2269",
+  "familiya": "Elbayev",
+  "ism": "Zafar",
+  "otasi": "Isroilovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "2269.jpg"
+ },
+ {
   "tabel": "2272",
   "familiya": "Doroshenko",
   "ism": "Vasiliy",
@@ -2176,6 +5982,28 @@
   "sex": "07- Ta’mirlash sexi",
   "jinsi": "erkak",
   "rasm": "2272.jpg"
+ },
+ {
+  "tabel": "2278",
+  "familiya": "Hasanov",
+  "ism": "Faridjon",
+  "otasi": "Qahramonovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2278.jpg"
+ },
+ {
+  "tabel": "2282",
+  "familiya": "Fayziyev",
+  "ism": "Amrillo",
+  "otasi": "G‘aybulloyevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2282.jpg"
  },
  {
   "tabel": "2283",
@@ -2189,6 +6017,28 @@
   "rasm": "2283.jpg"
  },
  {
+  "tabel": "2284",
+  "familiya": "Egamkulov",
+  "ism": "Alisher",
+  "otasi": "Nishanovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "2284.jpg"
+ },
+ {
+  "tabel": "2286",
+  "familiya": "Odilov",
+  "ism": "Narzullojon",
+  "otasi": "Nusratilloyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2286.jpg"
+ },
+ {
   "tabel": "2293",
   "familiya": "Qurbonov",
   "ism": "Sunnatullo",
@@ -2198,6 +6048,28 @@
   "sex": "38-Ta’mirlash sexi",
   "jinsi": "erkak",
   "rasm": "2293.jpg"
+ },
+ {
+  "tabel": "2296",
+  "familiya": "Djumayev",
+  "ism": "Sherzod",
+  "otasi": "Turakulovich",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2296.jpg"
+ },
+ {
+  "tabel": "2300",
+  "familiya": "Xamidov",
+  "ism": "Navruz",
+  "otasi": "Axmadovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2300.jpg"
  },
  {
   "tabel": "2311",
@@ -2233,6 +6105,17 @@
   "rasm": "2320.jpg"
  },
  {
+  "tabel": "2323",
+  "familiya": "Sharopov",
+  "ism": "Mursal",
+  "otasi": "Muxammad o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2323.jpg"
+ },
+ {
   "tabel": "2327",
   "familiya": "Haqqiyev",
   "ism": "Jasurbek",
@@ -2242,6 +6125,17 @@
   "sex": "06-Ta’mirlash sexi",
   "jinsi": "erkak",
   "rasm": "2327.jpg"
+ },
+ {
+  "tabel": "2328",
+  "familiya": "Aminjonov",
+  "ism": "Akmal",
+  "otasi": "Ruziboyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "2328.jpg"
  },
  {
   "tabel": "2336",
@@ -2264,6 +6158,50 @@
   "sex": "10-PTO",
   "jinsi": "erkak",
   "rasm": "2338.jpg"
+ },
+ {
+  "tabel": "2346",
+  "familiya": "Xujanov",
+  "ism": "G‘ulom",
+  "otasi": "Ruziyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "2346.jpg"
+ },
+ {
+  "tabel": "2348",
+  "familiya": "Yuldashev",
+  "ism": "Olimjon",
+  "otasi": "Asho‘r o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "2348.jpg"
+ },
+ {
+  "tabel": "2350",
+  "familiya": "Suyarkulov",
+  "ism": "Nurbekjon",
+  "otasi": "Dilshodovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "2350.jpg"
+ },
+ {
+  "tabel": "2370",
+  "familiya": "Ochilov",
+  "ism": "Muxriddinjon",
+  "otasi": "Tursunpo‘lot o‘g‘li",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2370.jpg"
  },
  {
   "tabel": "2399",
@@ -2475,6 +6413,28 @@
   "rasm": "2514.jpg"
  },
  {
+  "tabel": "2516",
+  "familiya": "Haydarov",
+  "ism": "Qo‘ldosh",
+  "otasi": "Komil o‘g‘li",
+  "lavozim": "Elektrovoz mashinisti",
+  "lavozimToliq": "Elektrovoz mashinisti, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ Yuk elektrovoz mashinist 8-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2516.jpg"
+ },
+ {
+  "tabel": "2520",
+  "familiya": "Sultonov",
+  "ism": "Xayotjon",
+  "otasi": "To‘ra o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2520.jpg"
+ },
+ {
   "tabel": "2524",
   "familiya": "Isakov",
   "ism": "Alisher",
@@ -2506,6 +6466,17 @@
   "sex": "04 Tayyorlov sexi",
   "jinsi": "ayol",
   "rasm": "2550.jpg"
+ },
+ {
+  "tabel": "2568",
+  "familiya": "Xamrayev",
+  "ism": "Baxodir",
+  "otasi": "Akmalovich",
+  "lavozim": "Profkom",
+  "lavozimToliq": "Profkom, 3 guruh /16-ITR/",
+  "sex": "16-ITR",
+  "jinsi": "erkak",
+  "rasm": ""
  },
  {
   "tabel": "2580",
@@ -2607,6 +6578,17 @@
   "rasm": "2647.jpg"
  },
  {
+  "tabel": "2662",
+  "familiya": "Maxmudov",
+  "ism": "Shavkat",
+  "otasi": "Rustamovich",
+  "lavozim": "Qozonxona mashinisti",
+  "lavozimToliq": "Qozonxona mashinisti, 3 guruh /05-Хujalik bulimi/ 5-3",
+  "sex": "05-Хujalik bulimi",
+  "jinsi": "erkak",
+  "rasm": ""
+ },
+ {
   "tabel": "2700",
   "familiya": "Yodgorov",
   "ism": "Baxshillo",
@@ -2649,6 +6631,17 @@
   "sex": "04 Tayyorlov sexi",
   "jinsi": "erkak",
   "rasm": "2754.jpg"
+ },
+ {
+  "tabel": "2775",
+  "familiya": "Bazarov",
+  "ism": "Alisher",
+  "otasi": "Xusanovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2775.jpg"
  },
  {
   "tabel": "2818",
@@ -2750,6 +6743,28 @@
   "rasm": "2918.jpg"
  },
  {
+  "tabel": "2928",
+  "familiya": "Asrorov",
+  "ism": "Bobir",
+  "otasi": "Axrorovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 4-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "2928.jpg"
+ },
+ {
+  "tabel": "2933",
+  "familiya": "Karimov",
+  "ism": "Umid",
+  "otasi": "Raufovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "2933.jpg"
+ },
+ {
   "tabel": "2946",
   "familiya": "Qurbonov",
   "ism": "Shuhrat",
@@ -2794,6 +6809,446 @@
   "rasm": "2979.jpg"
  },
  {
+  "tabel": "3014",
+  "familiya": "Jonizoqov",
+  "ism": "Shoxrux",
+  "otasi": "Baxri o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "3014.jpg"
+ },
+ {
+  "tabel": "3332",
+  "familiya": "Narziyev",
+  "ism": "Zokir",
+  "otasi": "Kamolovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "3332.jpg"
+ },
+ {
+  "tabel": "3334",
+  "familiya": "Alimov",
+  "ism": "Sharobidin",
+  "otasi": "Meliyevich",
+  "lavozim": "harakatlanuvchi tarkibni tamirlash chilangari",
+  "lavozimToliq": "harakatlanuvchi tarkibni tamirlash chilangari, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 4-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "3334.jpg"
+ },
+ {
+  "tabel": "3338",
+  "familiya": "Xusenov",
+  "ism": "Uchkun",
+  "otasi": "Xamzayevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "3338.jpg"
+ },
+ {
+  "tabel": "3344",
+  "familiya": "Toshniyozov",
+  "ism": "Zoxidjon",
+  "otasi": "Sobirjonovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "3344.jpg"
+ },
+ {
+  "tabel": "3345",
+  "familiya": "Turdiqulov",
+  "ism": "Maxmud",
+  "otasi": "Xasan o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "3345.jpg"
+ },
+ {
+  "tabel": "3348",
+  "familiya": "Nodirov",
+  "ism": "Javoxir",
+  "otasi": "G‘ulomjon o‘g‘li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "3348.jpg"
+ },
+ {
+  "tabel": "3356",
+  "familiya": "Aliyev",
+  "ism": "Sardor",
+  "otasi": "Shavkatovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 3-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "3356.jpg"
+ },
+ {
+  "tabel": "3369",
+  "familiya": "Raxmanov",
+  "ism": "Olimjon",
+  "otasi": "Baxtiyorovich",
+  "lavozim": "Qozonxona mashinisti",
+  "lavozimToliq": "Qozonxona mashinisti, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 4-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "3369.jpg"
+ },
+ {
+  "tabel": "3385",
+  "familiya": "Pardayev",
+  "ism": "Baxrom",
+  "otasi": "Xurramovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 4-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "3385.jpg"
+ },
+ {
+  "tabel": "3391",
+  "familiya": "Abdurasulov",
+  "ism": "Rajab",
+  "otasi": "Ziyadullayevich",
+  "lavozim": "Payvandchi",
+  "lavozimToliq": "Payvandchi, 3 guruh /13- Ta’mirlash sexi MARAKAND/",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "3391.jpg"
+ },
+ {
+  "tabel": "3398",
+  "familiya": "Xaydarov",
+  "ism": "Soxib",
+  "otasi": "Ivadullayevich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "3398.jpg"
+ },
+ {
+  "tabel": "3400",
+  "familiya": "Xaitov",
+  "ism": "Sirojiddin",
+  "otasi": "Nurmuminovich",
+  "lavozim": "Mashinist yo'riqchisi",
+  "lavozimToliq": "Mashinist yo'riqchisi, 3 guruh /16-ITR/Marakand mash-yuriqchi/7-3",
+  "sex": "16-ITR",
+  "jinsi": "erkak",
+  "rasm": "3400.jpg"
+ },
+ {
+  "tabel": "3402",
+  "familiya": "Jumayev",
+  "ism": "Oybek",
+  "otasi": "Ergashboyevich",
+  "lavozim": "chilangar elektrik",
+  "lavozimToliq": "chilangar elektrik, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 4-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "3402.jpg"
+ },
+ {
+  "tabel": "3403",
+  "familiya": "Jumayev",
+  "ism": "Saloxiddin",
+  "otasi": "Shodiyevich",
+  "lavozim": "Tokar",
+  "lavozimToliq": "Tokar, 3 guruh /13- Ta’mirlash sexi MARAKAND/",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "erkak",
+  "rasm": "3403.jpg"
+ },
+ {
+  "tabel": "3404",
+  "familiya": "Akmirzayev",
+  "ism": "Uktam",
+  "otasi": "Ishonkulovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "3404.jpg"
+ },
+ {
+  "tabel": "3406",
+  "familiya": "Usmanov",
+  "ism": "Xasan",
+  "otasi": "Mamanazarovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "3406.jpg"
+ },
+ {
+  "tabel": "3415",
+  "familiya": "Nabiyev",
+  "ism": "Javoxir",
+  "otasi": "Komiljonovich",
+  "lavozim": "Elektrovoz mashinisti yordamchisi",
+  "lavozimToliq": "Elektrovoz mashinisti yordamchisi, 3 guruh /18 -Elektrovoz xizmati kolonnasi/ yuk elektrovoz yordamchi mashinist 6-3",
+  "sex": "18 -Elektrovoz xizmati kolonnasi",
+  "jinsi": "erkak",
+  "rasm": "3415.jpg"
+ },
+ {
+  "tabel": "3419",
+  "familiya": "Eshtemirov",
+  "ism": "Ilyos",
+  "otasi": "Jontemirovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "3419.jpg"
+ },
+ {
+  "tabel": "3420",
+  "familiya": "Ikmatullayev",
+  "ism": "Azim",
+  "otasi": "Zokirovich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz mashinist 6-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "3420.jpg"
+ },
+ {
+  "tabel": "3530",
+  "familiya": "Polvonova",
+  "ism": "Nilyufar",
+  "otasi": "Umarovna",
+  "lavozim": "Lokomotiv (poezd) brigadasi dam olish uyi mudiri",
+  "lavozimToliq": "Lokomotiv (poezd) brigadasi dam olish uyi mudiri, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 4x-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3530.jpg"
+ },
+ {
+  "tabel": "3531",
+  "familiya": "Xamroyeva",
+  "ism": "Zarifa",
+  "otasi": "Kilichevna",
+  "lavozim": "Lokomotiv (poezd) brigadasi dam olish uyi navbatchisi",
+  "lavozimToliq": "Lokomotiv (poezd) brigadasi dam olish uyi navbatchisi /13- Ta’mirlash sexi MARAKAND/ 4-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3531.jpg"
+ },
+ {
+  "tabel": "3532",
+  "familiya": "Xamrayeva",
+  "ism": "Baxor",
+  "otasi": "Otayarovna",
+  "lavozim": "Lokomotiv (poezd) brigadasi dam olish uyi navbatchisi",
+  "lavozimToliq": "Lokomotiv (poezd) brigadasi dam olish uyi navbatchisi /13- Ta’mirlash sexi MARAKAND/ 4-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3532.jpg"
+ },
+ {
+  "tabel": "3534",
+  "familiya": "Bobokulova",
+  "ism": "Ma’mura",
+  "otasi": "Eshonkulovna",
+  "lavozim": "Lokomotiv (poezd) brigadasi dam olish uyi navbatchisi",
+  "lavozimToliq": "Lokomotiv (poezd) brigadasi dam olish uyi navbatchisi /13- Ta’mirlash sexi MARAKAND/ 4-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3534.jpg"
+ },
+ {
+  "tabel": "3539",
+  "familiya": "Quchqarova",
+  "ism": "Aziza",
+  "otasi": "Axtamovna",
+  "lavozim": "Lokomotiv (poyezd) brigadalari naryadchisi",
+  "lavozimToliq": "Lokomotiv (poyezd) brigadalari naryadchisi /16-ITR/ 4x-3",
+  "sex": "16-ITR",
+  "jinsi": "ayol",
+  "rasm": "3539.jpg"
+ },
+ {
+  "tabel": "3540",
+  "familiya": "Nishonboyeva",
+  "ism": "Shaxnoza",
+  "otasi": "Nishonboy kizi",
+  "lavozim": "Xizmat xonalari farroshi",
+  "lavozimToliq": "Xizmat xonalari farroshi, 3 guruh /13- Ta’mirlash sexi MARAKAND/",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3540.jpg"
+ },
+ {
+  "tabel": "3542",
+  "familiya": "Kazimova",
+  "ism": "Guzal",
+  "otasi": "Aliyevna",
+  "lavozim": "Mehnat muhofazasi va texnika xavfsizligi bo‘yicha muhandis",
+  "lavozimToliq": "Mehnat muhofazasi va texnika xavfsizligi bo‘yicha muhandis , 3 guruh /16-ITR/Maroqand 5-3",
+  "sex": "16-ITR",
+  "jinsi": "ayol",
+  "rasm": "3542.jpg"
+ },
+ {
+  "tabel": "3543",
+  "familiya": "Ergasheva",
+  "ism": "Dilovar",
+  "otasi": "Kilichevna",
+  "lavozim": "Lokomotiv (poezd) brigadasi dam olish uyi navbatchisi",
+  "lavozimToliq": "Lokomotiv (poezd) brigadasi dam olish uyi navbatchisi /13- Ta’mirlash sexi MARAKAND/ 4-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3543.jpg"
+ },
+ {
+  "tabel": "3544",
+  "familiya": "Polvonova",
+  "ism": "Iroda",
+  "otasi": "Umarovna",
+  "lavozim": "Muhandis-texnolog",
+  "lavozimToliq": "Muhandis-texnolog, 3 guruh /AUR/",
+  "sex": "AUR",
+  "jinsi": "ayol",
+  "rasm": "3544.jpg"
+ },
+ {
+  "tabel": "3545",
+  "familiya": "Bekova",
+  "ism": "Zuxra",
+  "otasi": "Sherboyevna",
+  "lavozim": "Lokomotiv (poyezd) brigadalari naryadchisi",
+  "lavozimToliq": "Lokomotiv (poyezd) brigadalari naryadchisi /16-ITR/ 4-3",
+  "sex": "16-ITR",
+  "jinsi": "ayol",
+  "rasm": "3545.jpg"
+ },
+ {
+  "tabel": "3549",
+  "familiya": "Boboqulova",
+  "ism": "Dilrabo",
+  "otasi": "Eshonqulovna",
+  "lavozim": "Prachka",
+  "lavozimToliq": "Prachka, 3 guruh /13- Ta’mirlash sexi MARAKAND/",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3549.jpg"
+ },
+ {
+  "tabel": "3550",
+  "familiya": "Pardayeva",
+  "ism": "Anzirat",
+  "otasi": "Xurramovna",
+  "lavozim": "Ishlab chiqarish xonalari farroshi",
+  "lavozimToliq": "Ishlab chiqarish xonalari farroshi, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 3-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3550.jpg"
+ },
+ {
+  "tabel": "3554",
+  "familiya": "Quchqorova",
+  "ism": "Nargiza",
+  "otasi": "Axtamovna",
+  "lavozim": "Lokomotiv (poezd) brigadasi dam olish uyi navbatchisi",
+  "lavozimToliq": "Lokomotiv (poezd) brigadasi dam olish uyi navbatchisi /13- Ta’mirlash sexi MARAKAND/ 4-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3554.jpg"
+ },
+ {
+  "tabel": "3558",
+  "familiya": "Usmonova",
+  "ism": "Oltinoy",
+  "otasi": "Nasirdinovna",
+  "lavozim": "Ishlab chiqarish xonalari farroshi",
+  "lavozimToliq": "Ishlab chiqarish xonalari farroshi, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 3-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3558.jpg"
+ },
+ {
+  "tabel": "3559",
+  "familiya": "Usmanova",
+  "ism": "Xalida",
+  "otasi": "Jurakulovna",
+  "lavozim": "Uborshik proizvodstvennix pomesheniy i territorii",
+  "lavozimToliq": "Uborshik proizvodstvennix pomesheniy i territorii, 3 guruh /13- Ta’mirlash sexi MARAKAND/",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": ""
+ },
+ {
+  "tabel": "3562",
+  "familiya": "Pardayeva",
+  "ism": "Zumrat",
+  "otasi": "Xuramovna",
+  "lavozim": "Omborchi",
+  "lavozimToliq": "Omborchi, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 4-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3562.jpg"
+ },
+ {
+  "tabel": "3565",
+  "familiya": "Yusupova",
+  "ism": "Zarina",
+  "otasi": "Tuychiyevna",
+  "lavozim": "Chilangarlik va dastgox ishlari nazoratchisi",
+  "lavozimToliq": "Chilangarlik va dastgox ishlari nazoratchisi, 3 guruh /13- Ta’mirlash sexi MARAKAND/ 3-3",
+  "sex": "13- Ta’mirlash sexi MARAKAND",
+  "jinsi": "ayol",
+  "rasm": "3565.jpg"
+ },
+ {
+  "tabel": "3568",
+  "familiya": "Toshmurodova",
+  "ism": "Dilfuza",
+  "otasi": "Ro‘zimurot qizi",
+  "lavozim": "Texnik",
+  "lavozimToliq": "Texnik , 3 guruh /16-ITR/ Ekspluatatsiya texnigi maroqand 4x-3",
+  "sex": "16-ITR",
+  "jinsi": "ayol",
+  "rasm": "3568.jpg"
+ },
+ {
+  "tabel": "3571",
+  "familiya": "Qaxramonova",
+  "ism": "Zarina",
+  "otasi": "Baxodirovna",
+  "lavozim": "Lokomotiv (poyezd) brigadalari naryadchisi",
+  "lavozimToliq": "Lokomotiv (poyezd) brigadalari naryadchisi /16-ITR/ 4-3",
+  "sex": "16-ITR",
+  "jinsi": "ayol",
+  "rasm": "3571.jpg"
+ },
+ {
+  "tabel": "3613",
+  "familiya": "Sayfulloyev",
+  "ism": "Dilshod",
+  "otasi": "Nasulloyevich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 3-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "3613.jpg"
+ },
+ {
   "tabel": "3615",
   "familiya": "Bakayev",
   "ism": "Alisher",
@@ -2803,6 +7258,28 @@
   "sex": "10-PTO",
   "jinsi": "erkak",
   "rasm": "3615.jpg"
+ },
+ {
+  "tabel": "3641",
+  "familiya": "Qosimov",
+  "ism": "Ashurmamad",
+  "otasi": "Raxmonovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 3-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": "3641.jpg"
+ },
+ {
+  "tabel": "3643",
+  "familiya": "Abdullayev",
+  "ism": "Avaz",
+  "otasi": "Akbarovich",
+  "lavozim": "Qorovul",
+  "lavozimToliq": "Qorovul, 3 guruh /12-Baza/ 4-3",
+  "sex": "12-Baza",
+  "jinsi": "erkak",
+  "rasm": ""
  },
  {
   "tabel": "3658",
@@ -3254,5 +7731,16 @@
   "sex": "14-SBK",
   "jinsi": "ayol",
   "rasm": "5225.jpg"
+ },
+ {
+  "tabel": "5758",
+  "familiya": "Salimov",
+  "ism": "Farrux",
+  "otasi": "Zokir O'g`li",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /22- Ekspluatasiya Marakand/ Manyovr teplovoz yordamchi mashinisti 5-3",
+  "sex": "22- Ekspluatasiya Marakand",
+  "jinsi": "erkak",
+  "rasm": "5758.jpg"
  }
 ]
