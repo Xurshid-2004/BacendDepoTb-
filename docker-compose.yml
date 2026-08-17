@@ -113,6 +113,11 @@ services:
       FACE_THRESHOLD: ${FACE_THRESHOLD:-0.62}
       # Kadr oʻlchami. 640 aniqroq, 480 — ~2 barobar tez va yengilroq.
       FACE_DET_SIZE: ${FACE_DET_SIZE:-640}
+      # MAJBURIY: run.py zaxira qiymati `::` — konteynerda uvicorn FAQAT
+      # IPv6 da tinglaydi va IPv4 ulanishni rad etadi. Docker bridge
+      # tarmogʻi esa IPv4: Django `http://face:8000` ga urinib
+      # «Connection refused» oladi, healthcheck ham yiqiladi.
+      HOST: 0.0.0.0
       TZ: ${TZ:-Asia/Tashkent}
     volumes:
       # insightface modelni $HOME/.insightface ga yuklaydi (INSIGHTFACE_HOME
