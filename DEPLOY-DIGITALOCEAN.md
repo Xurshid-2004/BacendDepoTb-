@@ -14,6 +14,27 @@ Kerakli fayllar repo ichida: `Dockerfile`, `docker-compose.yml`, `Caddyfile`,
 
 ---
 
+## Tez yoʻl — bitta buyruq
+
+Droplet yaratilgach (1-bosqich), uning **Web Console** oynasida ikkita
+buyruq yozilsa kifoya. Qolgan hamma narsani `dropletga-qoy.sh` bajaradi:
+swap, Docker, firewall, kod, kalitlar, HTTPS.
+
+```bash
+git clone https://github.com/Xurshid-2004/BacendDepoTb-.git
+bash BacendDepoTb-/dropletga-qoy.sh
+```
+
+Soʻng 10-bosqichga (Vercel) oʻting. Quyidagi batafsil bosqichlar — nima
+sodir boʻlayotganini tushunish va xato chiqqanda tuzatish uchun.
+
+> **Web Console'da nusxa koʻchirmang.** Konsol nusxalashda koʻrinmas
+> belgilar qoʻshadi va buyruq `^[[200~curl ...` koʻrinishida buziladi.
+> Buyruqlarni qoʻlda yozing, yoki avval `bind 'set enable-bracketed-paste off'`
+> deb yozing.
+
+---
+
 ## 0. Fayllarni GitHub'ga yuborish (lokal kompyuterda)
 
 Droplet repo'ni GitHub'dan klon qiladi, shuning uchun avval yangi fayllar
