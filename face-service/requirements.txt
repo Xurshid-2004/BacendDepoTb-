@@ -1,0 +1,26 @@
+# =====================================================================
+# TB Face servisi — bogʻliqliklar
+#
+# Versiyalar oraliq bilan berilgan: bitta fayl ham Docker image'ida
+# (python:3.11-slim), ham lokal Windows muhitida (Python 3.14) ishlashi
+# kerak. Qatʼiy pin qoʻyilsa, yangi Python uchun wheel topilmay qoladi.
+#
+# Oʻrnatish (lokal):
+#   python -m venv .venv
+#   .venv\Scripts\python -m pip install -r requirements.txt
+# =====================================================================
+
+fastapi>=0.115,<1
+uvicorn[standard]>=0.34,<1
+pydantic>=2.10,<3
+
+numpy>=1.26,<3
+pillow>=11,<14
+opencv-python-headless>=4.10,<6
+
+# ONNX ijro muhiti — model shu orqali ishlaydi
+onnxruntime>=1.20,<2
+
+# 1.0.1 dan boshlab toza Python wheel (py3-none-any) — kompilyator
+# talab qilinmaydi, shuning uchun Python 3.14 da ham oʻrnatiladi.
+insightface>=1.0.1,<2

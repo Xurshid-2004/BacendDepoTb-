@@ -5,9 +5,13 @@
 #   db    — PostgreSQL 16 (maʼlumot volume'da saqlanadi)
 #   api   — Django + gunicorn (migratsiya/seed avtomatik)
 #   caddy — HTTPS (Let's Encrypt sertifikati avtomatik olinadi)
+#   face  — yuz tanish (faqat --profile face bilan; RAM 4 GB+ kerak)
 #
 # Ishga tushirish (droplet ichida, shu papkada):
 #   docker compose --env-file .env.production up -d --build
+#
+# Yuz tanish bilan (avval .env.production da FACE_SERVICE_URL yoziladi):
+#   docker compose --env-file .env.production --profile face up -d --build
 #
 # Loglar:   docker compose logs -f api
 # Toʻxtatish: docker compose down     (maʼlumot volume'da qoladi)
@@ -83,6 +87,52 @@ services:
     networks: [tb]
     logging: *log
 
+  # ---------------------------------------------------------------
+  # Yuz tanish xizmati — InsightFace (buffalo_l) + FastAPI
+  #
+  # Standart holatda ISHGA TUSHMAYDI: `profiles: ["face"]`. Yoqish uchun
+  # ikki shart bir vaqtda bajarilishi kerak —
+  #   1) .env.production da  FACE_SERVICE_URL=http://face:8000
+  #   2) buyruqqa            --profile face
+  # Biri boʻlmasa Django yuz tanishni oʻchiq deb hisoblaydi va PIN bilan
+  # ishlashda davom etadi (core/face.py: yoqilganmi()).
+  #
+  # XOTIRA: model RAM'da ~1.5 GB egallaydi. 1 GB droplet'da BU SERVIS
+  # KOʻTARILMAYDI — OOM killer db yoki api'ni oʻldiradi. Kamida 4 GB
+  # kerak. mem_limit shu sababli qatʼiy: chegara boʻlmasa konteyner
+  # butun serverni siqib qoʻyadi.
+  # ---------------------------------------------------------------
+  face:
+    build:
+      context: ./face-service
+    container_name: tb-face
+    restart: unless-stopped
+    profiles: ["face"]
+    environment:
+      FACE_TOKEN: ${FACE_SERVICE_TOKEN:-}
+      FACE_THRESHOLD: ${FACE_THRESHOLD:-0.62}
+      # Kadr oʻlchami. 640 aniqroq, 480 — ~2 barobar tez va yengilroq.
+      FACE_DET_SIZE: ${FACE_DET_SIZE:-640}
+      TZ: ${TZ:-Asia/Tashkent}
+    volumes:
+      # insightface modelni $HOME/.insightface ga yuklaydi (INSIGHTFACE_HOME
+      # eʼtiborsiz qoladi). Volume aynan shu yoʻlga ulanmasa, 281 MB model
+      # har rebuild'da qaytadan yuklanardi.
+      - face-models:/root/.insightface
+    mem_limit: ${FACE_MEM_LIMIT:-2500m}
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      # Model birinchi yuklanishi sekin — konteyner darrov «unhealthy»
+      # deb belgilanmasligi uchun uzoq start_period.
+      start_period: 180s
+    # Baza va API bilan bitta ichki tarmoqda; tashqariga port ochilmaydi —
+    # unga faqat Django murojaat qiladi.
+    networks: [tb]
+    logging: *log
+
   caddy:
     image: caddy:2-alpine
     container_name: tb-caddy
@@ -108,6 +158,7 @@ volumes:
   api-media:
   caddy-data:
   caddy-config:
+  face-models:
 
 networks:
   tb:
