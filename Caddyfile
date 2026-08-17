@@ -1,0 +1,31 @@
+# =====================================================================
+# TB tizimi — backend reverse proxy (DigitalOcean Droplet)
+#
+# {$TB_API_DOMAIN} — .env.production dagi domen, masalan:
+#     TB_API_DOMAIN=api.tb-depo.uz
+#     TB_API_DOMAIN=157.245.10.20.sslip.io   (domen sotib olinmagan boʻlsa)
+#
+# Domen koʻrsatilsa Caddy Let's Encrypt sertifikatini oʻzi oladi va
+# http → https yoʻnaltirishni oʻzi qiladi. Hech qanday certbot kerak emas.
+#
+# Bu yerda faqat backend turadi — sahifalar Vercel'da.
+# =====================================================================
+
+{$TB_API_DOMAIN:":80"} {
+	encode gzip zstd
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options    "nosniff"
+		Referrer-Policy           "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	# Yuz surati base64 holida keladi, Excel import ham yirik boʻlishi mumkin
+	request_body {
+		max_size 25MB
+	}
+
+	# /api/*, /admin/*, /static/* — hammasi Django'ga
+	reverse_proxy api:8000
+}

@@ -1,0 +1,113 @@
+# =====================================================================
+# TB tizimi — BACKEND (DigitalOcean Droplet uchun)
+#
+# Frontend Vercel'da qoladi. Bu yerda faqat backend koʻtariladi:
+#   db    — PostgreSQL 16 (maʼlumot volume'da saqlanadi)
+#   api   — Django + gunicorn (migratsiya/seed avtomatik)
+#   caddy — HTTPS (Let's Encrypt sertifikati avtomatik olinadi)
+#
+# Ishga tushirish (droplet ichida, shu papkada):
+#   docker compose --env-file .env.production up -d --build
+#
+# Loglar:   docker compose logs -f api
+# Toʻxtatish: docker compose down     (maʼlumot volume'da qoladi)
+# =====================================================================
+services:
+
+  db:
+    image: postgres:16-alpine
+    container_name: tb-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-tb}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD .env.production da boʻlishi shart}
+      POSTGRES_DB: ${POSTGRES_DB:-tb}
+      TZ: ${TZ:-Asia/Tashkent}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-tb} -d ${POSTGRES_DB:-tb}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    # Baza faqat ichki tarmoqda — tashqaridan port ochilmaydi.
+    networks: [tb]
+    logging: &log
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  api:
+    build:
+      context: .
+    container_name: tb-api
+    restart: unless-stopped
+    environment:
+      DJANGO_DEBUG: "0"
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?DJANGO_SECRET_KEY majburiy}
+      JWT_SECRET: ${JWT_SECRET:-}
+      JWT_ACCESS_MIN: ${JWT_ACCESS_MIN:-30}
+      JWT_REFRESH_DAYS: ${JWT_REFRESH_DAYS:-30}
+
+      DATABASE_URL: postgres://${POSTGRES_USER:-tb}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-tb}
+
+      # MUHIM: 127.0.0.1 roʻyxatda qolsin — Dockerfile'dagi healthcheck
+      # serverni aynan shu manzil orqali tekshiradi. Boʻlmasa Django 400
+      # qaytaradi va konteyner «unhealthy» boʻlib qoladi.
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-127.0.0.1,localhost}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-}
+      CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS:-}
+
+      NEXT_PUBLIC_DEPO_KOD: ${NEXT_PUBLIC_DEPO_KOD:-TCH-6}
+      TB_ADMIN_TABEL: ${TB_ADMIN_TABEL:-0212}
+      TB_SEED: ${TB_SEED:-1}
+      TB_XODIMLAR: ${TB_XODIMLAR:-1}
+
+      # Yuz tanish — boʻsh boʻlsa OʻCHIQ (tizim faqat PIN bilan ishlaydi)
+      FACE_SERVICE_URL: ${FACE_SERVICE_URL:-}
+      FACE_SERVICE_TOKEN: ${FACE_SERVICE_TOKEN:-}
+      FACE_THRESHOLD: ${FACE_THRESHOLD:-0.62}
+
+      # TLS'ni Caddy yakunlaydi — Django qayta yoʻnaltirmasin
+      SECURE_SSL_REDIRECT: "0"
+      # Har bir worker ~120 MB. Zaxira qiymat 1 — 1 GB droplet'da xavfsiz.
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-1}
+      TZ: ${TZ:-Asia/Tashkent}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    volumes:
+      - api-media:/app/media
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [tb]
+    logging: *log
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: tb-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      # Domen berilsa sertifikat avtomatik olinadi. Boʻsh qolsa — faqat :80
+      # (HTTPS boʻlmaydi, sinov uchungina).
+      TB_API_DOMAIN: ${TB_API_DOMAIN:-:80}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - api
+    networks: [tb]
+    logging: *log
+
+volumes:
+  db-data:
+  api-media:
+  caddy-data:
+  caddy-config:
+
+networks:
+  tb:
