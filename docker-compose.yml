@@ -113,6 +113,14 @@ services:
       FACE_THRESHOLD: ${FACE_THRESHOLD:-0.62}
       # Kadr oʻlchami. 640 aniqroq, 480 — ~2 barobar tez va yengilroq.
       FACE_DET_SIZE: ${FACE_DET_SIZE:-640}
+      # Bir vaqtda hisoblanadigan soʻrovlar. Har biri ~61 MB qoʻshadi va
+      # ONNX bu xotirani qaytarmaydi — chegarasiz qoldirilsa burst
+      # paytida mem_limit'dan oshib OOM boʻladi. 2 vCPU'da 4 dan ortigʻi
+      # tezlik bermaydi (hisob baribir navbatda kutadi).
+      FACE_MAX_CONCURRENT: ${FACE_MAX_CONCURRENT:-4}
+      # Navbatda shuncha soniya kutgan soʻrov 503 oladi va Django PIN'ga
+      # oʻtadi — xodim kirishsiz qolmaydi.
+      FACE_QUEUE_TIMEOUT: ${FACE_QUEUE_TIMEOUT:-10}
       # MAJBURIY: run.py zaxira qiymati `::` — konteynerda uvicorn FAQAT
       # IPv6 da tinglaydi va IPv4 ulanishni rad etadi. Docker bridge
       # tarmogʻi esa IPv4: Django `http://face:8000` ga urinib

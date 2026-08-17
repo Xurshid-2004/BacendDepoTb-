@@ -27,6 +27,51 @@ TOKEN = os.getenv("FACE_TOKEN", "")
 THRESHOLD = float(os.getenv("FACE_THRESHOLD", "0.62"))
 DET_SIZE = int(os.getenv("FACE_DET_SIZE", "640"))
 
+# Bir vaqtda nechta kadr hisoblanadi.
+#
+# Nega chegara kerak: ONNX Runtime har ishchi oqim uchun alohida xotira
+# arenasi ajratadi va uni QAYTARMAYDI. Oʻlchov (2 vCPU, 4 GB droplet):
+#   model yuklangan, boʻsh — 458 MB
+#   5 ta bir vaqtda        — 930 MB
+#   20 ta bir vaqtda       — 1.68 GB   ← yuklama tugagach ham shu darajada qoladi
+# Yaʼni har bir qoʻshimcha oqim ~61 MB. Chegarasiz qoldirilsa, uvicorn
+# threadpool'i 40 tagacha koʻtaradi (~2.9 GB) va konteyner mem_limit
+# (2.44 GB) dan oshib OOM bilan oʻladi.
+#
+# Hisob CPU'ga bogʻliq: 2 yadroda 20 ta bir vaqtdagi soʻrov baribir
+# navbatda kutadi (bittasi 5.3 s). Yaʼni chegara oʻtkazuvchanlikni
+# kamaytirmaydi — faqat xotira portlashining oldini oladi.
+MAX_CONCURRENT = int(os.getenv("FACE_MAX_CONCURRENT", "4") or 4)
+
+# Navbatda shuncha soniyadan ortiq kutgan soʻrov rad etiladi. Django
+# tomonda FACE_TIMEOUT bor — u kutishni toʻxtatsa ham, biz hisoblashda
+# davom etib bekorga CPU yeyishimiz mumkin edi. Tez «band» javobi
+# yaxshiroq: Django PIN'ga oʻtadi va xodim tizimdan tashqarida qolmaydi.
+QUEUE_TIMEOUT = float(os.getenv("FACE_QUEUE_TIMEOUT", "10") or 10)
+
+_slot = threading.BoundedSemaphore(MAX_CONCURRENT)
+_band = 0                       # hozir hisoblanayotgan soʻrovlar (/health uchun)
+_band_qulf = threading.Lock()
+
+
+@contextlib.contextmanager
+def slot():
+    """Hisoblash uchun joy band qiladi; navbat toʻlsa 503 qaytaradi."""
+    global _band
+    if not _slot.acquire(timeout=QUEUE_TIMEOUT):
+        raise HTTPException(
+            status_code=503,
+            detail="Xizmat band — birozdan soʻng qayta urining yoki PIN bilan kiring",
+        )
+    with _band_qulf:
+        _band += 1
+    try:
+        yield
+    finally:
+        with _band_qulf:
+            _band -= 1
+        _slot.release()
+
 # buffalo_l paketida 5 ta model bor, lekin bizga faqat ikkitasi kerak:
 #   detection   — yuzni topish (det_10g)
 #   recognition — vektor olish (w600k_r50)
@@ -37,7 +82,30 @@ MODULLAR = ["detection", "recognition"]
 log = logging.getLogger("face")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
-app = FastAPI(title="TB Face Service", version="1.0")
+@contextlib.asynccontextmanager
+async def lifespan(_: FastAPI):
+    """
+    Modelni fon oqimida oldindan yuklaydi ("warmup").
+
+    Nega kerak: model() lazy edi — birinchi HAQIQIY soʻrov modelni
+    yuklaguncha ~3 soniya kutardi. Yaʼni smena boshida birinchi xodim
+    kamera oldida sababsiz turardi. Endi konteyner koʻtarilishi bilan
+    yuklash boshlanadi va birinchi xodim ham tayyor modelga tushadi.
+
+    Fon oqimida — uvicorn'ning ishga tushishini bloklamaslik uchun;
+    tayyorlik holati /health orqali koʻrinadi.
+    """
+    def yukla():
+        try:
+            model()
+        except Exception:
+            log.exception("Isitish paytida model yuklanmadi")
+
+    threading.Thread(target=yukla, name="warmup", daemon=True).start()
+    yield
+
+
+app = FastAPI(title="TB Face Service", version="1.0", lifespan=lifespan)
 
 _model = None
 _qulf = threading.Lock()
@@ -119,13 +187,33 @@ class CompareIn(BaseModel):
 
 @app.get("/health")
 def health():
-    return {"ok": True, "threshold": THRESHOLD, "model": "buffalo_l"}
+    """
+    Haqiqiy tayyorlik holati.
+
+    Avval bu marshrut model yuklanmagan boʻlsa ham doim {"ok": true}
+    qaytarardi — Docker konteynerni «healthy» deb belgilardi, holbuki u
+    hali soʻrovga xizmat qila olmasdi. Endi holat rostini aytadi:
+    model yuklanmaguncha 503, xato boʻlsa ham 503.
+    """
+    tayyor = _holat == "tayyor"
+    tana = {
+        "ok": tayyor,
+        "holat": _holat,
+        "model": "buffalo_l",
+        "threshold": THRESHOLD,
+        "band": _band,                           # hozir hisoblanayotgan soʻrovlar
+        "max": MAX_CONCURRENT,
+    }
+    if not tayyor:
+        raise HTTPException(status_code=503, detail=tana)
+    return tana
 
 
 @app.post("/embed")
 def embed_route(body: EmbedIn, x_face_token: Optional[str] = Header(None)):
     guard(x_face_token)
-    v, f = embed(body.image)
+    with slot():
+        v, f = embed(body.image)
     return {
         "vector": v.tolist(),
         "bbox": [float(x) for x in f.bbox],
@@ -139,7 +227,13 @@ def compare_route(body: CompareIn, x_face_token: Optional[str] = Header(None)):
     guard(x_face_token)
     if body.vector is None and body.image is None:
         raise HTTPException(status_code=400, detail="image yoki vector kerak")
-    src = body.vector if body.vector is not None else embed(body.image)[0].tolist()
+    if body.vector is not None:
+        src = body.vector
+    else:
+        # Faqat surat berilganda hisoblash kerak — vektor tayyor boʻlsa
+        # navbat band qilinmaydi (kosinus hisobi arzon).
+        with slot():
+            src = embed(body.image)[0].tolist()
     score = cosine(src, body.target)
     th = body.threshold if body.threshold is not None else THRESHOLD
     return {"score": round(score, 4), "threshold": th, "mos": score >= th}
@@ -159,11 +253,15 @@ def verify_route(body: VerifyIn, x_face_token: Optional[str] = Header(None)):
     if len(body.frames) < 2:
         raise HTTPException(status_code=400, detail="Kamida 2 kadr kerak")
 
+    # Bitta kirish = bir necha kadr. Navbat bir marta band qilinadi:
+    # kadrlar orasida joyni boʻshatsak, boshqa soʻrov oraga tushib
+    # kirish yarim yoʻlda «band» xatosiga uchrashi mumkin edi.
     vectors, scores = [], []
-    for fr in body.frames:
-        v, f = embed(fr)
-        vectors.append(v.tolist())
-        scores.append(float(f.det_score))
+    with slot():
+        for fr in body.frames:
+            v, f = embed(fr)
+            vectors.append(v.tolist())
+            scores.append(float(f.det_score))
 
     th = body.threshold if body.threshold is not None else THRESHOLD
     mos_list = [cosine(v, body.target) for v in vectors]
