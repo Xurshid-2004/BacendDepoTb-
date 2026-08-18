@@ -322,12 +322,12 @@ shunday ishlaydi: har 2 daqiqada GitHub tekshiriladi va yangi commit
 boʻlsa kod tortib olinib, konteyner qayta yigʻiladi.
 
 ```bash
-cd /root/BacendDepoTb-
-git pull
-bash avto-yangila.sh ornat
+cd /root/BacendDepoTb- && git pull && bash avto-yangila.sh ornat
 ```
 
-Shundan keyin har push'dan ~2 daqiqa ichida server yangilanadi;
+Bu bitta buyruq uch ishni bajaradi: kodni GitHub'dagi oxirgi holatga
+keltiradi, konteynerni **shu zahoti** qayta yigʻadi va taymerni yoqadi.
+Shundan keyin har push'dan ~2 daqiqa ichida server oʻzi yangilanadi;
 migratsiya, kadrlar roʻyxati va admin hisobi entrypoint ichida oʻzi
 bajariladi.
 
@@ -335,7 +335,8 @@ bajariladi.
 |---|---|
 | Ishlayaptimi | `systemctl status tb-yangila.timer` |
 | Soʻnggi loglar | `journalctl -u tb-yangila.service -n 50` |
-| Hoziroq yangilash | `bash /root/BacendDepoTb-/avto-yangila.sh` |
+| Hoziroq tekshirish | `bash /root/BacendDepoTb-/avto-yangila.sh` |
+| Majburan qayta yigʻish | `bash /root/BacendDepoTb-/avto-yangila.sh majbur` |
 | Vaqtincha toʻxtatish | `systemctl stop tb-yangila.timer` |
 | Qayta yoqish | `systemctl start tb-yangila.timer` |
 
