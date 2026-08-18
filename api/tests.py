@@ -820,3 +820,75 @@ class LogicTest(TestCase):
         # Rol override
         access = {"roleOverrides": {"ishchi": {"stock.write": True}}}
         self.assertTrue(resolve_access("stock.write", ["ishchi"], "u1", access, False))
+
+
+class XodisaTest(TestCase):
+    """Avariya/baxtsiz xodisa xabarini tahrirlash va oʻchirish.
+
+    Qoida: xabarni muallifning oʻzi oʻzgartira oladi, administrator —
+    istalganini, boshqalar — hech qaysisini.
+    """
+
+    def setUp(self):
+        self.yoriqchi = ishchi_yarat("3101", ["yoriqchi"], pin="1111")
+        self.yoriqchi2 = ishchi_yarat("3102", ["yoriqchi"], pin="2222")
+        self.admin = ishchi_yarat("3103", ["admin"], pin="3333")
+        self.ishchi = ishchi_yarat("3104", ["ishchi"], pin="4444")
+
+    def kir(self, tabel: str, pin: str) -> dict:
+        d = self.client.post("/api/v1/auth/login", {"tabel": tabel, "pin": pin},
+                             content_type="application/json").json()
+        return {"HTTP_AUTHORIZATION": f"Bearer {d['access']}"}
+
+    def xodisa_yoz(self, tabel="3101", pin="1111", matn="Avariya matni"):
+        r = self.client.post("/api/v1/incidents", {"turi": "avariya", "matn": matn},
+                             content_type="application/json", **self.kir(tabel, pin))
+        self.assertEqual(r.status_code, 200, r.content)
+        from core.models import Incident
+        return Incident.objects.latest("sana")
+
+    def test_muallif_tahrirlaydi(self):
+        x = self.xodisa_yoz()
+        r = self.client.patch(f"/api/v1/incidents/{x.id}", {"matn": "Yangilangan matn"},
+                              content_type="application/json", **self.kir("3101", "1111"))
+        self.assertEqual(r.status_code, 200, r.content)
+        x.refresh_from_db()
+        self.assertEqual(x.matn, "Yangilangan matn")
+
+    def test_muallif_ochiradi(self):
+        from core.models import Incident
+        x = self.xodisa_yoz()
+        r = self.client.delete(f"/api/v1/incidents/{x.id}", **self.kir("3101", "1111"))
+        self.assertEqual(r.status_code, 200, r.content)
+        self.assertFalse(Incident.objects.filter(id=x.id).exists())
+
+    def test_begona_yoriqchi_tegolmaydi(self):
+        x = self.xodisa_yoz()
+        r = self.client.patch(f"/api/v1/incidents/{x.id}", {"matn": "Boshqa odam"},
+                              content_type="application/json", **self.kir("3102", "2222"))
+        self.assertEqual(r.status_code, 403, r.content)
+        x.refresh_from_db()
+        self.assertEqual(x.matn, "Avariya matni")
+
+    def test_admin_istalganini_ochiradi(self):
+        from core.models import Incident
+        x = self.xodisa_yoz()
+        r = self.client.delete(f"/api/v1/incidents/{x.id}", **self.kir("3103", "3333"))
+        self.assertEqual(r.status_code, 200, r.content)
+        self.assertFalse(Incident.objects.filter(id=x.id).exists())
+
+    def test_ruxsatsiz_ishchi_tegolmaydi(self):
+        x = self.xodisa_yoz()
+        r = self.client.delete(f"/api/v1/incidents/{x.id}", **self.kir("3104", "4444"))
+        self.assertEqual(r.status_code, 403, r.content)
+
+    def test_bosh_matn_qabul_qilinmaydi(self):
+        x = self.xodisa_yoz()
+        r = self.client.patch(f"/api/v1/incidents/{x.id}", {"matn": "   "},
+                              content_type="application/json", **self.kir("3101", "1111"))
+        self.assertEqual(r.status_code, 400, r.content)
+
+    def test_yoq_xodisa_404(self):
+        import uuid as _uuid
+        r = self.client.delete(f"/api/v1/incidents/{_uuid.uuid4()}", **self.kir("3103", "3333"))
+        self.assertEqual(r.status_code, 404, r.content)

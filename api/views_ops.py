@@ -1073,6 +1073,56 @@ def incident_add(request):
     return holat(me)
 
 
+def _incident_nomi(turi: str) -> str:
+    return "TB baxtsiz xodisa" if turi == "tb" else "Mashinist yoʻriqchisi avariyasi"
+
+
+def _incident_tekshir(request, xodisa: Incident) -> str | None:
+    """Yozuvni tahrirlash/oʻchirish huquqi bormi?
+
+    Qoida: yozuvni MUALLIFI oʻzgartira oladi (shu turdagi yozish ruxsati
+    boʻlsa), administrator esa istalganini. Shunda bir yoʻriqchi boshqa
+    yoʻriqchining xabarini bildirmay tahrirlab yubormaydi.
+    """
+    me = request.user
+    if worker_can(me, "admin.users"):
+        return None
+
+    perm = "incident.tb.write" if xodisa.turi == "tb" else "incident.avariya.write"
+    if not worker_can(me, perm):
+        return "Bu amal uchun ruxsatingiz yoʻq"
+    if xodisa.author_id != me.id:
+        return "Faqat oʻzingiz yozgan xabarni oʻzgartira olasiz"
+    return None
+
+
+@api_view(["PATCH", "DELETE"])
+@transaction.atomic
+def incident_manage(request, incident_id):
+    """Xodisani tahrirlash (PATCH) yoki oʻchirish (DELETE)."""
+    me = request.user
+    xodisa = Incident.objects.filter(id=incident_id).first()
+    if not xodisa:
+        return xato("Xabar topilmadi", status.HTTP_404_NOT_FOUND)
+
+    if (e := _incident_tekshir(request, xodisa)):
+        return xato(e, status.HTTP_403_FORBIDDEN)
+
+    if request.method == "DELETE":
+        xodisa.delete()
+        audit(me, _incident_nomi(xodisa.turi), "oʻchirildi")
+        return holat(me)
+
+    matn = str(request.data.get("matn", "")).strip()
+    if not matn:
+        return xato("Xabar matni boʻsh")
+
+    xodisa.matn = matn
+    xodisa.save(update_fields=["matn"])
+    audit(me, _incident_nomi(xodisa.turi), "tahrirlandi")
+    return holat(me)
+
+
 # =====================================================================
 # BILDIRISHNOMALAR
 # =====================================================================

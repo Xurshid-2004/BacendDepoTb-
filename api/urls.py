@@ -75,5 +75,6 @@ urlpatterns = [
 
     # --- xodisalar / bildirishnomalar ---
     path("incidents", ops.incident_add, name="incident-add"),
+    path("incidents/<uuid:incident_id>", ops.incident_manage, name="incident-manage"),
     path("notifications/read", ops.notification_read, name="notification-read"),
 ]
