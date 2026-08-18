@@ -505,6 +505,15 @@ def kip_add(request):
     if not d.get("sana"):
         return xato("Sana koʻrsatilmadi")
 
+    # Liniya erkin matn: yoʻriqchi roʻyxatda yoʻq yoʻnalish yoki stansiyani
+    # ham yozishi mumkin. Boʻsh qoldirib boʻlmaydi — KIP qayerda oʻtganini
+    # keyin hujjatdan ham, hisobotdan ham tiklab boʻlmaydi.
+    liniya = str(d.get("liniya", "")).strip()
+    if not liniya:
+        return xato("Ishlagan liniyasi yoki stansiyasi kiritilmadi")
+    if len(liniya) > 255:
+        return xato("Liniya nomi juda uzun (255 belgidan oshmasin)")
+
     muddat_oy = int(d.get("muddatOy") or 1)
     sana = d["sana"]
     tugash = logic.add_months(
@@ -516,11 +525,17 @@ def kip_add(request):
     kip = Kip.objects.create(
         worker=worker,
         yoriqchi_id=d.get("yoriqchiId") or me.id,
-        liniya=str(d.get("liniya", "")),
+        liniya=liniya,
         sana=sana,
         muddat_oy=muddat_oy,
         tugash=tugash,
     )
+
+    # Yangi liniya roʻyxatga qoʻshiladi — keyingi safar yozayotganda taklif
+    # sifatida chiqadi va imlo har xil boʻlib ketmaydi.
+    if not Line.objects.filter(nomi=liniya).exists():
+        oxirgi = Line.objects.order_by("-tartib").values_list("tartib", flat=True).first() or 0
+        Line.objects.create(nomi=liniya, tartib=oxirgi + 1)
     imzo = imzo_yarat(me, "kip", kip.id, "04")
     kip.imzo_id = str(imzo.id)
     kip.save(update_fields=["imzo_id"])

@@ -892,3 +892,69 @@ class XodisaTest(TestCase):
         import uuid as _uuid
         r = self.client.delete(f"/api/v1/incidents/{_uuid.uuid4()}", **self.kir("3103", "3333"))
         self.assertEqual(r.status_code, 404, r.content)
+
+
+class KipYozishTest(TestCase):
+    """KIP yozuvi: liniya erkin matn, hamma maydon bazaga tushadi."""
+
+    def setUp(self):
+        self.pos = Position.objects.create(
+            depo=Depo.joriy(), nomi="Teplovoz mashinisti", tartib=1
+        )
+        self.mashinist = ishchi_yarat("3201", ["ishchi"], self.pos)
+        self.yoriqchi = ishchi_yarat("3202", ["yoriqchi"], pin="1111")
+
+    def kir(self) -> dict:
+        d = self.client.post("/api/v1/auth/login", {"tabel": "3202", "pin": "1111"},
+                             content_type="application/json").json()
+        return {"HTTP_AUTHORIZATION": f"Bearer {d['access']}"}
+
+    def yoz(self, **qoshimcha):
+        body = {
+            "workerId": str(self.mashinist.id),
+            "liniya": "Buxoro — Marokand",
+            "sana": today().isoformat(),
+            "muddatOy": 6,
+        }
+        body.update(qoshimcha)
+        return self.client.post("/api/v1/kips", body,
+                                content_type="application/json", **self.kir())
+
+    def test_hamma_maydon_saqlanadi(self):
+        from core.models import Kip
+
+        r = self.yoz()
+        self.assertEqual(r.status_code, 200, r.content)
+
+        kip = Kip.objects.get()
+        self.assertEqual(kip.liniya, "Buxoro — Marokand")
+        self.assertEqual(kip.muddat_oy, 6)
+        self.assertEqual(kip.sana, today())
+        self.assertEqual(kip.tugash, add_months(today(), 6))
+        self.assertEqual(kip.yoriqchi_id, self.yoriqchi.id)
+        self.assertTrue(kip.imzo_id, "QR imzo yozilishi kerak")
+
+    def test_yangi_liniya_royxatga_qoshiladi(self):
+        from core.models import Line
+
+        self.assertFalse(Line.objects.filter(nomi="Buxoro — Marokand").exists())
+        self.assertEqual(self.yoz().status_code, 200)
+        self.assertTrue(Line.objects.filter(nomi="Buxoro — Marokand").exists())
+
+        # Ikkinchi marta ayni liniya bilan yozilsa — nusxa koʻpaymaydi
+        self.assertEqual(self.yoz().status_code, 200)
+        self.assertEqual(Line.objects.filter(nomi="Buxoro — Marokand").count(), 1)
+
+    def test_bosh_liniya_qabul_qilinmaydi(self):
+        from core.models import Kip
+
+        r = self.yoz(liniya="   ")
+        self.assertEqual(r.status_code, 400, r.content)
+        self.assertEqual(Kip.objects.count(), 0)
+
+    def test_kip_holatda_qaytadi(self):
+        r = self.yoz()
+        kips = r.json()["state"]["kips"]
+        self.assertEqual(len(kips), 1)
+        self.assertEqual(kips[0]["liniya"], "Buxoro — Marokand")
+        self.assertEqual(kips[0]["muddatOy"], 6)

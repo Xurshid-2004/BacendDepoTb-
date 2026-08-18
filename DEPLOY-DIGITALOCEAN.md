@@ -314,11 +314,42 @@ gunzip -c /root/tb-backup/tb-2026-08-17.sql.gz | \
 
 ---
 
+## Avtomatik yangilanish (push → server oʻzi koʻtaradi)
+
+Vercel frontendni push qilinishi bilan qayta yigʻadi. Droplet'da bunday
+narsa yoʻq — lekin bir marta quyidagini bajarsangiz, server ham xuddi
+shunday ishlaydi: har 2 daqiqada GitHub tekshiriladi va yangi commit
+boʻlsa kod tortib olinib, konteyner qayta yigʻiladi.
+
+```bash
+cd /root/BacendDepoTb-
+git pull
+bash avto-yangila.sh ornat
+```
+
+Shundan keyin har push'dan ~2 daqiqa ichida server yangilanadi;
+migratsiya, kadrlar roʻyxati va admin hisobi entrypoint ichida oʻzi
+bajariladi.
+
+| Vazifa | Buyruq |
+|---|---|
+| Ishlayaptimi | `systemctl status tb-yangila.timer` |
+| Soʻnggi loglar | `journalctl -u tb-yangila.service -n 50` |
+| Hoziroq yangilash | `bash /root/BacendDepoTb-/avto-yangila.sh` |
+| Vaqtincha toʻxtatish | `systemctl stop tb-yangila.timer` |
+| Qayta yoqish | `systemctl start tb-yangila.timer` |
+
+> Skript `git reset --hard origin/main` bajaradi — serverda **qoʻlda
+> oʻzgartirilgan kod saqlanmaydi**. `.env.production`, baza volume'i va
+> zaxira nusxalar tegilmaydi.
+
+---
+
 ## Kundalik buyruqlar
 
 | Vazifa | Buyruq |
 |---|---|
-| Kodni yangilash | `git pull && docker compose --env-file .env.production up -d --build` |
+| Kodni qoʻlda yangilash | `git pull && docker compose --env-file .env.production up -d --build` |
 | Loglar | `docker compose logs -f api` |
 | Holat | `docker compose ps` |
 | Qayta ishga tushirish | `docker compose --env-file .env.production restart api` |
