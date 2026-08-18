@@ -18,6 +18,7 @@ Ikkita ataylab qilingan farq (xavfsizlik va hajm sababli):
 
 from __future__ import annotations
 
+import re
 from decimal import Decimal
 
 from core import permissions as perms
@@ -58,6 +59,28 @@ def sid(v) -> str | None:
     return str(v) if v else None
 
 
+def loko_turi(nomi: str | None) -> str:
+    """Lavozim nomidan lokomotiv turi: 'elektrovoz' | 'teplovoz' | 'boshqa'.
+
+    KIP roʻyxati (frontend) shu tur boʻyicha ikkita jadvalga ajraladi —
+    «Elektrovoz mashinisti va yordamchisi» va «Teplovoz mashinisti va
+    yordamchisi». Tur bazada saqlanmaydi, chunki u lavozim nomidan kelib
+    chiqadi: yangi lavozim qoʻshilsa ham migratsiya kerak emas.
+
+    Lavozimlar qoʻlda kiritilgani uchun imlo har xil: «elektravoz/teplavoz»,
+    kirillcha «электровоз», kolonna jadvalidagi «El. mashinist» — hammasi
+    hisobga olinadi. Frontenddagi `positionTuri()` bilan bir xil ishlaydi.
+    """
+    s = re.sub(r"\s+", " ", re.sub(r"[-–—._/]+", " ", re.sub(r"[ʻʼ’‘`´']", "", (nomi or "").lower()))).strip()
+    if not s:
+        return "boshqa"
+    if re.search(r"elektr[oa]voz|электровоз|\bel mashinist", s):
+        return "elektrovoz"
+    if re.search(r"tepl[oa]voz|тепловоз", s):
+        return "teplovoz"
+    return "boshqa"
+
+
 # ---------------------------------------------------------------------
 # Alohida obyektlar
 # ---------------------------------------------------------------------
@@ -79,6 +102,7 @@ def position_json(p: Position) -> dict:
         "tartib": p.tartib,
         "nomi": p.nomi,
         "arxiv": p.arxiv,
+        "turi": loko_turi(p.nomi),
     }
 
 

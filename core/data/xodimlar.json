@@ -7742,5 +7742,27 @@
   "sex": "22- Ekspluatasiya Marakand",
   "jinsi": "erkak",
   "rasm": "5758.jpg"
+ },
+ {
+  "tabel": "BLD0000003",
+  "familiya": "Xodiyev",
+  "ism": "Narzullo",
+  "otasi": "Nasulloyevich",
+  "lavozim": "Teplovoz mashinisti",
+  "lavozimToliq": "Teplovoz mashinisti, 3 guruh /17-Manyovr kolonnasi/ manyovr teplovoz mashinist 6-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": ""
+ },
+ {
+  "tabel": "BLD0000006",
+  "familiya": "Atomuradov",
+  "ism": "Lazizjon",
+  "otasi": "Shadmanovich",
+  "lavozim": "Teplovoz mashinisti yordamchisi",
+  "lavozimToliq": "Teplovoz mashinisti yordamchisi, 3 guruh /17-Manyovr kolonnasi/ teplovoz manyovr yordamchi mashinist 5-3",
+  "sex": "17-Manyovr kolonnasi",
+  "jinsi": "erkak",
+  "rasm": ""
  }
 ]

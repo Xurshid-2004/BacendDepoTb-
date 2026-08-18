@@ -58,6 +58,15 @@ def rol_top(lavozim: str) -> str:
     return "ishchi"
 
 
+def kolonna_top(r: dict) -> str:
+    """Xodim qaysi kolonnada ishlaydi — «17-Manyovr kolonnasi», «18 -Elektrovoz
+    xizmati kolonnasi» kabi. Kadrlar jadvalida u lavozim satrining slashlar
+    orasidagi qismi (JSON'da «sex» maydoni) boʻlib keladi. KIP roʻyxati va
+    ishchi kartochkasi shu ustunni koʻrsatadi."""
+    qiymat = str(r.get("kolonna") or r.get("sex") or "").strip(" -")
+    return qiymat[:64]
+
+
 class Command(BaseCommand):
     help = "Depo xodimlarini (296 ta) rasm va lavozimi bilan bazaga yozadi"
 
@@ -135,6 +144,7 @@ class Command(BaseCommand):
                 w.ism = r["ism"] or w.ism
                 w.otasi = r["otasi"]
                 w.sex = r["sex"]
+                w.kolonna = kolonna_top(r)
                 w.ish_joyi = r["lavozimToliq"]
                 w.jinsi = r["jinsi"]
                 if position:
@@ -157,6 +167,7 @@ class Command(BaseCommand):
                 otasi=r["otasi"],
                 position=position,
                 sex=r["sex"],
+                kolonna=kolonna_top(r),
                 ish_joyi=r["lavozimToliq"],
                 kirgan_sana=today(),
                 jinsi=r["jinsi"],
@@ -182,7 +193,7 @@ class Command(BaseCommand):
         if yangilanadi:
             Worker.objects.bulk_update(
                 yangilanadi,
-                ["familiya", "ism", "otasi", "sex", "ish_joyi", "jinsi",
+                ["familiya", "ism", "otasi", "sex", "kolonna", "ish_joyi", "jinsi",
                  "position", "rasm", "roles"],
                 batch_size=100,
             )
