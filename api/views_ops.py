@@ -533,9 +533,7 @@ def kip_add(request):
 
     # Yangi liniya roʻyxatga qoʻshiladi — keyingi safar yozayotganda taklif
     # sifatida chiqadi va imlo har xil boʻlib ketmaydi.
-    if not Line.objects.filter(nomi=liniya).exists():
-        oxirgi = Line.objects.order_by("-tartib").values_list("tartib", flat=True).first() or 0
-        Line.objects.create(nomi=liniya, tartib=oxirgi + 1)
+    _liniya_saqla(liniya)
     imzo = imzo_yarat(me, "kip", kip.id, "04")
     kip.imzo_id = str(imzo.id)
     kip.save(update_fields=["imzo_id"])
@@ -543,6 +541,76 @@ def kip_add(request):
     notify(worker.id, "Yangi KIP",
            f"{kip.liniya} · {muddat_oy} oy · tugash: {tugash.isoformat()}")
     audit(me, f"KIP {kip.id}", "yozildi")
+    return holat(me)
+
+
+def _liniya_saqla(liniya: str) -> None:
+    """Yangi liniya roʻyxatga tushadi — keyingi safar taklifda chiqadi."""
+    if not Line.objects.filter(nomi=liniya).exists():
+        oxirgi = Line.objects.order_by("-tartib").values_list("tartib", flat=True).first() or 0
+        Line.objects.create(nomi=liniya, tartib=oxirgi + 1)
+
+
+@api_view(["PATCH", "DELETE"])
+@transaction.atomic
+def kip_manage(request, kip_id):
+    """KIP yozuvini tahrirlash (PATCH) yoki oʻchirish (DELETE).
+
+    Ruxsat: yozuvni KIM yozgan boʻlsa oʻsha oʻzgartira oladi, administrator
+    esa istalganini. Yozuv oʻzgarsa eski QR imzo bekor qilinadi va yangisi
+    qoʻyiladi — chunki imzo aynan oʻsha maʼlumotni tasdiqlagan edi.
+    """
+    if (e := tekshir(request, "kip.write")):
+        return xato(e, status.HTTP_403_FORBIDDEN)
+
+    me = request.user
+    kip = Kip.objects.filter(id=kip_id).select_related("worker").first()
+    if not kip:
+        return xato("KIP yozuvi topilmadi", status.HTTP_404_NOT_FOUND)
+
+    if kip.yoriqchi_id != me.id and not worker_can(me, "admin.users"):
+        return xato("Faqat oʻzingiz yozgan KIP'ni oʻzgartira olasiz",
+                    status.HTTP_403_FORBIDDEN)
+
+    if request.method == "DELETE":
+        # Imzo oʻchirilmaydi — bekor qilinadi. Chop etilgan QR skanerlansa
+        # «bekor qilingan» deb koʻrsatilishi kerak, izsiz yoʻqolmasligi.
+        Signature.objects.filter(doc_type="kip", doc_id=str(kip.id)).update(bekor=True)
+        worker_id = kip.worker_id
+        kip.delete()
+        notify(worker_id, "KIP oʻchirildi", "Yoʻriqchi KIP yozuvini bekor qildi")
+        audit(me, f"KIP {kip_id}", "oʻchirildi")
+        return holat(me)
+
+    d = request.data
+    liniya = str(d.get("liniya", kip.liniya)).strip()
+    if not liniya:
+        return xato("Ishlagan liniyasi yoki stansiyasi kiritilmadi")
+    if len(liniya) > 255:
+        return xato("Liniya nomi juda uzun (255 belgidan oshmasin)")
+
+    sana = d.get("sana") or kip.sana
+    if isinstance(sana, str):
+        sana = timezone.datetime.fromisoformat(sana).date()
+
+    muddat_oy = int(d.get("muddatOy") or kip.muddat_oy or 1)
+    if muddat_oy <= 0:
+        return xato("Muddat noldan katta boʻlishi kerak")
+
+    kip.liniya = liniya
+    kip.sana = sana
+    kip.muddat_oy = muddat_oy
+    kip.tugash = logic.add_months(sana, muddat_oy)
+
+    Signature.objects.filter(doc_type="kip", doc_id=str(kip.id)).update(bekor=True)
+    imzo = imzo_yarat(me, "kip", kip.id, "04")
+    kip.imzo_id = str(imzo.id)
+    kip.save(update_fields=["liniya", "sana", "muddat_oy", "tugash", "imzo_id"])
+
+    _liniya_saqla(liniya)
+    notify(kip.worker_id, "KIP yangilandi",
+           f"{kip.liniya} · {muddat_oy} oy · tugash: {kip.tugash.isoformat()}")
+    audit(me, f"KIP {kip.id}", "tahrirlandi")
     return holat(me)
 
 

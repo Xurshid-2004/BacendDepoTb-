@@ -958,3 +958,88 @@ class KipYozishTest(TestCase):
         self.assertEqual(len(kips), 1)
         self.assertEqual(kips[0]["liniya"], "Buxoro — Marokand")
         self.assertEqual(kips[0]["muddatOy"], 6)
+
+
+class KipTahrirTest(TestCase):
+    """KIP yozuvini tahrirlash va oʻchirish."""
+
+    def setUp(self):
+        self.pos = Position.objects.create(
+            depo=Depo.joriy(), nomi="Elektrovoz mashinisti", tartib=1
+        )
+        self.mashinist = ishchi_yarat("3301", ["ishchi"], self.pos)
+        self.yoriqchi = ishchi_yarat("3302", ["yoriqchi"], pin="1111")
+        self.yoriqchi2 = ishchi_yarat("3303", ["yoriqchi"], pin="2222")
+        self.admin = ishchi_yarat("3304", ["admin"], pin="3333")
+
+    def kir(self, tabel: str, pin: str) -> dict:
+        d = self.client.post("/api/v1/auth/login", {"tabel": tabel, "pin": pin},
+                             content_type="application/json").json()
+        return {"HTTP_AUTHORIZATION": f"Bearer {d['access']}"}
+
+    def kip_yoz(self):
+        from core.models import Kip
+        self.client.post("/api/v1/kips", {
+            "workerId": str(self.mashinist.id),
+            "liniya": "Buxoro — Olot",
+            "sana": today().isoformat(),
+            "muddatOy": 1,
+        }, content_type="application/json", **self.kir("3302", "1111"))
+        return Kip.objects.get()
+
+    def test_muallif_tahrirlaydi(self):
+        kip = self.kip_yoz()
+        eski_imzo = kip.imzo_id
+
+        r = self.client.patch(f"/api/v1/kips/{kip.id}",
+                              {"liniya": "Qiziltepa — Buxoro", "muddatOy": 6},
+                              content_type="application/json", **self.kir("3302", "1111"))
+        self.assertEqual(r.status_code, 200, r.content)
+
+        kip.refresh_from_db()
+        self.assertEqual(kip.liniya, "Qiziltepa — Buxoro")
+        self.assertEqual(kip.muddat_oy, 6)
+        self.assertEqual(kip.tugash, add_months(today(), 6), "tugash qayta hisoblanadi")
+        self.assertNotEqual(kip.imzo_id, eski_imzo, "yangi imzo qoʻyiladi")
+
+        from core.models import Signature
+        self.assertTrue(Signature.objects.get(id=eski_imzo).bekor, "eski imzo bekor")
+
+    def test_ochirilganda_imzo_bekor_qilinadi(self):
+        from core.models import Kip, Signature
+
+        kip = self.kip_yoz()
+        imzo_id = kip.imzo_id
+        r = self.client.delete(f"/api/v1/kips/{kip.id}", **self.kir("3302", "1111"))
+        self.assertEqual(r.status_code, 200, r.content)
+
+        self.assertFalse(Kip.objects.filter(id=kip.id).exists())
+        self.assertTrue(Signature.objects.get(id=imzo_id).bekor)
+
+    def test_begona_yoriqchi_tegolmaydi(self):
+        kip = self.kip_yoz()
+        r = self.client.patch(f"/api/v1/kips/{kip.id}", {"liniya": "Boshqa"},
+                              content_type="application/json", **self.kir("3303", "2222"))
+        self.assertEqual(r.status_code, 403, r.content)
+        kip.refresh_from_db()
+        self.assertEqual(kip.liniya, "Buxoro — Olot")
+
+    def test_admin_istalganini_ochiradi(self):
+        from core.models import Kip
+        kip = self.kip_yoz()
+        r = self.client.delete(f"/api/v1/kips/{kip.id}", **self.kir("3304", "3333"))
+        self.assertEqual(r.status_code, 200, r.content)
+        self.assertFalse(Kip.objects.filter(id=kip.id).exists())
+
+    def test_bosh_liniya_qabul_qilinmaydi(self):
+        kip = self.kip_yoz()
+        r = self.client.patch(f"/api/v1/kips/{kip.id}", {"liniya": "  "},
+                              content_type="application/json", **self.kir("3302", "1111"))
+        self.assertEqual(r.status_code, 400, r.content)
+
+    def test_tahrirlanganda_yangi_liniya_saqlanadi(self):
+        from core.models import Line
+        kip = self.kip_yoz()
+        self.client.patch(f"/api/v1/kips/{kip.id}", {"liniya": "Marokand — Kogon"},
+                          content_type="application/json", **self.kir("3302", "1111"))
+        self.assertTrue(Line.objects.filter(nomi="Marokand — Kogon").exists())

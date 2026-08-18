@@ -49,6 +49,7 @@ urlpatterns = [
     # --- talon / imtixon / KIP ---
     path("talons/toggle", ops.talon_toggle, name="talon-toggle"),
     path("kips", ops.kip_add, name="kip-add"),
+    path("kips/<uuid:kip_id>", ops.kip_manage, name="kip-manage"),
     path("exams", ops.exam_set, name="exam-set"),
 
     # --- buyum / norma ---
