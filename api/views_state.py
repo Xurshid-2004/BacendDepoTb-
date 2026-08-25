@@ -17,6 +17,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from api.serializers import build_state
+from core import imzo
 from core.models import Depo, Signature, Worker
 
 
@@ -75,16 +76,83 @@ def verify(request, sig_id):
     if not s:
         return Response({"ok": False, "error": "Imzo topilmadi"}, status=404)
 
+    # Butunlik: saqlangan hash payload bilan hali ham mosmi (bazaga
+    # aralashib oʻzgartirilmaganmi). Faqat yangi HMAC imzolar uchun.
+    butun = imzo.doc_ok(s)
+
     return Response({
-        "ok": not s.bekor,
+        "ok": (not s.bekor) and butun,
         "docType": s.doc_type,
         "docId": s.doc_id,
         "field": s.field,
         "sana": s.sana.isoformat(),
         "hash": s.hash,
         "bekor": s.bekor,
+        "butun": butun,
         "imzolagan": {
             "fio": s.user.fio if s.user else (s.payload or {}).get("fio", ""),
             "lavozim": (s.payload or {}).get("lavozim", ""),
+        },
+    })
+
+
+@api_view(["GET", "POST"])
+@permission_classes([AllowAny])
+def verify_card(request):
+    """
+    ID-karta QR tekshiruvi — yagona imzo tizimining karta yoʻli.
+
+    Ikki xil murojaat qabul qilinadi:
+      • ?tabel=BLD0005016&imzo=0DE519A3D9FF807F   (ajratilgan)
+      • ?payload=<QR ning butun matni>            (skanerdan kelgani)
+      • POST {tabel, imzo} yoki {payload}
+
+    Karta imzosi `Signature(doc_type="card_id")` da saqlanadi, xodimga
+    `Worker.imzo_id` orqali bogʻlangan. Solishtirish doimiy vaqtda.
+    """
+    d = request.data if request.method == "POST" else request.query_params
+    payload = (d.get("payload") or "").strip()
+    tabel = (d.get("tabel") or "").strip()
+    taqdim = (d.get("imzo") or "").strip()
+    if payload and not (tabel and taqdim):
+        p = imzo.parse_card_qr(payload)
+        tabel = tabel or p["tabel"]
+        taqdim = taqdim or p["imzo"]
+
+    if not tabel:
+        return Response({"ok": False, "error": "Tabel/ID aniqlanmadi"}, status=400)
+
+    w = Worker.objects.filter(tabel=tabel, deleted=False).first()
+    if not w:
+        # Karta ID toʻliq (BLD…/Т6ЦЗ…) boʻlishi mumkin — bazadagi 4 xonali
+        # tabelга keltirib qayta izlaymiz.
+        t4 = imzo.tabel4(tabel)
+        if t4:
+            w = Worker.objects.filter(tabel=t4, deleted=False).first()
+    if not w:
+        return Response({"ok": False, "error": "Bunday tabel raqamli xodim yoʻq"}, status=404)
+
+    sig = None
+    if w.imzo_id:
+        sig = Signature.objects.filter(id=w.imzo_id, doc_type="card_id").first()
+    if sig is None:
+        sig = (
+            Signature.objects.filter(doc_type="card_id", doc_id=str(w.id))
+            .order_by("-sana").first()
+        )
+    if not sig:
+        return Response({"ok": False, "error": "Bu xodim uchun karta imzosi yoʻq"}, status=404)
+
+    mos = (not sig.bekor) and imzo.card_verify(sig.hash, taqdim) if taqdim else False
+
+    return Response({
+        "ok": mos,
+        "docType": "card_id",
+        "tabel": w.tabel,
+        "bekor": sig.bekor,
+        "imzolagan": {
+            "fio": w.fio,
+            "lavozim": (sig.payload or {}).get("lavozim", "")
+                       or (w.position.nomi if w.position else ""),
         },
     })

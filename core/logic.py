@@ -355,3 +355,41 @@ def dashboard_stats() -> dict:
         "kipOtgan": kip_otgan,
         "kipYaqin": kip_yaqin,
     }
+
+
+# ---------------------------------------------------------------------
+# Lavozim qisqartmasi — TNU-19 / Yo D-26 jadvalining 3-ustuni uchun
+# ---------------------------------------------------------------------
+
+LAVOZIM_QISQA_QOIDA = [
+    ("yordamchi mashinist", "mashY"),
+    ("mashinist yordamchisi", "mashY"),
+    ("mashinisti yordamchisi", "mashY"),
+    ("mashinist", "mash"),
+    ("mashinisti", "mash"),
+    ("yoʻriqchi", "yoriq"),
+    ("yo'riqchi", "yoriq"),
+    ("yoriqchi", "yoriq"),
+    ("navbatchi", "navb"),
+    ("slesar", "sles"),
+    ("chilangar", "chil"),
+    ("elektromontyor", "elmon"),
+    ("brigadir", "brig"),
+    ("usta", "usta"),
+    ("defektoskopchi", "defekt"),
+    ("payvandchi", "payv"),
+]
+
+
+def lavozim_qisqa(nomi: str) -> str:
+    """Lavozim nomini jadval katagiga sigʻadigan qisqartmaga oʻgiradi.
+    Maʼlum lavozimlar uchun qoʻlbola qisqartma; qolganlari uchun birinchi
+    soʻzning boshini oladi (koʻpi bilan 8 belgi)."""
+    n = (nomi or "").strip().lower()
+    if not n:
+        return ""
+    for kalit, qisqa in LAVOZIM_QISQA_QOIDA:
+        if kalit in n:
+            return qisqa
+    birinchi = n.split()[0]
+    return birinchi[:8]

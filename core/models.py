@@ -55,6 +55,9 @@ DOC_TYPES = [
     ("requisition", "Требование"),
     ("card", "Kartochka"),
     ("kip", "KIP"),
+    ("card_id", "ID karta"),
+    ("tnu19", "TNU-19 (depo navbatchisi)"),
+    ("yo_d26b", "Yo D-26 (instruktor yoʻriqnoma)"),
 ]
 
 
@@ -258,6 +261,14 @@ class Worker(Base, AbstractBaseUser, PermissionsMixin):
         "self", on_delete=models.SET_NULL, null=True, blank=True, related_name="biriktirilgan"
     )
 
+    # Kolonna — ishchi shu orqali oʻz instruktoriga (mashinist yoʻriqchisiga)
+    # bogʻlanadi. Instruktor kolonna darajasida biriktiriladi (eski `yoriqchi`
+    # oʻrniga). Boʻsh boʻlsa — hali kolonnaga biriktirilmagan.
+    kolonna_ref = models.ForeignKey(
+        "Kolonna", on_delete=models.SET_NULL, null=True, blank=True,
+        related_name="ishchilar", help_text="Ishchi biriktirilgan kolonna",
+    )
+
     faol = models.BooleanField(default=True)
     imzo_id = models.CharField(max_length=64, blank=True)
 
@@ -344,6 +355,44 @@ class Worker(Base, AbstractBaseUser, PermissionsMixin):
     def clear_pin(self) -> None:
         self.pin_hash = ""
         self.pin_reset = True
+
+
+# ---------------------------------------------------------------------
+# Kolonna — instruktor (mashinist yoʻriqchisi) boshqaradigan ishchilar guruhi
+# ---------------------------------------------------------------------
+
+class Kolonna(Base):
+    """
+    1 kolonna = 1 instruktor. Ishchi kolonnaga biriktiriladi va shu orqali
+    oʻz instruktoriga bogʻlanadi; instruktor yoʻriqnoma kitobi (Yo D-26B)
+    aynan shu kolonna boʻyicha ochiladi. Kolonnalarni faqat admin boshqaradi.
+    """
+    TURLAR = [
+        ("elektrovoz", "Elektrovoz"),
+        ("teplovoz", "Teplovoz"),
+        ("manyovr", "Manyovr"),
+        ("yuk", "Yuk tashish"),
+        ("yolovchi", "Yoʻlovchi tashish"),
+        ("xojalik", "Xoʻjalik"),
+        ("boshqa", "Boshqa"),
+    ]
+    nomi = models.CharField(max_length=128, verbose_name="Kolonna nomi")
+    turi = models.CharField(max_length=16, choices=TURLAR, default="boshqa")
+    instruktor = models.ForeignKey(
+        Worker, on_delete=models.SET_NULL, null=True, blank=True,
+        related_name="kolonnalari",
+        help_text="Mashinist yoʻriqchisi — bitta kolonnaga bitta instruktor",
+    )
+    izoh = models.CharField(max_length=255, blank=True)
+    faol = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Kolonna"
+        verbose_name_plural = "Kolonnalar"
+        ordering = ["nomi"]
+
+    def __str__(self) -> str:
+        return self.nomi
 
 
 # ---------------------------------------------------------------------
@@ -705,3 +754,118 @@ class RefreshToken(Base):
     @property
     def yaroqli(self) -> bool:
         return not self.revoked and self.expires_at > timezone.now()
+
+
+# =====================================================================
+# Yoʻriqnoma kitobchalari — TNU-19 (Yo D-26A) va instruktor (Yo D-26B)
+#
+# Ikkala kitob ham bitta modellar oilasidan foydalanadi:
+#   Kitob   — 700 betlik elektron daftar; toʻlgach avtomatik yangi kitob
+#             ochiladi, eskisi arxivga oʻtadi.
+#   Smena   — depo navbatchisining smenasi (faqat TNU-19). Smena boshida
+#             mazmun/xulosa bir marta kiritiladi, har yozuvga koʻchiriladi.
+#   Varaq   — faqat instruktor kitobida: har ishchiga alohida varaq.
+#   Yozuv   — kitobning bir qatori; oluvchi va beruvchi imzolari yagona
+#             Signature tizimida saqlanadi.
+# =====================================================================
+
+class Kitob(Base):
+    """700 betlik elektron yoʻriqnoma daftari."""
+    TURLAR = [("tnu19", "TNU-19 — depo navbatchisi"),
+              ("instruktor", "Yo D-26 — instruktor")]
+
+    turi = models.CharField(max_length=16, choices=TURLAR, db_index=True)
+    # Instruktor kitobi bitta kolonnaga tegishli; TNU-19 uchun boʻsh.
+    kolonna = models.ForeignKey(
+        "Kolonna", on_delete=models.SET_NULL, null=True, blank=True,
+        related_name="kitoblar",
+    )
+    raqam = models.IntegerField(default=1, help_text="Kitob tartib raqami")
+    sigim = models.IntegerField(default=700, help_text="Nechta bet")
+    joriy_bet = models.IntegerField(default=1)
+    arxiv = models.BooleanField(default=False)
+    yopilgan = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Yoʻriqnoma kitobi"
+        verbose_name_plural = "Yoʻriqnoma kitoblari"
+        ordering = ["turi", "-raqam"]
+
+    def __str__(self) -> str:
+        qism = self.kolonna.nomi if self.kolonna else "umumiy"
+        return f"{self.get_turi_display()} — {qism} №{self.raqam}"
+
+
+class Smena(Base):
+    """Depo navbatchisining smenasi (TNU-19). Mazmun/xulosa smena boshida
+    bir marta kiritiladi va har qatorga koʻchiriladi."""
+    TURLAR = [("kunduzgi", "Kunduzgi (08:00–20:00)"),
+              ("tungi", "Tungi (20:00–08:00)")]
+
+    navbatchi = models.ForeignKey(Worker, on_delete=models.PROTECT, related_name="smenalar")
+    tur = models.CharField(max_length=10, choices=TURLAR)
+    boshlangan = models.DateTimeField(default=timezone.now)
+    tugagan = models.DateTimeField(null=True, blank=True)
+    mazmun = models.TextField(blank=True, help_text="5-ustun: qisqacha mazmun")
+    xulosa = models.TextField(blank=True, help_text="6-ustun: beruvchining xulosasi")
+    faol = models.BooleanField(default=True, db_index=True)
+
+    class Meta:
+        verbose_name = "Smena"
+        verbose_name_plural = "Smenalar"
+        ordering = ["-boshlangan"]
+
+    def __str__(self) -> str:
+        return f"{self.navbatchi.fio} — {self.get_tur_display()}"
+
+
+class YoriqnomaVaraq(Base):
+    """Instruktor kitobidagi ishchi varagʻi (faqat Yo D-26B)."""
+    kitob = models.ForeignKey(Kitob, on_delete=models.CASCADE, related_name="varaqlar")
+    ishchi = models.ForeignKey(Worker, on_delete=models.PROTECT, related_name="yoriqnoma_varaqlari")
+    bet = models.IntegerField(default=1)
+
+    class Meta:
+        verbose_name = "Yoʻriqnoma varagʻi"
+        verbose_name_plural = "Yoʻriqnoma varaqlari"
+        unique_together = [("kitob", "ishchi")]
+        ordering = ["bet"]
+
+
+class YoriqnomaYozuv(Base):
+    """Kitobning bir qatori (TNU-19 yoki instruktor)."""
+    TURLAR = [("joriy", "JORIY"), ("birlamchi", "Birlamchi"),
+              ("navbatdan", "Navbatdan tashqari"), ("davriy", "Davriy")]
+
+    kitob = models.ForeignKey(Kitob, on_delete=models.CASCADE, related_name="yozuvlar")
+    varaq = models.ForeignKey(YoriqnomaVaraq, on_delete=models.CASCADE,
+                              null=True, blank=True, related_name="yozuvlar")
+    smena = models.ForeignKey(Smena, on_delete=models.SET_NULL,
+                              null=True, blank=True, related_name="yozuvlar")
+
+    bet = models.IntegerField(default=1)
+    qator = models.IntegerField(default=1)
+    sana = models.DateField(default=timezone.localdate)
+
+    ishchi = models.ForeignKey(Worker, on_delete=models.PROTECT, related_name="oluvchi_yozuvlari")
+    lavozim_qisqa = models.CharField(max_length=32, blank=True)
+    yoriq_turi = models.CharField(max_length=12, choices=TURLAR, default="joriy")
+    mazmun = models.TextField(blank=True)
+    xulosa = models.TextField(blank=True)
+
+    beruvchi = models.ForeignKey(Worker, on_delete=models.SET_NULL, null=True, blank=True,
+                                 related_name="beruvchi_yozuvlari")
+    beruvchi_lavozim = models.CharField(max_length=128, blank=True)
+
+    # Imzolar — yagona Signature tizimida
+    oluvchi_imzo = models.ForeignKey(Signature, on_delete=models.SET_NULL, null=True, blank=True,
+                                     related_name="oluvchi_yozuv")
+    beruvchi_imzo = models.ForeignKey(Signature, on_delete=models.SET_NULL, null=True, blank=True,
+                                      related_name="beruvchi_yozuv")
+    tasdiqlangan = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Yoʻriqnoma yozuvi"
+        verbose_name_plural = "Yoʻriqnoma yozuvlari"
+        ordering = ["-created_at"]
+        indexes = [models.Index(fields=["kitob", "bet"])]

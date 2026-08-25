@@ -13,12 +13,14 @@ from django.urls import path
 from api import views_auth as auth
 from api import views_ops as ops
 from api import views_state as st
+from api import views_yoriqnoma as yq
 
 urlpatterns = [
     # --- holat / xizmat ---
     path("health", st.health, name="health"),
     path("bootstrap", st.bootstrap, name="bootstrap"),
     path("state", st.state, name="state"),
+    path("verify/card", st.verify_card, name="verify-card"),
     path("verify/<uuid:sig_id>", st.verify, name="verify"),
 
     # --- autentifikatsiya ---
@@ -70,6 +72,18 @@ urlpatterns = [
     path("positions/<uuid:position_id>", ops.position_update, name="position-update"),
     path("units", ops.unit_manage, name="unit-manage"),
     path("lines", ops.line_manage, name="line-manage"),
+
+    # --- kolonnalar (instruktor guruhlari) ---
+    path("kolonnalar", ops.kolonna_upsert, name="kolonna-upsert"),
+    path("kolonnalar/assign", ops.kolonna_assign, name="kolonna-assign"),
+
+    # --- yoʻriqnoma kitobchalari (TNU-19 / instruktor) ---
+    path("yoriqnoma/smena", yq.smena_boshla, name="yoriqnoma-smena"),
+    path("yoriqnoma/smena/yop", yq.smena_yop, name="yoriqnoma-smena-yop"),
+    path("yoriqnoma/skan", yq.skan, name="yoriqnoma-skan"),
+    path("yoriqnoma/tasdiqla/<uuid:yozuv_id>", yq.tasdiqla, name="yoriqnoma-tasdiqla"),
+    path("yoriqnoma/kitoblar", yq.kitoblar_royxati, name="yoriqnoma-kitoblar"),
+    path("yoriqnoma/kitob", yq.kitob_ol, name="yoriqnoma-kitob"),
 
     # --- ruxsatlar ---
     path("access", ops.access_set, name="access-set"),

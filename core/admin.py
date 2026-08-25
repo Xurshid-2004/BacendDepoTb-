@@ -19,9 +19,9 @@ from django.utils.html import format_html
 
 from core.models import (
     AccessOverride, AuditLog, Card, CardIssue, CardReturn, Depo, Exam,
-    Incident, Item, JournalEntry, Kip, Line, Norm, Notification, Position,
-    RefreshToken, Request, RequestLine, Signature, Stock, StockMove,
-    Talon, TalonHistory, Unit, Worker,
+    Incident, Item, JournalEntry, Kip, Kitob, Kolonna, Line, Norm, Notification, Position,
+    RefreshToken, Request, RequestLine, Signature, Smena, Stock, StockMove,
+    Talon, TalonHistory, Unit, Worker, YoriqnomaVaraq, YoriqnomaYozuv,
 )
 
 
@@ -81,6 +81,15 @@ class UnitAdmin(admin.ModelAdmin):
 class LineAdmin(admin.ModelAdmin):
     list_display = ("nomi", "tartib")
     ordering = ("tartib",)
+
+
+@admin.register(Kolonna)
+class KolonnaAdmin(admin.ModelAdmin):
+    list_display = ("nomi", "turi", "instruktor", "faol")
+    list_filter = ("turi", "faol")
+    search_fields = ("nomi",)
+    autocomplete_fields = ("instruktor",)
+    ordering = ("nomi",)
 
 
 # ---------------------------------------------------------------------
@@ -344,3 +353,27 @@ class RefreshTokenAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return False
+
+
+@admin.register(Kitob)
+class KitobAdmin(admin.ModelAdmin):
+    list_display = ("__str__", "turi", "raqam", "joriy_bet", "arxiv")
+    list_filter = ("turi", "arxiv")
+
+
+@admin.register(Smena)
+class SmenaAdmin(admin.ModelAdmin):
+    list_display = ("navbatchi", "tur", "boshlangan", "tugagan", "faol")
+    list_filter = ("tur", "faol")
+
+
+@admin.register(YoriqnomaYozuv)
+class YoriqnomaYozuvAdmin(admin.ModelAdmin):
+    list_display = ("sana", "ishchi", "lavozim_qisqa", "yoriq_turi", "bet", "tasdiqlangan")
+    list_filter = ("yoriq_turi", "tasdiqlangan")
+    search_fields = ("ishchi__tabel", "ishchi__familiya")
+
+
+@admin.register(YoriqnomaVaraq)
+class YoriqnomaVaraqAdmin(admin.ModelAdmin):
+    list_display = ("kitob", "ishchi", "bet")

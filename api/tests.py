@@ -169,7 +169,7 @@ class StateShakliTest(TestCase):
     KUTILGAN = {
         "depo", "positions", "items", "norms", "workers", "cards", "requests",
         "journal", "stock", "moves", "talons", "exams", "kips", "notifications",
-        "incidents", "audit", "lines", "units", "access", "seq",
+        "incidents", "audit", "lines", "units", "kolonnalar", "yoriqnoma", "access", "seq",
     }
 
     def setUp(self):
@@ -1043,3 +1043,306 @@ class KipTahrirTest(TestCase):
         self.client.patch(f"/api/v1/kips/{kip.id}", {"liniya": "Marokand — Kogon"},
                           content_type="application/json", **self.kir("3302", "1111"))
         self.assertTrue(Line.objects.filter(nomi="Marokand — Kogon").exists())
+
+
+# =====================================================================
+# Yagona imzo tizimi (core/imzo.py) — karta + hujjat imzosi
+# =====================================================================
+
+class ImzoTizimiTest(TestCase):
+    def setUp(self):
+        from core.models import Depo
+        self.depo = Depo.joriy()
+
+    def test_tabel4_normalizatsiya(self):
+        from core import imzo
+        self.assertEqual(imzo.tabel4("BLD0002051"), "2051")
+        self.assertEqual(imzo.tabel4("BLD0000458"), "0458")
+        # kolliziya: ikkalasi ham 0003 ga tushadi
+        self.assertEqual(imzo.tabel4("BLD0000003"), "0003")
+        self.assertEqual(imzo.tabel4("Т6ЦЗ-00003"), "0003")
+
+    def test_parse_card_qr(self):
+        from core import imzo
+        text = ("Buxoro lokomotiv deposida FIO ning elektron imzosi.\n"
+                "Lavozimi: Depo boshlig'i\nID: BLD0005016\nIMZO: 0DE519A3D9FF807F")
+        p = imzo.parse_card_qr(text)
+        self.assertEqual(p["tabel"], "BLD0005016")
+        self.assertEqual(p["imzo"], "0DE519A3D9FF807F")
+
+    def test_card_hmac_barqaror_va_16hex(self):
+        from core import imzo
+        a = imzo.card_hmac("Depo", "AYUB", "Mashinist", "5016")
+        b = imzo.card_hmac("Depo", "AYUB", "Mashinist", "5016")
+        self.assertEqual(a, b)              # barqaror
+        self.assertEqual(len(a), 16)        # 16 belgi
+        self.assertEqual(a, a.upper())      # katta harf
+        # boshqa kirish — boshqa imzo
+        self.assertNotEqual(a, imzo.card_hmac("Depo", "AYUB", "Mashinist", "5017"))
+
+    def test_verify_card_endpoint(self):
+        from core.models import Signature, Worker
+        w = ishchi_yarat("5016", ["ishchi"])
+        sig = Signature.objects.create(
+            doc_type="card_id", doc_id=str(w.id), field="id", user=w,
+            hash="0DE519A3D9FF807F", payload={"fio": w.fio, "lavozim": "Depo boshligʻi"},
+        )
+        w.imzo_id = str(sig.id)
+        w.save(update_fields=["imzo_id"])
+
+        # to'g'ri imzo
+        r = self.client.get("/api/v1/verify/card?tabel=5016&imzo=0DE519A3D9FF807F")
+        self.assertTrue(r.json()["ok"])
+        # noto'g'ri imzo
+        r = self.client.get("/api/v1/verify/card?tabel=5016&imzo=DEADBEEFDEADBEEF")
+        self.assertFalse(r.json()["ok"])
+        # to'liq karta ID (BLD…) — oxirgi-4 ga keltiriladi
+        r = self.client.get("/api/v1/verify/card?tabel=BLD0005016&imzo=0DE519A3D9FF807F")
+        self.assertTrue(r.json()["ok"])
+
+    def test_hujjat_imzo_butunligi(self):
+        """doc_hmac bilan yasalgan imzo doc_ok dan o'tadi; buzilsa — o'tmaydi."""
+        from core import imzo
+        from core.models import Signature
+        w = ishchi_yarat("7001", ["tb_xodim"])
+        sana = timezone.now().isoformat()
+        s = Signature.objects.create(
+            doc_type="journal", doc_id="abc", field="07", user=w,
+            hash=imzo.doc_hmac("journal", "abc", "07", w.id, sana),
+            payload={"sana": sana, "fio": w.fio, "lavozim": ""},
+        )
+        self.assertTrue(imzo.doc_ok(s))
+        # payload ga aralashsak — butunlik buziladi
+        s.payload["sana"] = timezone.now().isoformat()
+        self.assertFalse(imzo.doc_ok(s))
+
+
+# =====================================================================
+# Kolonnalar — yaratish / biriktirish / ruxsat
+# =====================================================================
+
+class KolonnaTest(TestCase):
+    def setUp(self):
+        Depo.joriy()
+        self.admin = ishchi_yarat("10001", ["admin"], pin="1234")
+        self.oddiy = ishchi_yarat("2002", ["ishchi"], pin="1111")
+
+    def kir(self, tabel, pin):
+        d = self.client.post("/api/v1/auth/login", {"tabel": tabel, "pin": pin},
+                             content_type="application/json").json()
+        return {"HTTP_AUTHORIZATION": f"Bearer {d['access']}"}
+
+    def test_kolonna_yaratish_va_biriktirish(self):
+        from core.models import Kolonna, Worker
+        h = self.kir("10001", "1234")
+        instr = ishchi_yarat("3101", ["yoriqchi"], pin="1111")
+
+        r = self.client.post("/api/v1/kolonnalar",
+            {"nomi": "17-Manyovr", "turi": "manyovr", "instruktorId": str(instr.id)},
+            content_type="application/json", **h)
+        self.assertEqual(r.status_code, 200)
+        kid = r.json()["id"]
+        self.assertTrue(Kolonna.objects.filter(id=kid, turi="manyovr").exists())
+
+        # ishchini biriktirish
+        r = self.client.post("/api/v1/kolonnalar/assign",
+            {"workerId": str(self.oddiy.id), "kolonnaId": kid},
+            content_type="application/json", **h)
+        self.assertEqual(r.status_code, 200)
+        self.oddiy.refresh_from_db()
+        self.assertEqual(str(self.oddiy.kolonna_ref_id), kid)
+
+        # koʻchirish (boshqa kolonnaga)
+        r2 = self.client.post("/api/v1/kolonnalar",
+            {"nomi": "18-Elektrovoz", "turi": "elektrovoz"},
+            content_type="application/json", **h)
+        kid2 = r2.json()["id"]
+        self.client.post("/api/v1/kolonnalar/assign",
+            {"workerId": str(self.oddiy.id), "kolonnaId": kid2},
+            content_type="application/json", **h)
+        self.oddiy.refresh_from_db()
+        self.assertEqual(str(self.oddiy.kolonna_ref_id), kid2)
+
+    def test_oddiy_ishchi_kolonna_yarata_olmaydi(self):
+        h = self.kir("2002", "1111")
+        r = self.client.post("/api/v1/kolonnalar", {"nomi": "X"},
+                             content_type="application/json", **h)
+        self.assertEqual(r.status_code, 403)
+
+    def test_state_da_kolonnalar_bor(self):
+        from core.models import Kolonna
+        Kolonna.objects.create(nomi="Test", turi="teplovoz")
+        h = self.kir("10001", "1234")
+        st = self.client.get("/api/v1/state", **h).json()["data"]
+        self.assertIn("kolonnalar", st)
+        self.assertTrue(any(k["nomi"] == "Test" for k in st["kolonnalar"]))
+
+
+# =====================================================================
+# Yoʻriqnoma — TNU-19 (depo navbatchisi) oqimi
+# =====================================================================
+
+class YoriqnomaTest(TestCase):
+    def setUp(self):
+        from core.models import Signature
+        Depo.joriy()
+        self.navbatchi = ishchi_yarat("7001", ["depo_navbatchisi"], pin="1111")
+        self.ishchi = ishchi_yarat("5016", ["ishchi"])
+        # ishchiga card_id imzosi (skan tekshiruvi uchun)
+        sig = Signature.objects.create(
+            doc_type="card_id", doc_id=str(self.ishchi.id), field="id", user=self.ishchi,
+            hash="0DE519A3D9FF807F", payload={"fio": self.ishchi.fio},
+        )
+        self.ishchi.imzo_id = str(sig.id)
+        self.ishchi.save(update_fields=["imzo_id"])
+
+    def kir(self, tabel, pin):
+        dd = self.client.post("/api/v1/auth/login", {"tabel": tabel, "pin": pin},
+                              content_type="application/json").json()
+        return {"HTTP_AUTHORIZATION": f"Bearer {dd['access']}"}
+
+    def test_skan_smensiz_bloklanadi(self):
+        h = self.kir("7001", "1111")
+        r = self.client.post("/api/v1/yoriqnoma/skan",
+            {"tabel": "5016", "imzo": "0DE519A3D9FF807F"},
+            content_type="application/json", **h)
+        self.assertEqual(r.status_code, 409)  # smena yoʻq
+
+    def test_toliq_oqim(self):
+        from core.models import YoriqnomaYozuv
+        h = self.kir("7001", "1111")
+        # smena boshlash
+        r = self.client.post("/api/v1/yoriqnoma/smena",
+            {"tur": "kunduzgi", "mazmun": "Xavfsizlik yoʻriqnomasi", "xulosa": "Oʻtdi"},
+            content_type="application/json", **h)
+        self.assertEqual(r.status_code, 200)
+        # skan — toʻgʻri imzo
+        r = self.client.post("/api/v1/yoriqnoma/skan",
+            {"tabel": "5016", "imzo": "0DE519A3D9FF807F"},
+            content_type="application/json", **h)
+        self.assertEqual(r.status_code, 200, r.content)
+        yid = r.json()["id"]
+        y = YoriqnomaYozuv.objects.get(id=yid)
+        self.assertEqual(y.mazmun, "Xavfsizlik yoʻriqnomasi")
+        self.assertTrue(y.oluvchi_imzo_id, "ishchi QR imzosi darhol qoʻyilishi kerak")
+        self.assertFalse(y.tasdiqlangan)
+        # tasdiqlash
+        r = self.client.post(f"/api/v1/yoriqnoma/tasdiqla/{yid}", {},
+                             content_type="application/json", **h)
+        self.assertEqual(r.status_code, 200)
+        y.refresh_from_db()
+        self.assertTrue(y.tasdiqlangan)
+        self.assertTrue(y.beruvchi_imzo_id, "navbatchi QR imzosi qoʻyilishi kerak")
+
+    def test_notogri_imzo_rad(self):
+        h = self.kir("7001", "1111")
+        self.client.post("/api/v1/yoriqnoma/smena",
+            {"tur": "kunduzgi", "mazmun": "m", "xulosa": "x"},
+            content_type="application/json", **h)
+        r = self.client.post("/api/v1/yoriqnoma/skan",
+            {"tabel": "5016", "imzo": "DEADBEEFDEADBEEF"},
+            content_type="application/json", **h)
+        self.assertEqual(r.status_code, 400)  # karta yaroqsiz
+
+    def test_instruktor_tnu19_ga_yozolmaydi(self):
+        # navbatchi bo'lmagan rol (instruktor) TNU-19 ga yozolmaydi
+        instr = ishchi_yarat("3101", ["yoriqchi"], pin="2222")
+        h2 = self.kir("3101", "2222")
+        self.client.post("/api/v1/yoriqnoma/smena",
+            {"tur": "kunduzgi"}, content_type="application/json", **h2)
+        r = self.client.post("/api/v1/yoriqnoma/skan",
+            {"tabel": "5016", "imzo": "0DE519A3D9FF807F"},
+            content_type="application/json", **h2)
+        self.assertEqual(r.status_code, 403)  # instruktor TNU-19 ga yozolmaydi
+
+
+# =====================================================================
+# Yoʻriqnoma — Yo D-26B (instruktor) oqimi
+# =====================================================================
+
+class InstruktorYoriqnomaTest(TestCase):
+    def setUp(self):
+        from core.models import Signature, Kolonna
+        Depo.joriy()
+        self.instr = ishchi_yarat("3101", ["yoriqchi"], pin="1111")
+        self.kol = Kolonna.objects.create(nomi="17-Manyovr", turi="manyovr", instruktor=self.instr)
+        # ishchi shu kolonnada
+        self.ishchi = ishchi_yarat("5016", ["ishchi"])
+        self.ishchi.kolonna_ref = self.kol
+        self.ishchi.save(update_fields=["kolonna_ref"])
+        sig = Signature.objects.create(
+            doc_type="card_id", doc_id=str(self.ishchi.id), field="id", user=self.ishchi,
+            hash="0DE519A3D9FF807F", payload={"fio": self.ishchi.fio},
+        )
+        self.ishchi.imzo_id = str(sig.id)
+        self.ishchi.save(update_fields=["imzo_id"])
+        # boshqa kolonna ishchisi
+        self.begona = ishchi_yarat("9999", ["ishchi"])
+        sig2 = Signature.objects.create(
+            doc_type="card_id", doc_id=str(self.begona.id), field="id", user=self.begona,
+            hash="AABBCCDDAABBCCDD", payload={},
+        )
+        self.begona.imzo_id = str(sig2.id)
+        self.begona.save(update_fields=["imzo_id"])
+
+    def kir(self, tabel, pin):
+        dd = self.client.post("/api/v1/auth/login", {"tabel": tabel, "pin": pin},
+                              content_type="application/json").json()
+        return {"HTTP_AUTHORIZATION": f"Bearer {dd['access']}"}
+
+    def test_instruktor_toliq_oqim(self):
+        from core.models import YoriqnomaYozuv, YoriqnomaVaraq, Kitob
+        h = self.kir("3101", "1111")
+        # skan — o'z kolonnasi ishchisi
+        r = self.client.post("/api/v1/yoriqnoma/skan",
+            {"tabel": "5016", "imzo": "0DE519A3D9FF807F", "yoriqTuri": "birlamchi", "mazmun": "Kirish yoʻriqnomasi"},
+            content_type="application/json", **h)
+        self.assertEqual(r.status_code, 200, r.content)
+        yid = r.json()["id"]
+        y = YoriqnomaYozuv.objects.get(id=yid)
+        self.assertEqual(y.kitob.turi, "instruktor")
+        self.assertEqual(y.kitob.kolonna_id, self.kol.id)
+        self.assertIsNotNone(y.varaq_id, "ishchi varagʻi ochilishi kerak")
+        self.assertTrue(y.oluvchi_imzo_id)
+        # tasdiqlash — tur/mazmun bilan
+        r = self.client.post(f"/api/v1/yoriqnoma/tasdiqla/{yid}",
+            {"yoriqTuri": "davriy", "mazmun": "Yangilangan matn"},
+            content_type="application/json", **h)
+        self.assertEqual(r.status_code, 200)
+        y.refresh_from_db()
+        self.assertTrue(y.tasdiqlangan)
+        self.assertTrue(y.beruvchi_imzo_id)
+        self.assertEqual(y.yoriq_turi, "davriy")
+        self.assertEqual(y.mazmun, "Yangilangan matn")
+
+    def test_boshqa_kolonna_bloklanadi(self):
+        h = self.kir("3101", "1111")
+        r = self.client.post("/api/v1/yoriqnoma/skan",
+            {"tabel": "9999", "imzo": "AABBCCDDAABBCCDD"},
+            content_type="application/json", **h)
+        self.assertEqual(r.status_code, 403)  # boshqa kolonna
+
+    def test_kolonnasiz_instruktor(self):
+        from core.models import Kolonna
+        Kolonna.objects.filter(instruktor=self.instr).update(faol=False)
+        h = self.kir("3101", "1111")
+        r = self.client.post("/api/v1/yoriqnoma/skan",
+            {"tabel": "5016", "imzo": "0DE519A3D9FF807F"},
+            content_type="application/json", **h)
+        self.assertIn(r.status_code, (403, 409))
+
+
+class KitoblarRoyxatiTest(TestCase):
+    def setUp(self):
+        Depo.joriy()
+        self.admin = ishchi_yarat("10001", ["admin"], pin="1234")
+
+    def test_kitoblar_endpoint(self):
+        from core.models import Kitob
+        Kitob.objects.create(turi="tnu19", raqam=1)
+        d = self.client.post("/api/v1/auth/login", {"tabel": "10001", "pin": "1234"},
+                             content_type="application/json").json()
+        h = {"HTTP_AUTHORIZATION": f"Bearer {d['access']}"}
+        r = self.client.get("/api/v1/yoriqnoma/kitoblar", **h)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue(any(k["turi"] == "tnu19" for k in r.json()["kitoblar"]))

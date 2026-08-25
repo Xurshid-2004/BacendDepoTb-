@@ -23,7 +23,7 @@ from decimal import Decimal
 
 from core import permissions as perms
 from core.models import (
-    AuditLog, Card, Depo, Incident, Item, JournalEntry, Kip, Line,
+    AuditLog, Card, Depo, Incident, Item, JournalEntry, Kip, Kolonna, Line,
     Norm, Notification, Position, Request, Signature, Stock, StockMove,
     Talon, Unit, Worker,
 )
@@ -158,6 +158,7 @@ def worker_json(w: Worker, position_ids: list[str] | None = None) -> dict:
         "telefon": w.telefon,
         "roles": w.roles or [],
         "yoriqchiId": sid(w.yoriqchi_id),
+        "kolonnaId": sid(w.kolonna_ref_id),
         "faol": w.faol,
         "imzoId": w.imzo_id,
         # Xavfsiz almashtirishlar
@@ -365,6 +366,81 @@ def audit_json(a: AuditLog) -> dict:
     }
 
 
+def kolonna_json(k) -> dict:
+    return {
+        "id": sid(k.id),
+        "nomi": k.nomi,
+        "turi": k.turi,
+        "instruktorId": sid(k.instruktor_id),
+        "izoh": k.izoh,
+        "faol": k.faol,
+        "ishchiSoni": k.ishchilar.filter(deleted=False).count(),
+    }
+
+
+def yoriqnoma_yozuv_json(y) -> dict:
+    return {
+        "id": sid(y.id),
+        "kitobId": sid(y.kitob_id),
+        "bet": y.bet,
+        "qator": y.qator,
+        "sana": d(y.sana),
+        "ishchiId": sid(y.ishchi_id),
+        "fio": y.ishchi.fio if y.ishchi else "",
+        "lavozimQisqa": y.lavozim_qisqa,
+        "yoriqTuri": y.yoriq_turi,
+        "mazmun": y.mazmun,
+        "xulosa": y.xulosa,
+        "beruvchiId": sid(y.beruvchi_id),
+        "beruvchiFio": y.beruvchi.fio if y.beruvchi else "",
+        "beruvchiLavozim": y.beruvchi_lavozim,
+        "oluvchiImzoId": sid(y.oluvchi_imzo_id),
+        "beruvchiImzoId": sid(y.beruvchi_imzo_id),
+        "tasdiqlangan": y.tasdiqlangan,
+    }
+
+
+def yoriqnoma_holati(me) -> dict:
+    """Joriy foydalanuvchi uchun yoʻriqnoma boʻlimi qisqacha holati:
+    aktiv smena + TNU-19 kitobi, va instruktor boʻlsa — kolonna + kitobi."""
+    from core.models import Kitob, Kolonna, Smena, YoriqnomaYozuv
+
+    def kitob_qisqa(k):
+        if not k:
+            return None
+        return {
+            "id": sid(k.id), "raqam": k.raqam,
+            "joriyBet": k.joriy_bet, "sigim": k.sigim,
+            "yozuvSoni": YoriqnomaYozuv.objects.filter(kitob=k).count(),
+        }
+
+    smena = None
+    instruktor_kol = None
+    instr_kitob = None
+    if me:
+        s = Smena.objects.filter(navbatchi=me, faol=True).first()
+        if s:
+            smena = {
+                "id": sid(s.id), "tur": s.tur,
+                "mazmun": s.mazmun, "xulosa": s.xulosa,
+                "boshlangan": dt(s.boshlangan),
+            }
+        kol = Kolonna.objects.filter(instruktor=me, faol=True).first()
+        if kol:
+            instruktor_kol = {"id": sid(kol.id), "nomi": kol.nomi, "turi": kol.turi}
+            instr_kitob = kitob_qisqa(
+                Kitob.objects.filter(turi="instruktor", arxiv=False, kolonna=kol).order_by("-raqam").first()
+            )
+
+    kitob = Kitob.objects.filter(turi="tnu19", arxiv=False, kolonna=None).order_by("-raqam").first()
+    return {
+        "aktivSmena": smena,
+        "aktivKitob": kitob_qisqa(kitob),
+        "instruktorKolonna": instruktor_kol,
+        "aktivInstruktorKitob": instr_kitob,
+    }
+
+
 # ---------------------------------------------------------------------
 # Butun holat — GET /api/v1/state
 # ---------------------------------------------------------------------
@@ -415,6 +491,15 @@ def build_state(me: Worker | None = None) -> dict:
 
     from core.models import Exam
 
+    # KIP — instruktor (mashinist yoʻriqchisi) faqat oʻz kolonnasi
+    # ishchilarining KIP yozuvlarini koʻradi. Admin/monitoring — hammasini.
+    kips_qs = Kip.objects.all()
+    if me:
+        _roles = me.roles or []
+        if ("yoriqchi" in _roles) and ("admin" not in _roles):
+            _kol = Kolonna.objects.filter(instruktor=me, faol=True).first()
+            kips_qs = kips_qs.filter(worker__kolonna_ref=_kol) if _kol else kips_qs.none()
+
     return {
         "depo": depo_json(depo),
         "positions": [position_json(p) for p in Position.objects.filter(depo=depo)],
@@ -431,12 +516,17 @@ def build_state(me: Worker | None = None) -> dict:
         "moves": [move_json(m) for m in StockMove.objects.all()[:500]],
         "talons": [talon_json(t) for t in talons_qs],
         "exams": [exam_json(e) for e in Exam.objects.all()],
-        "kips": [kip_json(k) for k in Kip.objects.all()],
+        "kips": [kip_json(k) for k in kips_qs],
         "notifications": [notification_json(n) for n in Notification.objects.all()[:200]],
         "incidents": [incident_json(i) for i in Incident.objects.all()],
         "audit": [audit_json(a) for a in AuditLog.objects.all()[:400]],
         "lines": list(Line.objects.values_list("nomi", flat=True)),
         "units": list(Unit.objects.values_list("nomi", flat=True)),
+        "kolonnalar": [
+            kolonna_json(k)
+            for k in Kolonna.objects.prefetch_related("ishchilar").order_by("nomi")
+        ],
+        "yoriqnoma": yoriqnoma_holati(me),
         "access": perms.load_overrides(),
         "seq": depo.seq,
     }

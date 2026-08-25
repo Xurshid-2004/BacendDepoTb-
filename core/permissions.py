@@ -32,6 +32,7 @@ ALL_PERMS: list[str] = [
     "admin.users", "admin.norms", "admin.settings",
     "incident.tb.write", "incident.tb.read",
     "incident.avariya.write", "incident.avariya.read",
+    "kolonna.manage", "yoriqnoma.write", "yoriqnoma.read",
 ]
 
 PERM_LABEL: dict[str, str] = {
@@ -62,6 +63,9 @@ PERM_LABEL: dict[str, str] = {
     "incident.tb.read": "TB: baxtsiz xodisalarni koʻrish",
     "incident.avariya.write": "Yoʻriqchi: avariya yozish",
     "incident.avariya.read": "Yoʻriqchi: avariyalarni koʻrish",
+    "kolonna.manage": "Kolonnalarni boshqarish",
+    "yoriqnoma.write": "Yoʻriqnoma jurnaliga yozish (skan/tasdiqlash)",
+    "yoriqnoma.read": "Yoʻriqnoma jurnallarini koʻrish",
 }
 
 ROLE_PERMS: dict[str, list[str]] = {
@@ -71,6 +75,7 @@ ROLE_PERMS: dict[str, list[str]] = {
         "request.approve3", "stock.read", "card.read",
         "talon.read", "kip.read", "report.read", "report.download",
         "incident.tb.read", "incident.avariya.read",
+        "yoriqnoma.read",
     ],
     "bosh_xisobchi": [
         "journal.read", "request.approve2", "stock.read", "card.read",
@@ -98,6 +103,13 @@ ROLE_PERMS: dict[str, list[str]] = {
         "kip.read", "kip.write", "talon.read", "journal.read",
         "report.read", "report.download",
         "incident.avariya.write", "incident.avariya.read", "incident.tb.read",
+        "yoriqnoma.write", "yoriqnoma.read",
+    ],
+    "depo_navbatchisi": [
+        "journal.read", "card.read", "talon.read",
+        "report.read", "report.download",
+        "yoriqnoma.write", "yoriqnoma.read",
+        "incident.tb.read", "incident.avariya.read",
     ],
     "sex_boshligi": [
         "journal.read", "card.read", "stock.read", "talon.read", "kip.read",
@@ -121,6 +133,7 @@ ALL_CARDS: list[str] = [
 ALL_NAV: list[str] = [
     "nav.tb", "nav.ombor", "nav.kip", "nav.talon",
     "nav.hisobot", "nav.arizalar", "nav.hujjatlar", "nav.arxiv",
+    "nav.kolonnalar", "nav.yoriqnoma",
 ]
 ALL_DOCS: list[str] = ["doc.trebovanie", "doc.mb6", "doc.kitobcha"]
 
@@ -141,6 +154,8 @@ FEATURE_LABEL: dict[str, str] = {
     "nav.arizalar": "Boʻlim: Arizalar",
     "nav.hujjatlar": "Boʻlim: Hujjatlar (tabel qidiruv)",
     "nav.arxiv": "Boʻlim: Hujjatlar arxivi",
+    "nav.kolonnalar": "Boʻlim: Kolonnalar (admin)",
+    "nav.yoriqnoma": "Boʻlim: Yoʻriqnoma kitobchalari (TB kitobchalari)",
     "doc.trebovanie": "Hujjat: Требование (MU-27)",
     "doc.mb6": "Hujjat: MB-6 kartochka",
     "doc.kitobcha": "Hujjat: TB jamoatchilik nazorati kitobchasi",
@@ -168,7 +183,11 @@ ROLE_FEATURES: dict[str, list[str]] = {
     ],
     "yoriqchi": [
         "card.kip",
-        "nav.kip", "nav.hisobot", "nav.arizalar", "nav.hujjatlar",
+        "nav.kip", "nav.hisobot", "nav.arizalar", "nav.hujjatlar", "nav.yoriqnoma",
+        *ALL_DOCS,
+    ],
+    "depo_navbatchisi": [
+        "nav.yoriqnoma", "nav.hisobot", "nav.hujjatlar",
         *ALL_DOCS,
     ],
     "ishchi": ["nav.arizalar", *ALL_DOCS],

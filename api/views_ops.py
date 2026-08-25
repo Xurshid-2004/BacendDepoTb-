@@ -27,10 +27,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from api.serializers import build_state
-from core import logic
+from core import imzo, logic
 from core.models import (
     AccessOverride, AuditLog, Card, CardIssue, Depo, Exam, Incident, Item,
-    JournalEntry, Kip, Line, Norm, Notification, Position, Request,
+    JournalEntry, Kip, Kolonna, Line, Norm, Notification, Position, Request,
     RequestLine, Signature, Stock, StockMove, Talon, TalonHistory, Unit, Worker,
 )
 from core.permissions import worker_can
@@ -87,20 +87,25 @@ def notify(worker_id, sarlavha: str, matn: str, turi: str = "info") -> None:
 
 
 def imzo_yarat(me: Worker | None, doc_type: str, doc_id: str, field: str) -> Signature:
-    """Hujjatga imzo qoʻyadi — QR orqali tekshirish uchun hash saqlanadi."""
-    payload = {}
+    """
+    Hujjatga imzo qoʻyadi — yagona imzo tizimi (core/imzo.py).
+
+    Hash endi HMAC-SHA256 (kriptografik, soxtalashtirib boʻlmaydi).
+    Payload imzo qoʻyilgan PAYTDAGI {fio, lavozim, sana} ni muzlatadi,
+    hash aynan shu payload ustidan hisoblanadi — keyin bazaga aralashib
+    payload/hash oʻzgartirilsa, `imzo.doc_ok()` buni fosh qiladi.
+    """
+    sana_iso = timezone.now().isoformat()
+    payload = {"sana": sana_iso}
     if me:
-        payload = {
-            "fio": me.fio,
-            "lavozim": me.position.nomi if me.position else "",
-            "sana": timezone.now().isoformat(),
-        }
+        payload["fio"] = me.fio
+        payload["lavozim"] = me.position.nomi if me.position else ""
     return Signature.objects.create(
         doc_type=doc_type,
         doc_id=str(doc_id),
         field=field,
         user=me,
-        hash=logic.make_hash(f"{doc_type}{doc_id}{field}{me.id if me else ''}{timezone.now().timestamp()}"),
+        hash=imzo.doc_hmac(doc_type, doc_id, field, me.id if me else "", sana_iso),
         payload=payload,
     )
 
@@ -502,6 +507,19 @@ def kip_add(request):
     worker = Worker.objects.filter(id=d.get("workerId"), deleted=False).first()
     if not worker:
         return xato("Ishchi topilmadi", status.HTTP_404_NOT_FOUND)
+
+    # Instruktor (mashinist yoʻriqchisi) faqat oʻz kolonnasidagi ishchiga
+    # KIP yoza oladi. Admin — istalganiga.
+    _roles = me.roles or []
+    if ("yoriqchi" in _roles) and ("admin" not in _roles):
+        _kol = Kolonna.objects.filter(instruktor=me, faol=True).first()
+        if not _kol:
+            return xato("Sizga kolonna biriktirilmagan — KIP yoza olmaysiz",
+                        status.HTTP_403_FORBIDDEN)
+        if worker.kolonna_ref_id != _kol.id:
+            return xato("Bu ishchi sizning kolonnangizda emas — KIP yoza olmaysiz",
+                        status.HTTP_403_FORBIDDEN)
+
     if not d.get("sana"):
         return xato("Sana koʻrsatilmadi")
 
@@ -1222,4 +1240,85 @@ def notification_read(request):
         qs = qs.filter(id=nid)
     qs.update(oqilgan=True)
 
+    return holat(me)
+
+
+# =====================================================================
+# Kolonnalar — instruktor guruhlari (faqat admin boshqaradi)
+# =====================================================================
+
+@api_view(["POST"])
+@transaction.atomic
+def kolonna_upsert(request):
+    """
+    Kolonna yaratish yoki tahrirlash. Faqat `kolonna.manage` ruxsati bilan
+    (admin). id kelsa — yangilanadi, kelmasa — yangi yaratiladi.
+    """
+    if (e := tekshir(request, "kolonna.manage")):
+        return xato(e, status.HTTP_403_FORBIDDEN)
+
+    me = request.user
+    d = request.data
+    nomi = str(d.get("nomi", "")).strip()
+    if not nomi:
+        return xato("Kolonna nomi kiritilmadi")
+
+    turi = str(d.get("turi", "boshqa")).strip() or "boshqa"
+    if turi not in dict(Kolonna.TURLAR):
+        turi = "boshqa"
+
+    instruktor = None
+    if (iid := uuid_yoki_none(d.get("instruktorId"))):
+        instruktor = Worker.objects.filter(id=iid, deleted=False).first()
+
+    kid = uuid_yoki_none(d.get("id"))
+    if kid and (k := Kolonna.objects.filter(id=kid).first()):
+        k.nomi = nomi
+        k.turi = turi
+        k.instruktor = instruktor
+        k.izoh = str(d.get("izoh", "") or "")
+        if "faol" in d:
+            k.faol = bool(d.get("faol"))
+        k.save(update_fields=["nomi", "turi", "instruktor", "izoh", "faol"])
+        audit(me, f"kolonna {k.nomi}", "tahrirlandi")
+    else:
+        k = Kolonna.objects.create(
+            nomi=nomi, turi=turi, instruktor=instruktor,
+            izoh=str(d.get("izoh", "") or ""),
+        )
+        audit(me, f"kolonna {k.nomi}", "yaratildi")
+
+    javob = holat(me)
+    javob.data["id"] = str(k.id)
+    return javob
+
+
+@api_view(["POST"])
+@transaction.atomic
+def kolonna_assign(request):
+    """
+    Ishchini kolonnaga biriktirish yoki koʻchirish.
+    {workerId, kolonnaId|null}. kolonnaId boʻsh boʻlsa — biriktirish olib
+    tashlanadi. Ishchi koʻchirilsa, eski yozuvlar (kitob varaqlari) tegilmaydi
+    — tarix eski kolonnada qoladi; yangi kolonnada yangi varaq ochiladi.
+    """
+    if (e := tekshir(request, "kolonna.manage")):
+        return xato(e, status.HTTP_403_FORBIDDEN)
+
+    me = request.user
+    wid = uuid_yoki_none(request.data.get("workerId"))
+    w = Worker.objects.filter(id=wid, deleted=False).first() if wid else None
+    if not w:
+        return xato("Ishchi topilmadi", status.HTTP_404_NOT_FOUND)
+
+    k = None
+    if (kid := uuid_yoki_none(request.data.get("kolonnaId"))):
+        k = Kolonna.objects.filter(id=kid).first()
+        if not k:
+            return xato("Kolonna topilmadi", status.HTTP_404_NOT_FOUND)
+
+    eski = w.kolonna_ref.nomi if w.kolonna_ref else "—"
+    w.kolonna_ref = k
+    w.save(update_fields=["kolonna_ref"])
+    audit(me, f"ishchi {w.tabel}", "kolonna oʻzgardi", f"{eski} → {k.nomi if k else '—'}")
     return holat(me)

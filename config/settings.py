@@ -64,6 +64,13 @@ JWT_SECRET = env("JWT_SECRET") or SECRET_KEY
 JWT_ACCESS_MIN = int(env("JWT_ACCESS_MIN", "30") or 30)
 JWT_REFRESH_DAYS = int(env("JWT_REFRESH_DAYS", "30") or 30)
 
+# --- Yagona imzo tizimi (core/imzo.py) ---
+# Hujjat imzolari uchun HMAC kaliti (alohida boʻlmasa — JWT_SECRET).
+IMZO_SECRET_KEY = env("IMZO_SECRET_KEY") or JWT_SECRET
+# ID-karta imzolari uchun kalit — depo-id bilan BIR XIL boʻlishi shart
+# (depo-id/id_kartalar dagi depo-id-secret.key, 64 belgili hex).
+CARD_HMAC_KEY = env("CARD_HMAC_KEY")
+
 ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]" if DEBUG else "")
 if not ALLOWED_HOSTS and DEBUG:
     ALLOWED_HOSTS = ["*"]
