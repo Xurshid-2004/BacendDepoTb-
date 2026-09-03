@@ -27,7 +27,7 @@ ALL_PERMS: list[str] = [
     "stock.read", "stock.write",
     "card.read", "card.create",
     "talon.read", "talon.write", "exam.write",
-    "kip.read", "kip.write",
+    "kip.read", "kip.write", "kip.read.all",
     "report.read", "report.download",
     "admin.users", "admin.norms", "admin.settings",
     "incident.tb.write", "incident.tb.read",
@@ -53,6 +53,7 @@ PERM_LABEL: dict[str, str] = {
     "talon.write": "Talon olish / qaytarish",
     "exam.write": "Imtixon sanasini belgilash",
     "kip.read": "KIP koʻrish",
+    "kip.read.all": "Hamma KIP maʼlumotlarini koʻrish (faqat oʻqish)",
     "kip.write": "KIP yozish",
     "report.read": "Hisobotlarni koʻrish",
     "report.download": "Hisobotlarni yuklab olish",
@@ -227,7 +228,23 @@ def load_overrides() -> dict[str, dict[str, dict[str, bool]]]:
     return out
 
 
-def resolve_access(
+# Baʼzi ruxsatlar oʻzi bilan boshqalarini ham olib keladi.
+#
+# `kip.read.all` — nazoratchiga butun KIP boʻlimini FAQAT OʻQISH uchun
+# ochadi: boʻlim menyuda paydo boʻladi, KIP yozuvlari va avariya tasmasi
+# koʻrinadi. Yozish ruxsatlari (`kip.write`, `incident.avariya.write`) bu
+# roʻyxatda YOʻQ — shuning uchun bunday odam tahrirlay ham, oʻchira ham
+# olmaydi.
+#
+# lib/permissions.ts → OLIB_KELADI bilan bir xil boʻlishi SHART.
+OLIB_KELADI: dict[str, str] = {
+    "nav.kip": "kip.read.all",
+    "kip.read": "kip.read.all",
+    "incident.avariya.read": "kip.read.all",
+}
+
+
+def _xom_access(
     key: str,
     roles: list[str],
     uid: str | None,
@@ -235,13 +252,7 @@ def resolve_access(
     is_feature: bool,
     position_ids: list[str] | None = None,
 ) -> bool:
-    """
-    Yakuniy ruxsat/koʻrinishni hisoblaydi.
-    lib/permissions.ts → resolveAccess bilan bir xil natija berishi shart.
-    """
-    if "admin" in (roles or []):
-        return True
-
+    """Override zanjiri: shaxs → lavozim → rol override → rol standarti."""
     access = access or {}
 
     user_ov = (access.get("userOverrides") or {}).get(uid or "")
@@ -263,6 +274,31 @@ def resolve_access(
             continue          # shu rol uchun yopilgan — boshqa rolni tekshiramiz
         if role_default(r, key, is_feature):
             return True
+    return False
+
+
+def resolve_access(
+    key: str,
+    roles: list[str],
+    uid: str | None,
+    access: dict | None,
+    is_feature: bool,
+    position_ids: list[str] | None = None,
+) -> bool:
+    """
+    Yakuniy ruxsat/koʻrinishni hisoblaydi.
+    lib/permissions.ts → resolveAccess bilan bir xil natija berishi shart.
+    """
+    if "admin" in (roles or []):
+        return True
+
+    if _xom_access(key, roles, uid, access, is_feature, position_ids):
+        return True
+
+    # Bevosita berilmagan boʻlsa — uni olib keladigan ruxsat bormi?
+    manba = OLIB_KELADI.get(key)
+    if manba:
+        return _xom_access(manba, roles, uid, access, False, position_ids)
     return False
 
 

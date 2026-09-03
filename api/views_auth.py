@@ -28,7 +28,7 @@ from rest_framework.response import Response
 from rest_framework.throttling import ScopedRateThrottle
 
 from api.serializers import me_json
-from core import face, tokens
+from core import face, qurilma, tokens
 from core.models import AuditLog, Worker
 from core.permissions import IsAdmin
 from core.pin import valid_pin_format
@@ -98,6 +98,42 @@ def _audit(worker: Worker | None, obyekt: str, amal: str, izoh: str = "") -> Non
     AuditLog.objects.create(user=worker, obyekt=obyekt, amal=amal, izoh=izoh)
 
 
+def _eslab_qol(request) -> bool:
+    """
+    «Bu qurilmani eslab qol» tanlovi. Mijoz aniq `false` demasa — yoqiq.
+
+    Kompyuterda bu tanlov baribir eʼtiborga olinmaydi: core.qurilma
+    faqat telefonni ishonchli deb belgilaydi.
+    """
+    xom = request.data.get("eslabQol")
+    return True if xom is None else bool(xom)
+
+
+def _qurilma_json(qur) -> dict:
+    """Mijozga: qurilma eslab qolindimi va tokenni qayerda saqlash kerak."""
+    return {
+        "ishonchli": bool(qur and qur.ishonchli),
+        "mobil": bool(qur and qur.mobil),
+        "nom": qur.nom if qur else "",
+    }
+
+
+def _juftlik(request, worker: Worker) -> dict:
+    """
+    Kirish javobining umumiy qismi: qurilmani yozib qoʻyadi va unga
+    bogʻlangan token juftligini qaytaradi.
+
+    Ishonchli telefonga uzoq muddatli (90 kun, har kirishda yangilanadi)
+    token beriladi; kompyuterga esa oddiy muddatli — mijoz uni brauzer
+    yopilishi bilan oʻchadigan joyda saqlaydi.
+    """
+    qur = qurilma.qurilma_yoz(request, worker, eslab_qol=_eslab_qol(request))
+    return {
+        **tokens.token_juftligi(worker, _agent(request), qur),
+        "qurilma": _qurilma_json(qur),
+    }
+
+
 # ---------------------------------------------------------------------
 # Kirish
 # ---------------------------------------------------------------------
@@ -142,7 +178,7 @@ def login(request):
         _audit(worker, f"kirish {tabel}", "notoʻgʻri PIN")
         return xato("Tabel raqami yoki PIN notoʻgʻri", status.HTTP_401_UNAUTHORIZED)
 
-    juftlik = tokens.token_juftligi(worker, _agent(request))
+    juftlik = _juftlik(request, worker)
     worker.last_login = timezone.now()
     worker.save(update_fields=["last_login"])
     _audit(worker, f"kirish {tabel}", "muvaffaqiyatli")
@@ -267,7 +303,7 @@ def register(request):
             "Face ID bilan" if face_saqlandi else "faqat PIN",
         )
 
-    juftlik = tokens.token_juftligi(worker, _agent(request))
+    juftlik = _juftlik(request, worker)
     return Response({
         "ok": True,
         **juftlik,
@@ -334,7 +370,7 @@ def face_login(request):
         return xato("Jonli yuz aniqlanmadi — kameraga toʻgʻridan qarang yoki PIN bilan kiring",
                     status.HTTP_401_UNAUTHORIZED)
 
-    juftlik = tokens.token_juftligi(worker, _agent(request))
+    juftlik = _juftlik(request, worker)
     worker.last_login = timezone.now()
     worker.save(update_fields=["last_login"])
     _audit(worker, f"kirish {tabel}", "Face ID bilan kirdi",
@@ -374,7 +410,7 @@ def set_pin(request):
         worker.save(update_fields=["pin_hash", "pin_reset"])
         _audit(worker, f"ishchi {worker.tabel}", "PIN oʻrnatildi")
 
-    juftlik = tokens.token_juftligi(worker, _agent(request))
+    juftlik = _juftlik(request, worker)
     return Response({"ok": True, **juftlik, "user": me_json(worker)})
 
 
@@ -385,22 +421,92 @@ def set_pin(request):
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def refresh(request):
+    """
+    {refresh} → {access, refresh, user, qurilma}
+
+    Token HAR yangilanishda almashadi (rotation) va muddat qaytadan
+    sanaladi. Shu sababli telefonini kunda ishlatadigan ishchidan PIN
+    boshqa soʻralmaydi.
+
+    Javobga `refresh` va `user` QOʻSHILDI — eski mijozlar (Flutter)
+    faqat `access` ni oʻqiydi, shuning uchun ular uchun hech nima
+    oʻzgarmaydi.
+    """
     token = str(request.data.get("refresh", "")).strip()
-    row = tokens.read_refresh(token)
-    if not row:
-        return xato("Refresh token yaroqsiz yoki muddati oʻtgan", status.HTTP_401_UNAUTHORIZED)
+    row, holat = tokens.refresh_holati(token)
+
+    # Ancha oldin almashtirilgan token qayta ishlatildi — demak uning
+    # nusxasi birovda qolgan. Qurilmani butunlay yopamiz: haqiqiy egasi
+    # ham, oʻgʻri ham qaytadan PIN kiritishga majbur boʻladi.
+    if holat == "qayta" and row is not None:
+        tokens.revoke_qurilma_tokenlari(row)
+        _audit(row.worker, f"kirish {row.worker.tabel}",
+               "eski refresh token ishlatildi — qurilma bekor qilindi")
+        return xato("Seans xavfsizligi buzildi — qaytadan kiring",
+                    status.HTTP_401_UNAUTHORIZED)
+
+    if row is None or holat not in ("ok", "takror"):
+        return xato("Refresh token yaroqsiz yoki muddati oʻtgan",
+                    status.HTTP_401_UNAUTHORIZED)
 
     worker = row.worker
     if worker.deleted or not worker.faol:
         return xato("Foydalanuvchi faolsiz", status.HTTP_401_UNAUTHORIZED)
 
-    return Response({"access": tokens.make_access(worker)})
+    qur = row.qurilma
+    if qur and qur.revoked:
+        return xato("Bu qurilma roʻyxatdan oʻchirilgan — qaytadan kiring",
+                    status.HTTP_401_UNAUTHORIZED)
+
+    yangi = tokens.rotate_refresh(row, _agent(request))
+    return Response({
+        "access": tokens.make_access(worker),
+        "refresh": yangi,
+        "user": me_json(worker),
+        "qurilma": _qurilma_json(qur),
+    })
 
 
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def logout(request):
-    tokens.revoke_refresh(str(request.data.get("refresh", "")).strip())
+    """
+    Chiqish. Tokenni bekor qiladi va qurilmani «ishonchli» roʻyxatidan
+    chiqaradi — foydalanuvchi ataylab chiqqan ekan, keyingi safar PIN
+    soʻralishi kerak.
+    """
+    token = str(request.data.get("refresh", "")).strip()
+    row, _holat = tokens.refresh_holati(token)
+    tokens.revoke_refresh(token)
+    if row is not None and row.qurilma is not None:
+        qurilma.qurilma_bekor(row.qurilma)
+    return Response({"ok": True})
+
+
+# ---------------------------------------------------------------------
+# Qurilmalarim — telefon yoʻqolganda oʻchirish uchun
+# ---------------------------------------------------------------------
+
+@api_view(["GET"])
+def qurilmalar(request):
+    """Foydalanuvchining faol qurilmalari roʻyxati."""
+    joriy = qurilma.qurilma_id(request)
+    ro = request.user.qurilmalar.filter(revoked=False)
+    return Response({"qurilmalar": [qurilma.qurilma_json(q, joriy) for q in ro]})
+
+
+@api_view(["DELETE"])
+def qurilma_ochir(request, qurilma_pk):
+    """
+    Qurilmani oʻchirish — oʻsha telefon shu zahoti tizimdan chiqadi.
+    Faqat oʻz qurilmasini oʻchira oladi.
+    """
+    q = request.user.qurilmalar.filter(id=qurilma_pk).first()
+    if not q:
+        return xato("Qurilma topilmadi", status.HTTP_404_NOT_FOUND)
+
+    qurilma.qurilma_bekor(q)
+    _audit(request.user, f"qurilma {q.nom}", "oʻchirildi")
     return Response({"ok": True})
 
 

@@ -64,6 +64,11 @@ JWT_SECRET = env("JWT_SECRET") or SECRET_KEY
 JWT_ACCESS_MIN = int(env("JWT_ACCESS_MIN", "30") or 30)
 JWT_REFRESH_DAYS = int(env("JWT_REFRESH_DAYS", "30") or 30)
 
+# Ishonchli telefon uchun muddat. Har yangilanishda qaytadan sanaladi,
+# shuning uchun telefonini kunda ishlatadigan ishchidan PIN boshqa
+# soʻralmaydi; qoʻlga olinmagan telefon esa shu muddatda oʻzi chiqadi.
+QURILMA_ISHONCH_KUN = int(env("QURILMA_ISHONCH_KUN", "90") or 90)
+
 # --- Yagona imzo tizimi (core/imzo.py) ---
 # Hujjat imzolari uchun HMAC kaliti (alohida boʻlmasa — JWT_SECRET).
 IMZO_SECRET_KEY = env("IMZO_SECRET_KEY") or JWT_SECRET
@@ -254,6 +259,8 @@ if DEBUG:
 # CORS — Next.js frontend boshqa portdan/domendan murojaat qiladi
 # ---------------------------------------------------------------------
 
+from corsheaders.defaults import default_headers as cors_default_headers  # noqa: E402
+
 CORS_ALLOWED_ORIGINS = env_list(
     "CORS_ALLOWED_ORIGINS",
     "http://localhost:3000,http://127.0.0.1:3000" if DEBUG else "",
@@ -269,6 +276,17 @@ CORS_ALLOWED_ORIGIN_REGEXES = env_list("CORS_ALLOWED_ORIGIN_REGEXES") or [
     r"^https://[a-z0-9-]+\.vercel\.app$",
 ]
 CORS_ALLOW_CREDENTIALS = False  # token Authorization sarlavhasida ketadi, cookie emas
+
+# Qurilmani tanish sarlavhalari. Standart roʻyxatda ular yoʻq — qoʻshilmasa
+# brauzer preflight bosqichida soʻrovni bloklaydi va telefonni eslab qolish
+# ishlamaydi. (Vercel rewrite orqali kelganda CORS umuman qatnashmaydi,
+# lekin lokal ishlash va toʻgʻridan-toʻgʻri ulanish uchun kerak.)
+CORS_ALLOW_HEADERS = (
+    *cors_default_headers,
+    "x-qurilma-id",
+    "x-qurilma-nom",
+    "x-qurilma-tur",
+)
 CORS_ALLOW_HEADERS = [
     "accept", "accept-encoding", "authorization", "content-type",
     "dnt", "origin", "user-agent", "x-csrftoken", "x-requested-with",

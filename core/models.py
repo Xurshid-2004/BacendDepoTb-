@@ -734,10 +734,66 @@ class AccessOverride(Base):
 # Refresh tokenlar — chiqishda bekor qilinadi
 # ---------------------------------------------------------------------
 
+class Qurilma(Base):
+    """
+    Foydalanuvchi kirgan qurilma — telefon yoki kompyuter.
+
+    Nima uchun kerak: ishchi oʻz telefonidan bir marta kirgach, keyingi
+    safar PIN qayta soʻralmasligi kerak. Buning uchun qurilmani tanib
+    olish shart — aks holda saqlangan token istalgan boshqa joyda ham
+    ishlaverardi va uni bekor qilishning yoʻli boʻlmasdi.
+
+    `mobil` — bu qurilma telefonmi. FAQAT telefon «ishonchli» boʻla
+    oladi: depodagi kompyuter umumiy, undan 4-5 kishi kiradi, shuning
+    uchun u yerda har safar tabel + PIN soʻraladi.
+
+    `ishonchli` — avtomatik kirishga ruxsat berilganmi. Foydalanuvchi
+    «Qurilmalarim» roʻyxatida telefonini yoʻqotgan boʻlsa oʻchiradi,
+    shunda oʻsha qurilmaning barcha tokenlari bekor boʻladi.
+    """
+
+    worker = models.ForeignKey(Worker, on_delete=models.CASCADE, related_name="qurilmalar")
+
+    # Mijoz yaratadigan tasodifiy UUID — brauzer xotirasida saqlanadi.
+    # Oʻzi maxfiy emas: u faqat «qaysi qurilma» degan savolga javob
+    # beradi, kirish huquqini esa refresh token beradi.
+    qurilma_id = models.CharField(max_length=64, db_index=True)
+
+    nom = models.CharField(max_length=120, blank=True)
+    mobil = models.BooleanField(default=False)
+    ishonchli = models.BooleanField(default=False)
+    revoked = models.BooleanField(default=False)
+    user_agent = models.CharField(max_length=255, blank=True)
+    oxirgi_ip = models.GenericIPAddressField(null=True, blank=True)
+    oxirgi_kirish = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name = "Qurilma"
+        verbose_name_plural = "Qurilmalar"
+        ordering = ["-oxirgi_kirish"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["worker", "qurilma_id"], name="uniq_worker_qurilma"
+            ),
+        ]
+
+    def __str__(self) -> str:
+        return f"{self.nom or 'Qurilma'} · {self.worker.tabel}"
+
+    @property
+    def yaroqli(self) -> bool:
+        return not self.revoked
+
+
 class RefreshToken(Base):
     """
     Opaque refresh token. Bazada faqat SHA-256 hash saqlanadi —
     tokenning oʻzi hech qachon yozilmaydi.
+
+    Token har yangilanishda ALMASHADI (rotation): eskisi bekor qilinadi,
+    oʻrniga yangisi beriladi va muddat qaytadan sanaladi. Shu sababli
+    telefonini kunda ishlatadigan ishchidan PIN boshqa soʻralmaydi,
+    ishlatilmay qolgan token esa 90 kunda oʻzi oʻladi.
     """
 
     worker = models.ForeignKey(Worker, on_delete=models.CASCADE, related_name="refresh_tokens")
@@ -745,6 +801,29 @@ class RefreshToken(Base):
     expires_at = models.DateTimeField()
     revoked = models.BooleanField(default=False)
     user_agent = models.CharField(max_length=255, blank=True)
+
+    qurilma = models.ForeignKey(
+        Qurilma, on_delete=models.CASCADE, related_name="tokenlar",
+        null=True, blank=True,
+    )
+    oxirgi_ishlatilgan = models.DateTimeField(null=True, blank=True)
+
+    # Bu token rotatsiya tufayli bekor qilinganmi (True), yoki chiqish /
+    # admin tiklashi / qurilma oʻchirilishi tufaylimi (False).
+    #
+    # Farq muhim: rotatsiyada eskisi bir necha soniya «yumshoq» qoladi —
+    # ikki oyna bir vaqtda yangilasa foydalanuvchi chiqib ketmasligi
+    # uchun. Chiqishda esa hech qanday imtiyoz boʻlmasligi kerak.
+    almashtirilgan = models.BooleanField(default=False)
+
+    # Seans zanjiri. Rotatsiyada yangi token eskisining zanjirini meros
+    # qilib oladi, yaʼni bitta kirishdan tugagunga qadar hosil boʻlgan
+    # barcha tokenlar bitta zanjirda boʻladi.
+    #
+    # Nima uchun: chiqishda mijoz qoʻlidagi token allaqachon bir necha
+    # marta almashgan boʻlishi mumkin. Zanjir boʻlmasa faqat oʻsha bitta
+    # token bekor qilinardi va seans aslida ochiq qolaverardi.
+    zanjir = models.UUIDField(default=uuid.uuid4, db_index=True)
 
     class Meta:
         verbose_name = "Refresh token"

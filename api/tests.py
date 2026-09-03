@@ -12,12 +12,15 @@ Qamrov: autentifikatsiya, ruxsatlar, ariza oqimi, ombor, holat shakli.
 
 from __future__ import annotations
 
+from datetime import timedelta
+
 from django.test import TestCase
 from django.utils import timezone
 
 from core.logic import add_months, make_hash, today
 from core.models import (
-    Card, Depo, Item, Norm, Position, Request, Stock, Talon, Worker,
+    AccessOverride, Card, Depo, Item, Kip, Kolonna, Norm, Position, Qurilma,
+    RefreshToken, Request, Stock, Talon, Worker,
 )
 from core.pin import hash_pin, verify_pin
 
@@ -1346,3 +1349,411 @@ class KitoblarRoyxatiTest(TestCase):
         r = self.client.get("/api/v1/yoriqnoma/kitoblar", **h)
         self.assertEqual(r.status_code, 200)
         self.assertTrue(any(k["turi"] == "tnu19" for k in r.json()["kitoblar"]))
+
+
+# =====================================================================
+# Ishonchli qurilma — telefonda PIN qayta soʻralmasligi
+# =====================================================================
+
+# Haqiqiy brauzerlar yuboradigan satrlar.
+UA_TELEFON = ("Mozilla/5.0 (Linux; Android 13; SM-A536B) AppleWebKit/537.36 "
+              "(KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36")
+UA_KOMPYUTER = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+UA_IPHONE = ("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) "
+             "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 "
+             "Mobile/15E148 Safari/604.1")
+
+
+def telefon_sarlavha(qid="qurilma-tel-1", ua=UA_TELEFON, sec="?1"):
+    h = {
+        "HTTP_USER_AGENT": ua,
+        "HTTP_X_QURILMA_ID": qid,
+        "HTTP_X_QURILMA_TUR": "mobil",
+        "HTTP_X_QURILMA_NOM": "Samsung Chrome",
+    }
+    if sec:
+        h["HTTP_SEC_CH_UA_MOBILE"] = sec
+    return h
+
+
+def kompyuter_sarlavha(qid="qurilma-komp-1"):
+    return {
+        "HTTP_USER_AGENT": UA_KOMPYUTER,
+        "HTTP_X_QURILMA_ID": qid,
+        "HTTP_X_QURILMA_TUR": "kompyuter",
+        "HTTP_SEC_CH_UA_MOBILE": "?0",
+    }
+
+
+class QurilmaTanishTest(TestCase):
+    """Telefon va kompyuter toʻgʻri ajratilishi kerak."""
+
+    def setUp(self):
+        Depo.joriy()
+        self.w = ishchi_yarat("20001", ["ishchi"], pin="1234")
+
+    def kir(self, **sarlavha):
+        return self.client.post("/api/v1/auth/login",
+                                {"tabel": "20001", "pin": "1234"},
+                                content_type="application/json", **sarlavha)
+
+    def test_telefondan_kirsa_ishonchli(self):
+        d = self.kir(**telefon_sarlavha()).json()
+        self.assertTrue(d["qurilma"]["mobil"])
+        self.assertTrue(d["qurilma"]["ishonchli"])
+
+    def test_iphone_sec_ch_yubormasa_ham_tanildi(self):
+        """Safari `Sec-CH-UA-Mobile` yubormaydi — User-Agent yetarli."""
+        d = self.kir(**telefon_sarlavha(ua=UA_IPHONE, sec="")).json()
+        self.assertTrue(d["qurilma"]["ishonchli"])
+
+    def test_kompyuterdan_kirsa_ishonchsiz(self):
+        d = self.kir(**kompyuter_sarlavha()).json()
+        self.assertFalse(d["qurilma"]["mobil"])
+        self.assertFalse(d["qurilma"]["ishonchli"])
+
+    def test_mijoz_yolgon_aytsa_ishonilmaydi(self):
+        """
+        Eng muhim tekshiruv: umumiy kompyuter oʻzini «telefonman» deb
+        koʻrsatsa ham ishonchli boʻlmasligi kerak — aks holda keyingi
+        ishchi oldingisining kabinetiga tushib qolardi.
+        """
+        h = kompyuter_sarlavha()
+        h["HTTP_X_QURILMA_TUR"] = "mobil"
+        d = self.kir(**h).json()
+        self.assertFalse(d["qurilma"]["ishonchli"])
+
+    def test_eslab_qolma_tanlansa_ishonchsiz(self):
+        r = self.client.post("/api/v1/auth/login",
+                             {"tabel": "20001", "pin": "1234", "eslabQol": False},
+                             content_type="application/json", **telefon_sarlavha())
+        self.assertFalse(r.json()["qurilma"]["ishonchli"])
+
+    def test_qurilma_id_yubormagan_eski_mijoz(self):
+        """Flutter ilovasi va eski brauzerlar eskicha ishlashda davom etadi."""
+        r = self.client.post("/api/v1/auth/login",
+                             {"tabel": "20001", "pin": "1234"},
+                             content_type="application/json",
+                             HTTP_USER_AGENT=UA_TELEFON)
+        self.assertEqual(r.status_code, 200)
+        self.assertIn("refresh", r.json())
+        self.assertEqual(Qurilma.objects.count(), 0)
+
+    def test_telefonga_uzoq_muddat(self):
+        """Ishonchli telefon 90 kun, kompyuter esa 30 kun."""
+        self.kir(**telefon_sarlavha())
+        tel = RefreshToken.objects.order_by("-created_at").first()
+        self.kir(**kompyuter_sarlavha())
+        komp = RefreshToken.objects.order_by("-created_at").first()
+
+        self.assertGreater((tel.expires_at - timezone.now()).days, 85)
+        self.assertLess((komp.expires_at - timezone.now()).days, 35)
+
+
+class QurilmaRotatsiyaTest(TestCase):
+    """Token har yangilanishda almashadi va muddat qaytadan sanaladi."""
+
+    def setUp(self):
+        Depo.joriy()
+        self.w = ishchi_yarat("20002", ["ishchi"], pin="1234")
+        self.d = self.client.post("/api/v1/auth/login",
+                                  {"tabel": "20002", "pin": "1234"},
+                                  content_type="application/json",
+                                  **telefon_sarlavha()).json()
+
+    def yangila(self, refresh, **sarlavha):
+        return self.client.post("/api/v1/auth/refresh", {"refresh": refresh},
+                                content_type="application/json",
+                                **(sarlavha or telefon_sarlavha()))
+
+    def test_yangi_refresh_qaytadi(self):
+        r = self.yangila(self.d["refresh"])
+        self.assertEqual(r.status_code, 200)
+        y = r.json()
+        self.assertIn("access", y)
+        self.assertIn("refresh", y)
+        self.assertNotEqual(y["refresh"], self.d["refresh"])
+        # Boot uchun: mijoz alohida /me soʻrovisiz ham foydalanuvchini biladi
+        self.assertEqual(y["user"]["tabel"], "20002")
+
+    def test_telefon_qaytganda_pin_soralmaydi(self):
+        """
+        ENG MUHIM OQIM. Telefon ertasi kuni ochildi: access token allaqachon
+        eskirgan, qoʻlda faqat refresh token bor. Ishchi PIN kiritmasdan
+        kabinetiga kirishi kerak.
+        """
+        # 1. Access tokensiz /me — 401. Mijoz aynan shu javobdan keyin
+        #    tokenni jimgina yangilaydi (lib/api.ts, so() ichida).
+        self.assertEqual(self.client.get("/api/v1/me").status_code, 401)
+
+        # 2. Refresh bilan yangi access olinadi — PIN soʻralmadi
+        y = self.yangila(self.d["refresh"]).json()
+
+        # 3. Yangi access bilan kabinet ochiladi
+        r = self.client.get("/api/v1/me", HTTP_AUTHORIZATION="Bearer " + y["access"])
+        self.assertEqual(r.status_code, 200)
+        self.assertEqual(r.json()["tabel"], "20002")
+
+    def test_eskirgan_access_401_qaytaradi(self):
+        """
+        Eskirgan token 403 emas, 401 qaytarishi SHART: mijoz faqat 401 da
+        yangilashga urinadi. 403 boʻlsa foydalanuvchi chiqib ketardi.
+        """
+        r = self.client.get("/api/v1/me", HTTP_AUTHORIZATION="Bearer eskirgan.token.xxx")
+        self.assertEqual(r.status_code, 401)
+
+    def test_yangi_token_ishlaydi(self):
+        y = self.yangila(self.d["refresh"]).json()
+        self.assertEqual(self.yangila(y["refresh"]).status_code, 200)
+
+    def test_muddat_qaytadan_sanaladi(self):
+        """Har kirishda 90 kun qaytadan boshlanadi — sliding window."""
+        eski = RefreshToken.objects.first()
+        eski.expires_at = timezone.now() + timedelta(days=3)
+        eski.save(update_fields=["expires_at"])
+
+        y = self.yangila(self.d["refresh"]).json()
+        yangi = RefreshToken.objects.exclude(pk=eski.pk).order_by("-created_at").first()
+        self.assertGreater((yangi.expires_at - timezone.now()).days, 85)
+        self.assertTrue(y["qurilma"]["ishonchli"])
+
+    def test_takroriy_sorov_chiqarib_yubormaydi(self):
+        """
+        Ikki oyna bir vaqtda yangilasa eski token ikki marta keladi.
+        Bu hujum emas — foydalanuvchi chiqib ketmasligi kerak.
+        """
+        self.yangila(self.d["refresh"])
+        r = self.yangila(self.d["refresh"])
+        self.assertEqual(r.status_code, 200)
+
+    def test_ancha_oldingi_token_qurilmani_yopadi(self):
+        """Oʻgʻirlangan nusxa ishlatilsa — qurilma butunlay bekor qilinadi."""
+        y = self.yangila(self.d["refresh"]).json()
+
+        RefreshToken.objects.filter(revoked=True).update(
+            oxirgi_ishlatilgan=timezone.now() - timedelta(minutes=5)
+        )
+
+        r = self.yangila(self.d["refresh"])
+        self.assertEqual(r.status_code, 401)
+
+        # Qurilma yopildi — halol egasining yangi tokeni ham endi ishlamaydi
+        self.assertEqual(self.yangila(y["refresh"]).status_code, 401)
+        self.assertTrue(Qurilma.objects.get().revoked)
+
+
+class QurilmalarRoyxatTest(TestCase):
+    """«Qurilmalarim» — koʻrish va oʻchirish."""
+
+    def setUp(self):
+        Depo.joriy()
+        self.w = ishchi_yarat("20003", ["ishchi"], pin="1234")
+        self.tel = self.client.post("/api/v1/auth/login",
+                                    {"tabel": "20003", "pin": "1234"},
+                                    content_type="application/json",
+                                    **telefon_sarlavha("tel-A")).json()
+        self.client.post("/api/v1/auth/login",
+                         {"tabel": "20003", "pin": "1234"},
+                         content_type="application/json",
+                         **telefon_sarlavha("tel-B"))
+
+    def auth(self, d, qid="tel-A"):
+        h = telefon_sarlavha(qid)
+        h["HTTP_AUTHORIZATION"] = "Bearer " + d["access"]
+        return h
+
+    def test_royxat_va_joriy_belgisi(self):
+        r = self.client.get("/api/v1/auth/qurilmalar", **self.auth(self.tel))
+        self.assertEqual(r.status_code, 200)
+        ro = r.json()["qurilmalar"]
+        self.assertEqual(len(ro), 2)
+        self.assertEqual(sum(1 for q in ro if q["joriy"]), 1)
+
+    def test_ochirilgan_qurilma_chiqib_ketadi(self):
+        ro = self.client.get("/api/v1/auth/qurilmalar",
+                             **self.auth(self.tel)).json()["qurilmalar"]
+        boshqa = next(q for q in ro if not q["joriy"])
+
+        r = self.client.delete("/api/v1/auth/qurilmalar/" + boshqa["id"],
+                               **self.auth(self.tel))
+        self.assertEqual(r.status_code, 200)
+
+        qoldi = self.client.get("/api/v1/auth/qurilmalar",
+                                **self.auth(self.tel)).json()["qurilmalar"]
+        self.assertEqual(len(qoldi), 1)
+
+    def test_ozganikini_ochira_olmaydi(self):
+        ishchi_yarat("20004", ["ishchi"], pin="1234")
+        b = self.client.post("/api/v1/auth/login",
+                             {"tabel": "20004", "pin": "1234"},
+                             content_type="application/json",
+                             **telefon_sarlavha("tel-C")).json()
+        meniki = Qurilma.objects.filter(worker=self.w).first()
+
+        r = self.client.delete("/api/v1/auth/qurilmalar/" + str(meniki.id),
+                               **self.auth(b, "tel-C"))
+        self.assertEqual(r.status_code, 404)
+        meniki.refresh_from_db()
+        self.assertFalse(meniki.revoked)
+
+    def test_chiqish_qurilmani_ishonchsiz_qiladi(self):
+        self.client.post("/api/v1/auth/logout", {"refresh": self.tel["refresh"]},
+                         content_type="application/json")
+        q = Qurilma.objects.get(worker=self.w, qurilma_id="tel-A")
+        self.assertFalse(q.ishonchli)
+        self.assertEqual(
+            self.client.post("/api/v1/auth/refresh", {"refresh": self.tel["refresh"]},
+                             content_type="application/json").status_code, 401)
+
+
+# =====================================================================
+# kip.read.all — nazoratchi hamma KIP'ni koʻradi, lekin tegolmaydi
+# =====================================================================
+
+class KipHammaKorishTest(TestCase):
+    """
+    Admin ruxsatlar jadvalidan bitta shaxsga «Hamma KIP maʼlumotlarini
+    koʻrish» ruxsatini beradi. Oʻsha odam barcha kolonnalarni koʻradi,
+    ammo hech narsani tahrirlay yoki oʻchira olmaydi.
+    """
+
+    def setUp(self):
+        depo = Depo.joriy()
+        self.pos = Position.objects.create(depo=depo, nomi="Teplovoz mashinisti", tartib=1)
+
+        # Ikkita instruktor, ikkita kolonna, har birida bitta mashinist
+        self.yoriqchi_a = ishchi_yarat("3301", ["yoriqchi"], pin="1111")
+        self.yoriqchi_b = ishchi_yarat("3302", ["yoriqchi"], pin="2222")
+
+        self.kol_a = Kolonna.objects.create(
+            nomi="1-kolonna", turi="teplovoz", instruktor=self.yoriqchi_a, faol=True
+        )
+        self.kol_b = Kolonna.objects.create(
+            nomi="2-kolonna", turi="teplovoz", instruktor=self.yoriqchi_b, faol=True
+        )
+
+        self.mash_a = ishchi_yarat("3311", ["ishchi"], self.pos)
+        self.mash_a.kolonna_ref = self.kol_a
+        self.mash_a.save(update_fields=["kolonna_ref"])
+
+        self.mash_b = ishchi_yarat("3312", ["ishchi"], self.pos)
+        self.mash_b.kolonna_ref = self.kol_b
+        self.mash_b.save(update_fields=["kolonna_ref"])
+
+        bugun = today()
+        self.kip_a = Kip.objects.create(
+            worker=self.mash_a, yoriqchi=self.yoriqchi_a,
+            liniya="Buxoro — Marokand", sana=bugun,
+            muddat_oy=6, tugash=add_months(bugun, 6),
+        )
+        self.kip_b = Kip.objects.create(
+            worker=self.mash_b, yoriqchi=self.yoriqchi_b,
+            liniya="Buxoro — Navoiy", sana=bugun,
+            muddat_oy=6, tugash=add_months(bugun, 6),
+        )
+
+    def kir(self, tabel: str, pin: str) -> dict:
+        d = self.client.post("/api/v1/auth/login", {"tabel": tabel, "pin": pin},
+                             content_type="application/json").json()
+        return {"HTTP_AUTHORIZATION": "Bearer " + d["access"]}
+
+    def kiplar(self, h: dict) -> set:
+        r = self.client.get("/api/v1/state", **h)
+        self.assertEqual(r.status_code, 200, r.content)
+        return {k["id"] for k in r.json()["data"]["kips"]}
+
+    def ruxsat_ber(self, worker, kalit: str, qiymat: bool = True):
+        AccessOverride.objects.create(
+            scope="user", scope_id=str(worker.id), key=kalit, value=qiymat
+        )
+
+    # ---------------- standart holat oʻzgarmagan ----------------
+
+    def test_ruxsatsiz_yoriqchi_faqat_oz_kolonnasini_koradi(self):
+        """Standart xatti-harakat buzilmasligi kerak."""
+        koradi = self.kiplar(self.kir("3301", "1111"))
+        self.assertIn(str(self.kip_a.id), koradi)
+        self.assertNotIn(str(self.kip_b.id), koradi)
+
+    # ---------------- yangi ruxsat ----------------
+
+    def test_ruxsat_berilsa_hammasini_koradi(self):
+        self.ruxsat_ber(self.yoriqchi_a, "kip.read.all")
+        koradi = self.kiplar(self.kir("3301", "1111"))
+        self.assertIn(str(self.kip_a.id), koradi)
+        self.assertIn(str(self.kip_b.id), koradi)
+
+    def test_ruxsat_faqat_oshanga_tegishli(self):
+        """Bir shaxsga berilgan ruxsat boshqa yoʻriqchiga oʻtmaydi."""
+        self.ruxsat_ber(self.yoriqchi_a, "kip.read.all")
+        koradi = self.kiplar(self.kir("3302", "2222"))
+        self.assertNotIn(str(self.kip_a.id), koradi)
+        self.assertIn(str(self.kip_b.id), koradi)
+
+    # ---------------- faqat oʻqish ----------------
+
+    def test_ozganikini_tahrirlay_olmaydi(self):
+        """ENG MUHIM: koʻrish ruxsati yozish huquqini BERMAYDI."""
+        self.ruxsat_ber(self.yoriqchi_a, "kip.read.all")
+        h = self.kir("3301", "1111")
+
+        r = self.client.patch("/api/v1/kips/" + str(self.kip_b.id),
+                              {"liniya": "oʻzgartirdim"},
+                              content_type="application/json", **h)
+        self.assertEqual(r.status_code, 403)
+
+        self.kip_b.refresh_from_db()
+        self.assertEqual(self.kip_b.liniya, "Buxoro — Navoiy")
+
+    def test_ozganikini_ochira_olmaydi(self):
+        self.ruxsat_ber(self.yoriqchi_a, "kip.read.all")
+        r = self.client.delete("/api/v1/kips/" + str(self.kip_b.id),
+                               **self.kir("3301", "1111"))
+        self.assertEqual(r.status_code, 403)
+        self.assertTrue(Kip.objects.filter(id=self.kip_b.id).exists())
+
+    def test_yozish_ruxsati_ochirilsa_ozinikiga_ham_tegolmaydi(self):
+        """Sof nazoratchi: `kip.write` yopilgan boʻlsa hech narsa qila olmaydi."""
+        self.ruxsat_ber(self.yoriqchi_a, "kip.read.all")
+        self.ruxsat_ber(self.yoriqchi_a, "kip.write", False)
+        r = self.client.delete("/api/v1/kips/" + str(self.kip_a.id),
+                               **self.kir("3301", "1111"))
+        self.assertEqual(r.status_code, 403)
+
+    # ---------------- olib keladigan ruxsatlar ----------------
+
+    def test_bolim_va_qoshimcha_ruxsatlar_ozi_ochiladi(self):
+        """
+        Bitta belgi kifoya: KIP boʻlimi menyuda paydo boʻladi va avariya
+        tasmasi koʻrinadi. Yozish ruxsatlari esa OCHILMAYDI.
+        """
+        from core.permissions import worker_can
+
+        self.ruxsat_ber(self.yoriqchi_b, "kip.read.all")
+        w = Worker.objects.get(id=self.yoriqchi_b.id)
+
+        self.assertTrue(worker_can(w, "nav.kip", is_feature=True))
+        self.assertTrue(worker_can(w, "kip.read"))
+        self.assertTrue(worker_can(w, "incident.avariya.read"))
+
+        # Yozish ruxsatlari olib kelinmaydi
+        self.ruxsat_ber(self.yoriqchi_b, "kip.write", False)
+        self.ruxsat_ber(self.yoriqchi_b, "incident.avariya.write", False)
+        w = Worker.objects.get(id=self.yoriqchi_b.id)
+        self.assertFalse(worker_can(w, "kip.write"))
+        self.assertFalse(worker_can(w, "incident.avariya.write"))
+
+    def test_oddiy_ishchiga_berilsa_ham_ishlaydi(self):
+        """Ruxsat yoʻriqchi boʻlmagan odamga ham berilishi mumkin."""
+        from core.permissions import worker_can
+
+        nazoratchi = ishchi_yarat("3399", ["ishchi"], pin="3333")
+        self.ruxsat_ber(nazoratchi, "kip.read.all")
+
+        koradi = self.kiplar(self.kir("3399", "3333"))
+        self.assertIn(str(self.kip_a.id), koradi)
+        self.assertIn(str(self.kip_b.id), koradi)
+
+        w = Worker.objects.get(id=nazoratchi.id)
+        self.assertTrue(worker_can(w, "nav.kip", is_feature=True))

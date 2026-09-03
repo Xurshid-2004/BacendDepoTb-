@@ -493,10 +493,18 @@ def build_state(me: Worker | None = None) -> dict:
 
     # KIP — instruktor (mashinist yoʻriqchisi) faqat oʻz kolonnasi
     # ishchilarining KIP yozuvlarini koʻradi. Admin/monitoring — hammasini.
+    # `kip.read.all` ruxsati bu cheklovni ochadi — admin uni ruxsatlar
+    # jadvalidan bitta shaxsga beradi va oʻsha odam barcha kolonnalarni
+    # koʻradi. Faqat OʻQISH: yozish/tahrirlash `kip.write` ga bogʻliq va
+    # views_ops.kip_manage uni alohida tekshiradi.
     kips_qs = Kip.objects.all()
     if me:
         _roles = me.roles or []
-        if ("yoriqchi" in _roles) and ("admin" not in _roles):
+        if (
+            ("yoriqchi" in _roles)
+            and ("admin" not in _roles)
+            and not perms.worker_can(me, "kip.read.all")
+        ):
             _kol = Kolonna.objects.filter(instruktor=me, faol=True).first()
             kips_qs = kips_qs.filter(worker__kolonna_ref=_kol) if _kol else kips_qs.none()
 
