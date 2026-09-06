@@ -30,7 +30,7 @@ from api.serializers import build_state
 from core import imzo, logic
 from core.models import (
     AccessOverride, AuditLog, Card, CardIssue, Depo, Exam, Incident, Item,
-    JournalEntry, Kip, Kolonna, Line, Norm, Notification, Position, Request,
+    JournalEntry, Kip, Kolonna, Korik, Line, Norm, Notification, Position, Request,
     RequestLine, Signature, Stock, StockMove, Talon, TalonHistory, Unit, Worker,
 )
 from core.permissions import worker_can
@@ -533,12 +533,12 @@ def kip_add(request):
         return xato("Liniya nomi juda uzun (255 belgidan oshmasin)")
 
     muddat_oy = int(d.get("muddatOy") or 1)
+    _mk = d.get("muddatKun")
+    muddat_kun = int(_mk) if _mk not in (None, "", 0, "0") else None
     sana = d["sana"]
-    tugash = logic.add_months(
-        timezone.datetime.fromisoformat(str(sana)).date()
-        if isinstance(sana, str) else sana,
-        muddat_oy,
-    )
+    sana_d = (timezone.datetime.fromisoformat(str(sana)).date()
+              if isinstance(sana, str) else sana)
+    tugash = logic.kip_tugash(sana_d, muddat_oy, muddat_kun)
 
     kip = Kip.objects.create(
         worker=worker,
@@ -546,6 +546,7 @@ def kip_add(request):
         liniya=liniya,
         sana=sana,
         muddat_oy=muddat_oy,
+        muddat_kun=muddat_kun,
         tugash=tugash,
     )
 
@@ -557,7 +558,8 @@ def kip_add(request):
     kip.save(update_fields=["imzo_id"])
 
     notify(worker.id, "Yangi KIP",
-           f"{kip.liniya} · {muddat_oy} oy · tugash: {tugash.isoformat()}")
+           f"{kip.liniya} · {logic.muddat_matn(muddat_oy, muddat_kun)} · "
+           f"tugash: {tugash.isoformat()}")
     audit(me, f"KIP {kip.id}", "yozildi")
     return holat(me)
 
@@ -614,20 +616,28 @@ def kip_manage(request, kip_id):
     muddat_oy = int(d.get("muddatOy") or kip.muddat_oy or 1)
     if muddat_oy <= 0:
         return xato("Muddat noldan katta boʻlishi kerak")
+    # muddatKun: yuborilmasa eski qiymat saqlanadi; boʻsh/0 yuborilsa oy rejimiga oʻtadi.
+    if "muddatKun" in d:
+        _mk = d.get("muddatKun")
+        muddat_kun = int(_mk) if _mk not in (None, "", 0, "0") else None
+    else:
+        muddat_kun = kip.muddat_kun
 
     kip.liniya = liniya
     kip.sana = sana
     kip.muddat_oy = muddat_oy
-    kip.tugash = logic.add_months(sana, muddat_oy)
+    kip.muddat_kun = muddat_kun
+    kip.tugash = logic.kip_tugash(sana, muddat_oy, muddat_kun)
 
     Signature.objects.filter(doc_type="kip", doc_id=str(kip.id)).update(bekor=True)
     imzo = imzo_yarat(me, "kip", kip.id, "04")
     kip.imzo_id = str(imzo.id)
-    kip.save(update_fields=["liniya", "sana", "muddat_oy", "tugash", "imzo_id"])
+    kip.save(update_fields=["liniya", "sana", "muddat_oy", "muddat_kun", "tugash", "imzo_id"])
 
     _liniya_saqla(liniya)
     notify(kip.worker_id, "KIP yangilandi",
-           f"{kip.liniya} · {muddat_oy} oy · tugash: {kip.tugash.isoformat()}")
+           f"{kip.liniya} · {logic.muddat_matn(muddat_oy, muddat_kun)} · "
+           f"tugash: {kip.tugash.isoformat()}")
     audit(me, f"KIP {kip.id}", "tahrirlandi")
     return holat(me)
 
@@ -658,6 +668,96 @@ def exam_set(request):
     )
     notify(worker.id, "TB imtixoni", f"Keyingi imtixon: {keyingi.isoformat()}")
     audit(me, f"imtixon {worker.tabel}", "yangilandi")
+    return holat(me)
+
+
+# =====================================================================
+# KOʻRIK — tibbiy koʻrik / psixolog
+# =====================================================================
+
+@api_view(["POST"])
+@transaction.atomic
+def korik_set(request):
+    """Tibbiy koʻrik yoki psixolog yozuvini kiritish/yangilash.
+
+      • tibbiy   — kadrlar `tugash` (qayta oʻtish sanasi)ni toʻgʻridan
+                   kiritadi; muddat hisoblanmaydi.
+      • psixolog — `sana` (oʻtgan) + `muddatOy` (3/6/12); tugash = sana+muddat.
+
+    Har ishchi + tur uchun bitta yozuv (update_or_create). Yozuv ishchiga
+    QR imzo bilan tasdiqlanadi va bildirishnoma yuboriladi.
+    """
+    d = request.data
+    turi = str(d.get("turi") or "").strip()
+    if turi not in ("tibbiy", "psixolog"):
+        return xato("Koʻrik turi notoʻgʻri (tibbiy yoki psixolog)")
+    if (e := tekshir(request, f"{turi}.write")):
+        return xato(e, status.HTTP_403_FORBIDDEN)
+
+    me = request.user
+    worker = Worker.objects.filter(id=d.get("workerId"), deleted=False).first()
+    if not worker:
+        return xato("Ishchi topilmadi", status.HTTP_404_NOT_FOUND)
+
+    def _date(v):
+        return (timezone.datetime.fromisoformat(str(v)).date()
+                if isinstance(v, str) else v)
+
+    sana_raw = d.get("sana")
+    if turi == "psixolog":
+        if not sana_raw:
+            return xato("Oʻtgan sana koʻrsatilmadi")
+        muddat_oy = int(d.get("muddatOy") or 0)
+        if muddat_oy not in (3, 6, 12):
+            return xato("Muddat 3, 6 yoki 12 oy boʻlishi kerak")
+        sana_d = _date(sana_raw)
+        tugash_d = logic.add_months(sana_d, muddat_oy)
+        defaults = {"sana": sana_d, "muddat_oy": muddat_oy, "tugash": tugash_d}
+    else:  # tibbiy
+        tugash_raw = d.get("tugash")
+        if not tugash_raw:
+            return xato("Qayta oʻtish sanasi koʻrsatilmadi")
+        defaults = {
+            "sana": _date(sana_raw) if sana_raw else None,
+            "muddat_oy": None,
+            "tugash": _date(tugash_raw),
+        }
+
+    defaults["belgilagan"] = me
+    defaults["izoh"] = str(d.get("izoh") or "").strip()[:255]
+
+    korik, _ = Korik.objects.update_or_create(worker=worker, turi=turi, defaults=defaults)
+
+    imzo = imzo_yarat(me, "korik", korik.id, "01")
+    korik.imzo_id = str(imzo.id)
+    korik.save(update_fields=["imzo_id"])
+
+    nom = "Tibbiy koʻrik" if turi == "tibbiy" else "Psixolog"
+    notify(worker.id, nom, f"Keyingi {nom.lower()} sanasi: {defaults['tugash'].isoformat()}")
+    audit(me, f"{turi} {worker.tabel}", "belgilandi")
+    return holat(me)
+
+
+@api_view(["DELETE"])
+@transaction.atomic
+def korik_delete(request, worker_id, turi):
+    """Koʻrik yozuvini oʻchirish — QR imzo bekor qilinadi."""
+    turi = str(turi)
+    if turi not in ("tibbiy", "psixolog"):
+        return xato("Koʻrik turi notoʻgʻri")
+    if (e := tekshir(request, f"{turi}.write")):
+        return xato(e, status.HTTP_403_FORBIDDEN)
+
+    me = request.user
+    korik = Korik.objects.filter(worker_id=worker_id, turi=turi).select_related("worker").first()
+    if not korik:
+        return xato("Yozuv topilmadi", status.HTTP_404_NOT_FOUND)
+
+    if korik.imzo_id:
+        Signature.objects.filter(id=korik.imzo_id).update(bekor=True)
+    tabel = korik.worker.tabel if korik.worker else str(worker_id)
+    korik.delete()
+    audit(me, f"{turi} {tabel}", "oʻchirildi")
     return holat(me)
 
 

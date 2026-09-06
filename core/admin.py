@@ -19,7 +19,7 @@ from django.utils.html import format_html
 
 from core.models import (
     AccessOverride, AuditLog, Card, CardIssue, CardReturn, Depo, Exam,
-    Incident, Item, JournalEntry, Kip, Kitob, Kolonna, Line, Norm, Notification, Position,
+    Incident, Item, JournalEntry, Kip, Kitob, Kolonna, Korik, Line, Norm, Notification, Position,
     RefreshToken, Request, RequestLine, Signature, Smena, Stock, StockMove,
     Talon, TalonHistory, Unit, Worker, YoriqnomaVaraq, YoriqnomaYozuv,
 )
@@ -300,6 +300,15 @@ class KipAdmin(admin.ModelAdmin):
     search_fields = ("worker__tabel", "worker__familiya", "liniya")
     autocomplete_fields = ("worker", "yoriqchi")
     date_hierarchy = "sana"
+
+
+@admin.register(Korik)
+class KorikAdmin(admin.ModelAdmin):
+    list_display = ("worker", "turi", "sana", "muddat_oy", "tugash", "belgilagan")
+    list_filter = ("turi",)
+    search_fields = ("worker__tabel", "worker__familiya")
+    autocomplete_fields = ("worker", "belgilagan")
+    date_hierarchy = "tugash"
 
 
 # ---------------------------------------------------------------------

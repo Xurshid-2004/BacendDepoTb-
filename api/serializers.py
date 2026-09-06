@@ -23,7 +23,7 @@ from decimal import Decimal
 
 from core import permissions as perms
 from core.models import (
-    AuditLog, Card, Depo, Incident, Item, JournalEntry, Kip, Kolonna, Line,
+    AuditLog, Card, Depo, Incident, Item, JournalEntry, Kip, Kolonna, Korik, Line,
     Norm, Notification, Position, Request, Signature, Stock, StockMove,
     Talon, Unit, Worker,
 )
@@ -328,8 +328,25 @@ def kip_json(k: Kip) -> dict:
         "liniya": k.liniya,
         "sana": d(k.sana),
         "muddatOy": k.muddat_oy,
+        "muddatKun": k.muddat_kun,
         "tugash": d(k.tugash),
         "imzoId": k.imzo_id or None,
+    }
+
+
+def korik_json(k: Korik) -> dict:
+    """Tibbiy koʻrik / psixolog yozuvi. Asosiy sana — `tugash` (qayta oʻtish).
+    Tibbiyda muddatOy=None (sana toʻgʻridan kiritilgan), psixologda 3/6/12."""
+    return {
+        "id": sid(k.id),
+        "workerId": sid(k.worker_id),
+        "turi": k.turi,
+        "sana": d(k.sana),
+        "muddatOy": k.muddat_oy,
+        "tugash": d(k.tugash),
+        "belgilaganId": sid(k.belgilagan_id),
+        "imzoId": k.imzo_id or None,
+        "izoh": k.izoh or None,
     }
 
 
@@ -445,6 +462,26 @@ def yoriqnoma_holati(me) -> dict:
 # Butun holat — GET /api/v1/state
 # ---------------------------------------------------------------------
 
+def _lines_for(me: Worker | None) -> list[str]:
+    """Liniya taklif roʻyxati. Har yoʻriqchi OʻZI koʻp tanlagan liniyalar
+    oldinga chiqadi (kamayish tartibida), qolganlari mavjud tartibda ketma-ket.
+    Shunda tez-tez ishlatiladigan yoʻnalish har safar tepada turadi."""
+    from django.db.models import Count
+
+    all_lines = list(Line.objects.values_list("nomi", flat=True))
+    if not me:
+        return all_lines
+    used = (
+        Kip.objects.filter(yoriqchi_id=me.id)
+        .values("liniya")
+        .annotate(c=Count("id"))
+        .order_by("-c")
+    )
+    rank = {u["liniya"]: i for i, u in enumerate(used)}
+    # sorted barqaror: reyting boʻlmaganlar asl tartibini saqlaydi
+    return sorted(all_lines, key=lambda n: rank.get(n, len(rank)))
+
+
 def build_state(me: Worker | None = None) -> dict:
     """
     Frontend'dagi `DB` obyektini real jadvallardan yigʻadi.
@@ -508,6 +545,34 @@ def build_state(me: Worker | None = None) -> dict:
             _kol = Kolonna.objects.filter(instruktor=me, faol=True).first()
             kips_qs = kips_qs.filter(worker__kolonna_ref=_kol) if _kol else kips_qs.none()
 
+    # --- koriklar (tibbiy + psixolog) — koʻrinish cheklovi ---
+    #   • admin / <turi>.read.all  → hamma yozuvlar;
+    #   • har foydalanuvchi        → OʻZINING yozuvi;
+    #   • mashinist yoʻriqchisi    → qoʻshimcha: OʻZ KOLONNASI.
+    # Maʼlumotni server OʻZI cheklaydi — frontend faqat koʻrsatadi.
+    korik_roles = (me.roles if me else []) or []
+    korik_admin = "admin" in korik_roles
+    korik_see_all = {
+        "tibbiy": korik_admin or bool(me and perms.worker_can(me, "tibbiy.read.all")),
+        "psixolog": korik_admin or bool(me and perms.worker_can(me, "psixolog.read.all")),
+    }
+    korik_yq = ("yoriqchi" in korik_roles) and not korik_admin
+    korik_kol = (
+        Kolonna.objects.filter(instruktor=me, faol=True).first()
+        if (korik_yq and me) else None
+    )
+    koriklar = []
+    for k in Korik.objects.select_related("worker"):
+        if korik_see_all.get(k.turi):
+            pass
+        elif me and k.worker_id == me.id:
+            pass
+        elif korik_yq and korik_kol and k.worker.kolonna_ref_id == korik_kol.id:
+            pass
+        else:
+            continue
+        koriklar.append(korik_json(k))
+
     return {
         "depo": depo_json(depo),
         "positions": [position_json(p) for p in Position.objects.filter(depo=depo)],
@@ -525,10 +590,11 @@ def build_state(me: Worker | None = None) -> dict:
         "talons": [talon_json(t) for t in talons_qs],
         "exams": [exam_json(e) for e in Exam.objects.all()],
         "kips": [kip_json(k) for k in kips_qs],
+        "koriklar": koriklar,
         "notifications": [notification_json(n) for n in Notification.objects.all()[:200]],
         "incidents": [incident_json(i) for i in Incident.objects.all()],
         "audit": [audit_json(a) for a in AuditLog.objects.all()[:400]],
-        "lines": list(Line.objects.values_list("nomi", flat=True)),
+        "lines": _lines_for(me),
         "units": list(Unit.objects.values_list("nomi", flat=True)),
         "kolonnalar": [
             kolonna_json(k)

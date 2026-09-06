@@ -58,6 +58,7 @@ DOC_TYPES = [
     ("card_id", "ID karta"),
     ("tnu19", "TNU-19 (depo navbatchisi)"),
     ("yo_d26b", "Yo D-26 (instruktor yoʻriqnoma)"),
+    ("korik", "Koʻrik (tibbiy/psixolog)"),
 ]
 
 
@@ -640,7 +641,11 @@ class Kip(Base):
     )
     liniya = models.CharField(max_length=255)
     sana = models.DateField()
+    # Muddat ikki koʻrinishda: kun (masalan 15 kun) yoki oy (1/2/3 oy).
+    # muddat_kun toʻldirilgan boʻlsa — tugash = sana + kun; boʻsh boʻlsa
+    # eski oy logikasi ishlaydi (mavjud yozuvlar buzilmaydi).
     muddat_oy = models.IntegerField(default=1)
+    muddat_kun = models.IntegerField(null=True, blank=True, help_text="Boʻsh = oy boʻyicha")
     tugash = models.DateField()
     imzo_id = models.CharField(max_length=64, blank=True)
 
@@ -648,6 +653,55 @@ class Kip(Base):
         verbose_name = "KIP"
         verbose_name_plural = "KIP yozuvlari"
         ordering = ["-sana"]
+
+
+class Korik(Base):
+    """Davriy koʻrik yozuvi — tibbiy koʻrik yoki psixolog imtixoni.
+
+    Ikkala boʻlim bitta modeldan foydalanadi (`turi` ajratadi):
+
+      • tibbiy   — kadrlar xodimi qayta oʻtish sanasini (`tugash`)
+                   toʻgʻridan-toʻgʻri kiritadi. `sana`/`muddat_oy` boʻsh
+                   boʻlishi mumkin.
+      • psixolog — psixolog oʻtgan sanani (`sana`) va muddatni (`muddat_oy`:
+                   3/6/12) belgilaydi; `tugash` = sana + muddat (serverda
+                   hisoblanadi).
+
+    Har ishchi + har tur uchun BITTA joriy yozuv (unique). Yangisi
+    kiritilsa eski ustiga yoziladi; tarix AuditLog'da qoladi.
+
+    Ogohlantirish, kartalar va roʻyxat HAR DOIM `tugash` (qayta oʻtish
+    sanasi) boʻyicha hisoblanadi.
+    """
+
+    KORIK_TURLARI = [
+        ("tibbiy", "Tibbiy koʻrik"),
+        ("psixolog", "Psixolog"),
+    ]
+
+    worker = models.ForeignKey(Worker, on_delete=models.CASCADE, related_name="koriklar")
+    turi = models.CharField(max_length=16, choices=KORIK_TURLARI)
+    # Oʻtgan/asos sana — psixologda majburiy, tibbiyda ixtiyoriy.
+    sana = models.DateField(null=True, blank=True)
+    # Muddat (oy) — psixolog: 3/6/12. Tibbiyda boʻsh (sana toʻgʻridan kiritiladi).
+    muddat_oy = models.IntegerField(null=True, blank=True, help_text="Psixolog: 3/6/12; tibbiy: boʻsh")
+    # Qayta oʻtish (tugash) sanasi — asosiy harakatlantiruvchi.
+    tugash = models.DateField()
+    belgilagan = models.ForeignKey(
+        Worker, on_delete=models.SET_NULL, null=True, blank=True, related_name="bergan_koriklar"
+    )
+    imzo_id = models.CharField(max_length=64, blank=True)
+    izoh = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        verbose_name = "Koʻrik"
+        verbose_name_plural = "Koʻriklar"
+        ordering = ["tugash"]
+        constraints = [
+            models.UniqueConstraint(fields=["worker", "turi"], name="korik_worker_turi_uniq"),
+        ]
+        indexes = [models.Index(fields=["turi", "tugash"], name="korik_turi_tugash_idx")]
+
 
 
 # ---------------------------------------------------------------------

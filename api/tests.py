@@ -171,7 +171,7 @@ class StateShakliTest(TestCase):
 
     KUTILGAN = {
         "depo", "positions", "items", "norms", "workers", "cards", "requests",
-        "journal", "stock", "moves", "talons", "exams", "kips", "notifications",
+        "journal", "stock", "moves", "talons", "exams", "kips", "koriklar", "notifications",
         "incidents", "audit", "lines", "units", "kolonnalar", "yoriqnoma", "access", "seq",
     }
 
@@ -904,8 +904,15 @@ class KipYozishTest(TestCase):
         self.pos = Position.objects.create(
             depo=Depo.joriy(), nomi="Teplovoz mashinisti", tartib=1
         )
-        self.mashinist = ishchi_yarat("3201", ["ishchi"], self.pos)
         self.yoriqchi = ishchi_yarat("3202", ["yoriqchi"], pin="1111")
+        # Yoʻriqchi faqat oʻz kolonnasidagi ishchiga KIP yoza oladi —
+        # shuning uchun kolonna ochib, mashinistni unga biriktiramiz.
+        self.kol = Kolonna.objects.create(
+            nomi="1-kolonna", turi="teplovoz", instruktor=self.yoriqchi, faol=True
+        )
+        self.mashinist = ishchi_yarat("3201", ["ishchi"], self.pos)
+        self.mashinist.kolonna_ref = self.kol
+        self.mashinist.save(update_fields=["kolonna_ref"])
 
     def kir(self) -> dict:
         d = self.client.post("/api/v1/auth/login", {"tabel": "3202", "pin": "1111"},
@@ -963,6 +970,32 @@ class KipYozishTest(TestCase):
         self.assertEqual(kips[0]["muddatOy"], 6)
 
 
+    def test_muddat_kun_bilan_hisoblanadi(self):
+        """15 kun tanlansa tugash = sana + 15 kun (oy emas)."""
+        from datetime import timedelta
+        from core.models import Kip
+        r = self.yoz(muddatOy=1, muddatKun=15)
+        self.assertEqual(r.status_code, 200, r.content)
+        kip = Kip.objects.get()
+        self.assertEqual(kip.muddat_kun, 15)
+        self.assertEqual(kip.tugash, today() + timedelta(days=15))
+
+    def test_muddat_kun_holatda_qaytadi(self):
+        self.yoz(muddatOy=1, muddatKun=15)
+        r = self.client.get("/api/v1/state", **self.kir())
+        kips = r.json()["data"]["kips"]
+        self.assertEqual(kips[0]["muddatKun"], 15)
+
+    def test_liniya_kop_tanlangani_birinchi(self):
+        """Yoʻriqchi koʻp yozgan liniya taklif roʻyxatida birinchi turadi."""
+        self.yoz(liniya="Liniya B")
+        self.yoz(liniya="Liniya A")
+        self.yoz(liniya="Liniya A")
+        r = self.client.get("/api/v1/state", **self.kir())
+        lines = r.json()["data"]["lines"]
+        self.assertEqual(lines[0], "Liniya A")
+
+
 class KipTahrirTest(TestCase):
     """KIP yozuvini tahrirlash va oʻchirish."""
 
@@ -970,10 +1003,15 @@ class KipTahrirTest(TestCase):
         self.pos = Position.objects.create(
             depo=Depo.joriy(), nomi="Elektrovoz mashinisti", tartib=1
         )
-        self.mashinist = ishchi_yarat("3301", ["ishchi"], self.pos)
         self.yoriqchi = ishchi_yarat("3302", ["yoriqchi"], pin="1111")
         self.yoriqchi2 = ishchi_yarat("3303", ["yoriqchi"], pin="2222")
         self.admin = ishchi_yarat("3304", ["admin"], pin="3333")
+        self.kol = Kolonna.objects.create(
+            nomi="1-kolonna", turi="elektrovoz", instruktor=self.yoriqchi, faol=True
+        )
+        self.mashinist = ishchi_yarat("3301", ["ishchi"], self.pos)
+        self.mashinist.kolonna_ref = self.kol
+        self.mashinist.save(update_fields=["kolonna_ref"])
 
     def kir(self, tabel: str, pin: str) -> dict:
         d = self.client.post("/api/v1/auth/login", {"tabel": tabel, "pin": pin},

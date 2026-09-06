@@ -56,6 +56,10 @@ urlpatterns = [
     path("kips/<uuid:kip_id>", ops.kip_manage, name="kip-manage"),
     path("exams", ops.exam_set, name="exam-set"),
 
+    # --- koʻrik (tibbiy koʻrik / psixolog) ---
+    path("koriklar", ops.korik_set, name="korik-set"),
+    path("koriklar/<uuid:worker_id>/<str:turi>", ops.korik_delete, name="korik-delete"),
+
     # --- buyum / norma ---
     path("items", ops.item_upsert, name="item-upsert"),
     path("norms", ops.norm_upsert, name="norm-upsert"),

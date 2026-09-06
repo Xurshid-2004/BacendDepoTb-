@@ -28,6 +28,8 @@ ALL_PERMS: list[str] = [
     "card.read", "card.create",
     "talon.read", "talon.write", "exam.write",
     "kip.read", "kip.write", "kip.read.all",
+    "tibbiy.read", "tibbiy.read.all", "tibbiy.write",
+    "psixolog.read", "psixolog.read.all", "psixolog.write",
     "report.read", "report.download",
     "admin.users", "admin.norms", "admin.settings",
     "incident.tb.write", "incident.tb.read",
@@ -55,6 +57,12 @@ PERM_LABEL: dict[str, str] = {
     "kip.read": "KIP koʻrish",
     "kip.read.all": "Hamma KIP maʼlumotlarini koʻrish (faqat oʻqish)",
     "kip.write": "KIP yozish",
+    "tibbiy.read": "Tibbiy koʻrik — oʻzining maʼlumotini koʻrish",
+    "tibbiy.read.all": "Tibbiy koʻrik — hamma maʼlumotni koʻrish (faqat oʻqish)",
+    "tibbiy.write": "Tibbiy koʻrik sanasini kiritish",
+    "psixolog.read": "Psixolog — oʻzining maʼlumotini koʻrish",
+    "psixolog.read.all": "Psixolog — hamma maʼlumotni koʻrish (faqat oʻqish)",
+    "psixolog.write": "Psixolog koʻrigini belgilash",
     "report.read": "Hisobotlarni koʻrish",
     "report.download": "Hisobotlarni yuklab olish",
     "admin.users": "Foydalanuvchilarni boshqarish",
@@ -135,6 +143,7 @@ ALL_NAV: list[str] = [
     "nav.tb", "nav.ombor", "nav.kip", "nav.talon",
     "nav.hisobot", "nav.arizalar", "nav.hujjatlar", "nav.arxiv",
     "nav.kolonnalar", "nav.yoriqnoma",
+    "nav.tibbiy", "nav.psixolog",
 ]
 ALL_DOCS: list[str] = ["doc.trebovanie", "doc.mb6", "doc.kitobcha"]
 
@@ -157,6 +166,8 @@ FEATURE_LABEL: dict[str, str] = {
     "nav.arxiv": "Boʻlim: Hujjatlar arxivi",
     "nav.kolonnalar": "Boʻlim: Kolonnalar (admin)",
     "nav.yoriqnoma": "Boʻlim: Yoʻriqnoma kitobchalari (TB kitobchalari)",
+    "nav.tibbiy": "Boʻlim: Tibbiy koʻrik",
+    "nav.psixolog": "Boʻlim: Psixolog",
     "doc.trebovanie": "Hujjat: Требование (MU-27)",
     "doc.mb6": "Hujjat: MB-6 kartochka",
     "doc.kitobcha": "Hujjat: TB jamoatchilik nazorati kitobchasi",
@@ -241,7 +252,33 @@ OLIB_KELADI: dict[str, str] = {
     "nav.kip": "kip.read.all",
     "kip.read": "kip.read.all",
     "incident.avariya.read": "kip.read.all",
+    # Tibbiy/psixolog — bitta ".read.all" belgisi boʻlimni ochadi (menyu +
+    # oʻqish). Yozish alohida (".write").
+    "nav.tibbiy": "tibbiy.read.all",
+    "tibbiy.read": "tibbiy.read.all",
+    "nav.psixolog": "psixolog.read.all",
+    "psixolog.read": "psixolog.read.all",
 }
+
+# --- Standart darajalar (dasturiy) --------------------------------------
+# Har rol OʻZ koʻrik yozuvini koʻradi: tibbiy.read / psixolog.read hammaga.
+# Boʻlim menyusi ham hammaga koʻrinadi (nav.tibbiy / nav.psixolog) — lekin
+# roʻyxat build_state'da faqat oʻziga/kolonnasiga cheklanadi. read.all va
+# write standart faqat adminda; admin kadrlar/psixologga alohida beradi.
+for _r, _ps in ROLE_PERMS.items():
+    if _r == "admin":
+        continue
+    for _p in ("tibbiy.read", "psixolog.read"):
+        if _p not in _ps:
+            _ps.append(_p)
+# Depo boshligʻi — nazorat uchun hamma koʻrikni koʻradi (faqat oʻqish).
+for _p in ("tibbiy.read.all", "psixolog.read.all"):
+    if _p not in ROLE_PERMS["depo_boshligi"]:
+        ROLE_PERMS["depo_boshligi"].append(_p)
+for _r, _fs in ROLE_FEATURES.items():
+    for _f in ("nav.tibbiy", "nav.psixolog"):
+        if _f not in _fs:
+            _fs.append(_f)
 
 
 def _xom_access(
