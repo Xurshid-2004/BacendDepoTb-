@@ -37,6 +37,19 @@ def days_between(a: date, b: date) -> int:
     return (b - a).days
 
 
+def kip_tugash(sana: date, muddat_oy: int | None, muddat_kun: int | None) -> date:
+    """KIP tugash sanasi. muddat_kun berilgan boʻlsa kun boʻyicha (masalan
+    15 kun), aks holda oy boʻyicha hisoblanadi."""
+    if muddat_kun:
+        return sana + timedelta(days=int(muddat_kun))
+    return add_months(sana, int(muddat_oy or 1))
+
+
+def muddat_matn(muddat_oy: int | None, muddat_kun: int | None) -> str:
+    """Bildirishnoma/hujjat uchun oʻqiladigan muddat matni."""
+    return f"{int(muddat_kun)} kun" if muddat_kun else f"{int(muddat_oy or 1)} oy"
+
+
 # ---------------------------------------------------------------------
 # Qishki mavsum
 # ---------------------------------------------------------------------

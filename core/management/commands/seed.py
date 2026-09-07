@@ -138,10 +138,9 @@ POSITIONS: list[tuple[str, list, list]] = [
 
 UNITS = ["dona", "juft", "kg", "metr", "sm"]
 
-LINES = [
-    "Buxoro — Qorakoʻl", "Buxoro — Navoiy", "Buxoro-1 stansiyasi",
-    "Qiziltepa — Buxoro", "Kogon stansiyasi", "Buxoro — Olot",
-]
+# Liniyalar oldindan toʻldirilmaydi — yoʻriqchilar KIP yozganda oʻzi
+# kiritadi va roʻyxat oʻsha paytda toʻladi (views_ops._liniya_saqla).
+LINES: list[str] = []
 
 # Namunaviy xodimlar — faqat --demo bilan
 DEMO_STAFF = [

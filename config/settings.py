@@ -287,10 +287,6 @@ CORS_ALLOW_HEADERS = (
     "x-qurilma-nom",
     "x-qurilma-tur",
 )
-CORS_ALLOW_HEADERS = [
-    "accept", "accept-encoding", "authorization", "content-type",
-    "dnt", "origin", "user-agent", "x-csrftoken", "x-requested-with",
-]
 
 CSRF_TRUSTED_ORIGINS = env_list("CSRF_TRUSTED_ORIGINS", "")
 if _platform_host:
