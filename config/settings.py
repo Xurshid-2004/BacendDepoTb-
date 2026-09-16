@@ -116,6 +116,7 @@ INSTALLED_APPS = [
 
     "core",
     "api",
+    "medpunkt",   # METROBOT kiosk moduli (alkotester + tonometr)
 ]
 
 MIDDLEWARE = [
@@ -226,6 +227,13 @@ AUTH_USER_MODEL = "core.Worker"
 # ---------------------------------------------------------------------
 # DRF
 # ---------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
+# Med-punkt kioski (METROBOT) — X-API-Key. Boʻsh boʻlsa kiosk endpointlari
+# 503 qaytaradi (hech qachon kalitsiz ochilmaydi). .env: MEDPUNKT_API_KEY=...
+# ---------------------------------------------------------------------
+MEDPUNKT_API_KEY = env("MEDPUNKT_API_KEY")
+
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [

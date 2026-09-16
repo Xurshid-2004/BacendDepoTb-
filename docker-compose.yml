@@ -73,6 +73,11 @@ services:
       FACE_SERVICE_TOKEN: ${FACE_SERVICE_TOKEN:-}
       FACE_THRESHOLD: ${FACE_THRESHOLD:-0.62}
 
+      # Med-punkt kioski (METROBOT) — X-API-Key.
+      # Boʻsh boʻlsa kiosk endpointlari (ingest / hodisa / sync) 503
+      # qaytaradi va tonometr oʻlchovi saytga UMUMAN tushmaydi.
+      MEDPUNKT_API_KEY: ${MEDPUNKT_API_KEY:-}
+
       # TLS'ni Caddy yakunlaydi — Django qayta yoʻnaltirmasin
       SECURE_SSL_REDIRECT: "0"
       # Har bir worker ~120 MB. Zaxira qiymat 1 — 1 GB droplet'da xavfsiz.

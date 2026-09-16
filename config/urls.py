@@ -24,6 +24,9 @@ urlpatterns = [
     # Asosiy API
     path("api/v1/", include("api.urls")),
 
+    # Med-punkt kioski (METROBOT) — alkotester/tonometr oʻlchovlari
+    path("api/v1/medpunkt/", include("medpunkt.urls")),
+
     # Eski manzillar bilan moslik — Flutter ilovasi yangilanmaguncha
     # (app_flutter/lib/core/api.dart /api/auth/login ga murojaat qiladi)
     path("api/", include("api.urls")),

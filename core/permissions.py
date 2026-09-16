@@ -35,6 +35,7 @@ ALL_PERMS: list[str] = [
     "incident.tb.write", "incident.tb.read",
     "incident.avariya.write", "incident.avariya.read",
     "kolonna.manage", "yoriqnoma.write", "yoriqnoma.read",
+    "medpunkt.read", "medpunkt.read.all", "medpunkt.write",
 ]
 
 PERM_LABEL: dict[str, str] = {
@@ -75,6 +76,9 @@ PERM_LABEL: dict[str, str] = {
     "kolonna.manage": "Kolonnalarni boshqarish",
     "yoriqnoma.write": "Yoʻriqnoma jurnaliga yozish (skan/tasdiqlash)",
     "yoriqnoma.read": "Yoʻriqnoma jurnallarini koʻrish",
+    "medpunkt.read": "Med-punkt — oʻzining / oʻz kolonnasi oʻlchovlarini koʻrish",
+    "medpunkt.read.all": "Med-punkt — hamma oʻlchovlarni koʻrish (faqat oʻqish)",
+    "medpunkt.write": "Med-punkt — meʼyor va chegaralarni kiritish",
 }
 
 ROLE_PERMS: dict[str, list[str]] = {
@@ -84,7 +88,7 @@ ROLE_PERMS: dict[str, list[str]] = {
         "request.approve3", "stock.read", "card.read",
         "talon.read", "kip.read", "report.read", "report.download",
         "incident.tb.read", "incident.avariya.read",
-        "yoriqnoma.read",
+        "yoriqnoma.read", "medpunkt.read.all",
     ],
     "bosh_xisobchi": [
         "journal.read", "request.approve2", "stock.read", "card.read",
@@ -112,7 +116,7 @@ ROLE_PERMS: dict[str, list[str]] = {
         "kip.read", "kip.write", "talon.read", "journal.read",
         "report.read", "report.download",
         "incident.avariya.write", "incident.avariya.read", "incident.tb.read",
-        "yoriqnoma.write", "yoriqnoma.read",
+        "yoriqnoma.write", "yoriqnoma.read", "medpunkt.read",
     ],
     "depo_navbatchisi": [
         "journal.read", "card.read", "talon.read",
@@ -143,7 +147,7 @@ ALL_NAV: list[str] = [
     "nav.tb", "nav.ombor", "nav.kip", "nav.talon",
     "nav.hisobot", "nav.arizalar", "nav.hujjatlar", "nav.arxiv",
     "nav.kolonnalar", "nav.yoriqnoma",
-    "nav.tibbiy", "nav.psixolog",
+    "nav.tibbiy", "nav.psixolog", "nav.medpunkt",
 ]
 ALL_DOCS: list[str] = ["doc.trebovanie", "doc.mb6", "doc.kitobcha"]
 
@@ -168,6 +172,7 @@ FEATURE_LABEL: dict[str, str] = {
     "nav.yoriqnoma": "Boʻlim: Yoʻriqnoma kitobchalari (TB kitobchalari)",
     "nav.tibbiy": "Boʻlim: Tibbiy koʻrik",
     "nav.psixolog": "Boʻlim: Psixolog",
+    "nav.medpunkt": "Boʻlim: Med-punkt (alkotester, qon bosimi)",
     "doc.trebovanie": "Hujjat: Требование (MU-27)",
     "doc.mb6": "Hujjat: MB-6 kartochka",
     "doc.kitobcha": "Hujjat: TB jamoatchilik nazorati kitobchasi",
@@ -196,6 +201,7 @@ ROLE_FEATURES: dict[str, list[str]] = {
     "yoriqchi": [
         "card.kip",
         "nav.kip", "nav.hisobot", "nav.arizalar", "nav.hujjatlar", "nav.yoriqnoma",
+        "nav.medpunkt",
         *ALL_DOCS,
     ],
     "depo_navbatchisi": [
@@ -258,6 +264,9 @@ OLIB_KELADI: dict[str, str] = {
     "tibbiy.read": "tibbiy.read.all",
     "nav.psixolog": "psixolog.read.all",
     "psixolog.read": "psixolog.read.all",
+    # Med-punkt — `.read.all` boʻlimni ochadi (menyu + oʻqish); yozish alohida.
+    "nav.medpunkt": "medpunkt.read.all",
+    "medpunkt.read": "medpunkt.read.all",
 }
 
 # --- Standart darajalar (dasturiy) --------------------------------------
